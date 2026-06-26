@@ -6,7 +6,7 @@
 
 ## 概要
 
-会社スコープ向け従業員管理機能のHTMLモック7ページ＋サイドバーナビゲーション。
+会社スコープ向け従業員管理機能のHTMLモック8ページ＋サイドバーナビゲーション。
 
 ## 作成・変更ファイル一覧
 
@@ -19,7 +19,7 @@
   - 従業員設定履歴 → `employee_payroll_histories.html`
 - **データ連携**
   - 設定インポート → `employee_payroll_import.html`
-  - 設定・実績エクスポート → `employees.html`（出力は一覧画面のボタンで実行）
+  - 設定・実績エクスポート → `employee_export.html`（専用のエクスポート画面で項目選択して出力）
   - 設定取込データ → `settings_data_import.html`
   - 実績取込データ → `actual_data_import.html`
 
@@ -36,6 +36,7 @@
 | `employee_payroll_histories.html` | 従業員設定履歴 | `staff.html` |
 | `employee_payroll_import.html` | 設定インポート | `supplier_new.html` |
 | `column_mapping_templates.html` | 列マッピングテンプレート | — |
+| `employee_export.html` | 設定・実績エクスポート | — |
 
 ---
 
@@ -46,7 +47,7 @@
 - **パンくず**: ホーム - 従業員一覧
 - **上部ツールバー（右上）**:
   - CSVインポート → `employee_payroll_import.html`
-  - 設定・実績エクスポート（出力アクション。`id=export_employee_settings`）
+  - 設定・実績エクスポート → `employee_export.html`（専用画面で項目選択して出力。`id=export_employee_settings`）
 - **フィルタ（役割別2行）**:
   - **1段目（絞り込み）**: 店舗 / 雇用区分 / 従業員名検索 …… 右端に **従業員登録**（→ `employee_register.html`、表の右上端）
   - **2段目（対象データ）**: 月 / 取込データ / **設定取込データへ**（→ `settings_data_import.html`、取込データの右隣）
@@ -115,6 +116,22 @@
 - **モーダル（登録/編集）**: テンプレート名(必須) / データ種類(新規作成（従業員設定）/新規作成（給与設定）/King of Time/ジョブカン) / 列マッピング設定テーブル(動的行：取込チェック・CSV列名・反映先テーブル・ラクミー列名)
 - **列マッピング表インポート**: テンプレDL / ファイルアップロード(D&D, CSV最大10MB) / インポート(ローディング)
 
+### ページ8: employee_export.html (設定・実績エクスポート)
+- **パス**: /employee_export
+- **パンくず**: ホーム - 従業員一覧 - エクスポート
+- **ツールバー**: 従業員一覧へ → `employees.html`
+- **エクスポート選択フロー（専用画面・モーダルではない）**:
+  1. **① 種別**（ラジオ）: 設定 / 実績
+  2. **② 対象**
+     - 設定の場合：**従業員設定／給与設定**（チェックボックス・複数可）
+     - 実績の場合：**給与実績の月**（プルダウン）
+  3. **③ データ項目選択**（チェックボックス・対象ごとに表示）
+     - 従業員設定：従業員コード / 氏名 / 雇用区分 / 所属店舗 / ヘルプ先店舗 / 適用日付
+     - 給与設定：従業員コード / 氏名 / 給与単位 / 単位給与額 / 交通費単位 / 単位交通費 / 所定労働時間 / みなし残業時間 / 適用日付
+     - 実績：従業員コード / 氏名 / 対象年月 / 雇用区分 / 所属店舗 / 概算給与 / 総労働時間 / ヘルプ人件費 / 深夜残業代 / 実績給与
+- **下部ボタン**: キャンセル → `employees.html`／**エクスポート**（選択項目のみでBOM付きCSVを生成しダウンロード。設定で両対象選択時は2ファイル出力）
+- **バリデーション**: 対象・項目が未選択ならエクスポート不可（警告）。
+
 ---
 
 ## 給与実績の計算ロジックと「締め」（ページ4の中核仕様）
@@ -179,7 +196,7 @@
 | アクション | ファイル |
 |---|---|
 | 変更 | `sidebar_company.html` |
-| 作成/変更 | `employees.html` / `employee_register.html` / `employee_detail.html` / `payroll_reports.html` / `employee_payroll_histories.html` / `employee_payroll_import.html` / `column_mapping_templates.html` |
+| 作成/変更 | `employees.html` / `employee_register.html` / `employee_detail.html` / `payroll_reports.html` / `employee_payroll_histories.html` / `employee_payroll_import.html` / `column_mapping_templates.html` / `employee_export.html` |
 
 ---
 

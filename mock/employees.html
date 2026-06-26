@@ -88,13 +88,13 @@
 											</a>
 										</div>
 										<div class="w-auto flex-md-grow-0 flex-grow-1">
-											<button type="button" class="btn btn-sm fs-7 fw-bold btn-dark nowrap w-100" id="export_employee_settings">
+											<a href="employee_export.html" class="btn btn-sm fs-7 fw-bold btn-dark nowrap w-100" id="export_employee_settings">
 												<i class="ki-duotone ki-file-down fs-4 ms-n1 me-0 mb-1">
 													<span class="path1"></span>
 													<span class="path2"></span>
 												</i>
 												設定・実績エクスポート
-											</button>
+											</a>
 										</div>
 										<!--end::Actions-->
 									</div>
@@ -758,38 +758,6 @@
 				});
 			});
 
-			// === 設定・実績エクスポート（一覧の表示内容をCSV出力／フィルタ適用後）===
-			$('#export_employee_settings').on('click', function() {
-				var headers = [];
-				$('#employees_datatable thead th').each(function() {
-					var t = $(this).text().replace(/\s+/g, ' ').trim();
-					if (t && t !== 'アクション' && t !== '操作') headers.push(t);
-				});
-				var rows = [headers];
-				employeesTable.rows({ search: 'applied' }).every(function() {
-					var $tds = $(this.node()).children('td');
-					var r = [];
-					for (var i = 0; i < headers.length; i++) {
-						r.push($tds.eq(i).text().replace(/\s*\n\s*/g, ';').replace(/\s+/g, ' ').trim());
-					}
-					rows.push(r);
-				});
-				var csv = rows.map(function(r) {
-					return r.map(function(c) {
-						c = (c == null ? '' : String(c));
-						return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c;
-					}).join(',');
-				}).join('\r\n');
-				var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-				var url = URL.createObjectURL(blob);
-				var a = document.createElement('a');
-				a.href = url; a.download = '従業員設定・実績_エクスポート.csv';
-				document.body.appendChild(a); a.click(); document.body.removeChild(a);
-				URL.revokeObjectURL(url);
-				if (window.Swal) {
-					Swal.fire({ icon: 'success', text: '設定・実績をエクスポートしました（' + (rows.length - 1) + '件）', confirmButtonText: 'OK', buttonsStyling: false, customClass: { confirmButton: 'btn btn-primary' } });
-				}
-			});
 		</script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
