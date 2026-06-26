@@ -174,16 +174,6 @@
 											</i>
 											<input type="text" class="form-control form-control-sm w-100 w-md-150px ps-11" placeholder="従業員名で検索" id="employee_search">
 										</div>
-										<div class="d-flex gap-2">
-											<button type="button" class="btn btn-sm btn-light-success w-auto flex-shrink-0" id="kakutei_btn" data-bs-toggle="modal" data-bs-target="#kakutei_confirm_modal">
-												<i class="ki-duotone ki-lock fs-4 me-1">
-													<span class="path1"></span>
-													<span class="path2"></span>
-													<span class="path3"></span>
-												</i>
-												<span class="kakutei-btn-text">確定</span>
-											</button>
-										</div>
 										<a href="employee_register.html" class="btn btn-sm btn-primary w-auto flex-shrink-0 nowrap d-inline-flex align-items-center ms-md-auto" id="employee_register_btn">
 											<i class="ki-duotone ki-plus fs-4 me-1"></i>従業員登録
 										</a>
@@ -653,52 +643,6 @@
 		</div>
 		<!--end::Root-->
 		<!--end::Main-->
-		<!--begin::Modal - 確定 Confirm-->
-		<div class="modal fade" id="kakutei_confirm_modal" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered mw-500px">
-				<div class="modal-content">
-					<div class="modal-header align-items-start p-8 border-0">
-						<div class="flex-column">
-							<div class="fs-3 fw-bolder" id="kakutei_modal_title">従業員設定確定処理の確認</div>
-						</div>
-						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
-							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
-						</div>
-					</div>
-					<div class="modal-body p-8 pt-0">
-						<p class="text-gray-700 fs-6 mb-0">従業員設定を確定します。確定後は設定の編集ができなくなります。よろしいですか？</p>
-					</div>
-					<div class="modal-footer p-6 border-top-1">
-						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
-						<button type="button" class="btn btn-success" id="kakutei_confirm_submit">確定する</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--end::Modal - 確定 Confirm-->
-		<!--begin::Modal - 確定解除 Confirm-->
-		<div class="modal fade" id="kakutei_kaijo_confirm_modal" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered mw-500px">
-				<div class="modal-content">
-					<div class="modal-header align-items-start p-8 border-0">
-						<div class="flex-column">
-							<div class="fs-3 fw-bolder">従業員設定確定解除処理の確認</div>
-						</div>
-						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
-							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
-						</div>
-					</div>
-					<div class="modal-body p-8 pt-0">
-						<p class="text-gray-700 fs-6 mb-0">従業員設定の確定を解除します。解除後は設定の編集が可能になります。よろしいですか？</p>
-					</div>
-					<div class="modal-footer p-6 border-top-1">
-						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
-						<button type="button" class="btn btn-danger" id="kakutei_kaijo_confirm_submit">確定解除する</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--end::Modal - 確定解除 Confirm-->
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="assets/plugins/global/plugins.bundle.js"></script>
@@ -791,73 +735,6 @@
 				// Search in column 0 (名前)
 				employeesTable.column(0).search(this.value).draw();
 			});
-			// 確定/確定解除 toggle functionality
-			var isKakutei = false;
-			var kakuteiBtn = $('#kakutei_btn');
-			var kakuteiModal = new bootstrap.Modal(document.getElementById('kakutei_confirm_modal'));
-			var kakuteiKaijoModal = new bootstrap.Modal(document.getElementById('kakutei_kaijo_confirm_modal'));
-
-			// Get selected month text from filter
-			function getSelectedMonthText() {
-				return $('#month_filter option:selected').text();
-			}
-
-			// Update button state
-			function updateKakuteiButton() {
-				var monthText = getSelectedMonthText();
-				if (isKakutei) {
-					kakuteiBtn.removeClass('btn-light-success').addClass('btn-light-danger');
-					kakuteiBtn.find('i').attr('class', 'ki-duotone ki-lock-2 fs-4 me-1').html('<span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>');
-					kakuteiBtn.find('.kakutei-btn-text').text('確定解除');
-					kakuteiBtn.attr('data-bs-target', '#kakutei_kaijo_confirm_modal');
-				} else {
-					kakuteiBtn.removeClass('btn-light-danger').addClass('btn-light-success');
-					kakuteiBtn.find('i').attr('class', 'ki-duotone ki-lock fs-4 me-1').html('<span class="path1"></span><span class="path2"></span><span class="path3"></span>');
-					kakuteiBtn.find('.kakutei-btn-text').text(monthText + '確定');
-					kakuteiBtn.attr('data-bs-target', '#kakutei_confirm_modal');
-				}
-			}
-
-			// Update button text when month filter changes
-			$('#month_filter').on('change', function() {
-				updateKakuteiButton();
-			});
-
-			// Initialize button text on page load
-			updateKakuteiButton();
-
-			// 確定 submit handler
-			$('#kakutei_confirm_submit').on('click', function() {
-				isKakutei = true;
-				updateKakuteiButton();
-				kakuteiModal.hide();
-				Swal.fire({
-					text: '従業員設定を確定しました',
-					icon: 'success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-primary'
-					},
-					buttonsStyling: false
-				});
-			});
-
-			// 確定解除 submit handler
-			$('#kakutei_kaijo_confirm_submit').on('click', function() {
-				isKakutei = false;
-				updateKakuteiButton();
-				kakuteiKaijoModal.hide();
-				Swal.fire({
-					text: '従業員設定の確定を解除しました',
-					icon: 'success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-primary'
-					},
-					buttonsStyling: false
-				});
-			});
-
 			// Select all elements with the class name 'modal_delete_employee'
 			const deleteButtons = document.getElementsByClassName('modal_delete_employee');
 
