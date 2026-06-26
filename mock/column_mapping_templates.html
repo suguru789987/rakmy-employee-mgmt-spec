@@ -134,7 +134,7 @@
 							<!--begin::Container-->
 							<div id="kt_content_container" class="container-xxl">
 								<!--begin::Card-->
-								<div class="card mb-5 mb-xl-10">
+								<div class="card mb-5">
 									<!--begin::Card body-->
 									<div class="card-body p-0">
 										<div class="table-responsive">
@@ -264,6 +264,71 @@
 									<!--end::Card body-->
 								</div>
 								<!--end::Card-->
+								<!--begin::Card - 列マッピング表インポート-->
+								<div class="card mt-5 mb-5">
+									<!--begin::Card header-->
+									<div class="card-header border-0">
+										<!--begin::Card title-->
+										<div class="card-title mt-2 mt-lg-4">
+											<h3 class="fw-bolder me-2 fs-5">列マッピング表インポート</h3>
+										</div>
+										<!--end::Card title-->
+										<!--begin::Card toolbar-->
+										<div class="card-toolbar">
+											<a href="#" class="btn btn-sm btn-light-primary" id="download_mapping_template">
+												<i class="ki-outline ki-file-down fs-5 me-1"></i>テンプレートダウンロード
+											</a>
+										</div>
+										<!--end::Card toolbar-->
+									</div>
+									<!--end::Card header-->
+									<!--begin::Card body-->
+									<div class="card-body border-top p-9 pt-6">
+										<!--begin::Input group - マッピングテンプレートファイル-->
+										<div class="mb-0">
+											<!--begin::Label-->
+											<label class="col-form-label text-gray-600 fw-bold fs-8">マッピングテンプレートファイル</label>
+											<!--end::Label-->
+											<!--begin::Col-->
+											<div class="fv-row">
+												<!--begin::Dropzone-->
+												<div class="dropzone" id="kt_mapping_dropzone">
+													<!--begin::Message-->
+													<div class="dz-message needsclick">
+														<i class="ki-duotone ki-file-up fs-2qx text-primary">
+															<span class="path1"></span>
+															<span class="path2"></span>
+														</i>
+														<div class="ms-4">
+															<div class="fs-6 fw-bold text-gray-900">ファイルをドラッグ＆ドロップ</div>
+															<span class="fs-8 fw-semibold text-gray-600">または クリックしてファイルを選択</span>
+														</div>
+													</div>
+													<!--end::Message-->
+												</div>
+												<!--end::Dropzone-->
+												<div class="form-text text-gray-600 fs-8 mt-3">
+													<span class="fw-semibold">対応ファイル形式 :</span> CSV (.csv)<br>
+													<span class="fw-semibold">最大ファイルサイズ :</span> 10MB
+												</div>
+											</div>
+											<!--end::Col-->
+										</div>
+										<!--end::Input group-->
+									</div>
+									<!--end::Card body-->
+									<!--begin::Actions-->
+									<div class="card-footer d-flex justify-content-end py-6 px-9">
+										<button type="button" class="btn btn-primary d-inline-flex align-items-center" id="mapping_import_submit">
+											<span class="indicator-label"><i class="ki-outline ki-check fs-3"></i>インポート</span>
+											<span class="indicator-progress">インポート中...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+											</span>
+										</button>
+									</div>
+									<!--end::Actions-->
+								</div>
+								<!--end::Card - 列マッピング表インポート-->
 							</div>
 							<!--end::Container-->
 						</div>
@@ -303,6 +368,8 @@
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">データ種類</label>
 								<select class="form-select form-select-solid" id="create_data_type">
 									<option value="">選択してください</option>
+									<option value="new_employee">新規作成（従業員設定）</option>
+									<option value="new_payroll">新規作成（給与設定）</option>
 									<option value="kot_employee_attendance">King of Time 従業員一覧（勤怠管理）</option>
 									<option value="kot_unit_price">King of Time 単価データ（勤怠管理）</option>
 									<option value="kot_employee_hr">King of Time 従業員一覧（人事労務）</option>
@@ -372,6 +439,8 @@
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">データ種類</label>
 								<select class="form-select form-select-solid" id="edit_data_type">
 									<option value="">選択してください</option>
+									<option value="new_employee">新規作成（従業員設定）</option>
+									<option value="new_payroll">新規作成（給与設定）</option>
 									<option value="kot_employee_attendance">King of Time 従業員一覧（勤怠管理）</option>
 									<option value="kot_unit_price">King of Time 単価データ（勤怠管理）</option>
 									<option value="kot_employee_hr">King of Time 従業員一覧（人事労務）</option>
@@ -805,6 +874,92 @@
 								confirmButton: 'btn btn-primary'
 							}
 						});
+					}
+				});
+			});
+
+			// Initialize Dropzone for mapping template import
+			var mappingDropzone = new Dropzone("#kt_mapping_dropzone", {
+				url: "#", // Mockup - no actual upload
+				paramName: "file",
+				maxFiles: 1,
+				maxFilesize: 10, // MB
+				acceptedFiles: ".csv",
+				addRemoveLinks: true,
+				dictRemoveFile: "削除",
+				dictCancelUpload: "キャンセル",
+				dictInvalidFileType: "このファイル形式はサポートされていません",
+				dictFileTooBig: "ファイルが大きすぎます（最大10MB）",
+				autoProcessQueue: false, // Mockup - don't actually process
+				init: function() {
+					this.on("addedfile", function(file) {
+						// If there's already a file, remove it
+						if (this.files.length > 1) {
+							this.removeFile(this.files[0]);
+						}
+					});
+				}
+			});
+
+			// Mapping import form submission with loading animation
+			const mappingImportButton = document.getElementById('mapping_import_submit');
+
+			mappingImportButton.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				// Check if file is uploaded
+				if (mappingDropzone.files.length === 0) {
+					Swal.fire({
+						text: 'マッピングテンプレートファイルを選択してください',
+						icon: 'warning',
+						buttonsStyling: false,
+						confirmButtonText: 'OK',
+						customClass: {
+							confirmButton: 'btn btn-primary'
+						}
+					});
+					return;
+				}
+
+				// Show loading state
+				mappingImportButton.setAttribute('data-kt-indicator', 'on');
+				mappingImportButton.disabled = true;
+
+				// Simulate API call
+				setTimeout(function() {
+					// Hide loading state
+					mappingImportButton.removeAttribute('data-kt-indicator');
+					mappingImportButton.disabled = false;
+
+					// Show success message
+					Swal.fire({
+						text: "マッピングテンプレートをインポートしました",
+						icon: "success",
+						buttonsStyling: false,
+						confirmButtonText: "OK",
+						customClass: {
+							confirmButton: "btn btn-primary"
+						}
+					}).then((result) => {
+						if (result.isConfirmed) {
+							// Clear the dropzone and reload page
+							mappingDropzone.removeAllFiles();
+							location.reload();
+						}
+					});
+				}, 2000);
+			});
+
+			// Download mapping template button
+			$('#download_mapping_template').on('click', function(e) {
+				e.preventDefault();
+				Swal.fire({
+					text: 'マッピングテンプレートをダウンロードします',
+					icon: 'info',
+					buttonsStyling: false,
+					confirmButtonText: 'OK',
+					customClass: {
+						confirmButton: 'btn btn-primary'
 					}
 				});
 			});

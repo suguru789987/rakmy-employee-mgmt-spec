@@ -105,14 +105,23 @@
 											<a class="nav-link" data-bs-toggle="tab" href="#daily_tab">日別実績</a>
 										</li>
 									</ul>
-									<button type="button" class="btn btn-sm btn-light-danger w-auto flex-shrink-0" id="shime_btn" data-bs-toggle="modal" data-bs-target="#shime_confirm_modal">
-										<i class="ki-duotone ki-lock fs-4 me-1">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-										<span class="shime-btn-text">月別実績締め</span>
-									</button>
+									<div class="d-flex gap-2">
+										<button type="button" class="btn btn-sm btn-light-danger w-auto flex-shrink-0" id="shime_btn" data-bs-toggle="modal" data-bs-target="#shime_confirm_modal">
+											<i class="ki-duotone ki-lock fs-4 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+											<span class="shime-btn-text">月別実績締め</span>
+										</button>
+										<button class="btn btn-sm btn-primary w-auto flex-shrink-0" id="csv_export">
+											<i class="ki-duotone ki-file-down fs-4 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											CSVエクスポート
+										</button>
+									</div>
 								</div>
 								<!--end::Nav tabs-->
 								<!--begin::Filters Tab Content-->
@@ -125,16 +134,16 @@
 													<label class="fs-8 text-gray-600 nowrap">年月</label>
 													<select class="form-select form-select-sm w-auto" id="monthly_month_filter">
 														<option value="">すべて</option>
-														<option value="2024-12" selected>2024年12月</option>
-														<option value="2024-11">2024年11月</option>
-														<option value="2024-10">2024年10月</option>
+														<option value="2025-12" selected>2025年12月</option>
+														<option value="2025-11">2025年11月</option>
+														<option value="2025-10">2025年10月</option>
 													</select>
 												</div>
 												<div class="d-flex align-items-center gap-3">
 													<label class="fs-8 text-gray-600 nowrap">給与計算モード</label>
 													<select class="form-select form-select-sm w-auto" id="monthly_payroll_mode">
-														<option value="estimated">概算モード</option>
-														<option value="actual" selected>実績モード</option>
+														<option value="estimated">概算</option>
+														<option value="actual" selected>実績</option>
 													</select>
 												</div>
 												<div class="d-flex align-items-center gap-3">
@@ -154,22 +163,21 @@
 														<option value="アルバイト">アルバイト</option>
 													</select>
 												</div>
-											</div>
-											<div class="d-flex flex-column flex-sm-row gap-3 align-items-stretch align-items-sm-center w-100 w-md-auto">
-												<div class="d-flex align-items-center position-relative flex-grow-1 flex-sm-grow-0">
-													<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-													<input type="text" class="form-control form-control-sm ps-11 w-100 w-md-150px" placeholder="従業員名で検索" id="monthly_employee_search">
+												<div class="d-flex align-items-center gap-3">
+													<label class="fs-8 text-gray-600 nowrap">エラー</label>
+													<select class="form-select form-select-sm w-auto" id="monthly_error_filter">
+														<option value="">すべて</option>
+														<option value="交通費欠損">交通費欠損</option>
+														<option value="出退勤打刻漏れ">出退勤打刻漏れ</option>
+													</select>
 												</div>
-												<button class="btn btn-sm btn-primary w-100 w-md-auto" id="monthly_csv_export">
-													<i class="ki-duotone ki-file-down fs-4 me-1">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-													CSVエクスポート
-												</button>
+											</div>
+											<div class="d-flex align-items-center position-relative">
+												<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												<input type="text" class="form-control form-control-sm ps-11 w-100 w-md-150px" placeholder="従業員名で検索" id="monthly_employee_search">
 											</div>
 										</div>
 									</div>
@@ -185,8 +193,8 @@
 												<div class="d-flex align-items-center gap-3">
 													<label class="fs-8 text-gray-600 nowrap">給与計算モード</label>
 													<select class="form-select form-select-sm w-auto" id="daily_payroll_mode">
-														<option value="estimated">概算モード</option>
-														<option value="actual" selected>実績モード</option>
+														<option value="estimated">概算</option>
+														<option value="actual" selected>実績</option>
 													</select>
 												</div>
 												<div class="d-flex align-items-center gap-3">
@@ -206,22 +214,21 @@
 														<option value="アルバイト">アルバイト</option>
 													</select>
 												</div>
-											</div>
-											<div class="d-flex flex-column flex-sm-row gap-3 align-items-stretch align-items-sm-center w-100 w-md-auto">
-												<div class="d-flex align-items-center position-relative flex-grow-1 flex-sm-grow-0">
-													<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-													<input type="text" class="form-control form-control-sm ps-11 w-100 w-md-150px" placeholder="従業員名で検索" id="daily_employee_search">
+												<div class="d-flex align-items-center gap-3">
+													<label class="fs-8 text-gray-600 nowrap">エラー</label>
+													<select class="form-select form-select-sm w-auto" id="daily_error_filter">
+														<option value="">すべて</option>
+														<option value="交通費欠損">交通費欠損</option>
+														<option value="出退勤打刻漏れ">出退勤打刻漏れ</option>
+													</select>
 												</div>
-												<button class="btn btn-sm btn-primary flex-grow-1 flex-sm-grow-0" id="daily_csv_export">
-													<i class="ki-duotone ki-file-down fs-4 me-1">
-														<span class="path1"></span>
-														<span class="path2"></span>
-													</i>
-													CSVエクスポート
-												</button>
+											</div>
+											<div class="d-flex align-items-center position-relative">
+												<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												<input type="text" class="form-control form-control-sm ps-11 w-100 w-md-150px" placeholder="従業員名で検索" id="daily_employee_search">
 											</div>
 										</div>
 									</div>
@@ -251,6 +258,7 @@
 															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
 																<th class="min-w-100px pt-5 sticky-col sticky-col-1">名前</th>
 																<th class="min-w-50px pt-5 text-center">従業員ページ</th>
+																<th class="min-w-50px pt-5 text-center">従業員設定</th>
 																<th class="min-w-75px pt-5">従業員コード</th>
 																<th class="min-w-75px pt-5">雇用区分</th>
 																<th class="min-w-50px pt-5">給与単位</th>
@@ -280,6 +288,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="田中 太郎" data-employee-code="EMP001" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="350000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP001</td>
 																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
 																<td><div class="badge badge-dark fw-bold">月給</div></td>
@@ -307,6 +316,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="佐藤 花子" data-employee-code="EMP002" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="320000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="12000" data-working-hours="160" data-overtime-hours="20"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP002</td>
 																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
 																<td><div class="badge badge-dark fw-bold">月給</div></td>
@@ -334,6 +344,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="鈴木 一郎" data-employee-code="EMP003" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="380000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="18000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP003</td>
 																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
 																<td><div class="badge badge-dark fw-bold">月給</div></td>
@@ -361,6 +372,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="高橋 美咲" data-employee-code="EMP004" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1250" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="8000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP004</td>
 																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
 																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
@@ -388,6 +400,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="伊藤 健太" data-employee-code="EMP005" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1100" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="10000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP005</td>
 																<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
 																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
@@ -415,6 +428,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">山本 直樹</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="山本 直樹" data-employee-code="EMP006" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="340000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="16000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP006</td>
 																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
 																<td><div class="badge badge-dark fw-bold">月給</div></td>
@@ -442,6 +456,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="中村 さくら" data-employee-code="EMP007" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1200" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP007</td>
 																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
 																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
@@ -469,6 +484,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="小林 大輔" data-employee-code="EMP008" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1150" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="9000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP008</td>
 																<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
 																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
@@ -496,6 +512,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">加藤 真理</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="加藤 真理" data-employee-code="EMP009" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="300000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="13000" data-working-hours="160" data-overtime-hours="25"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP009</td>
 																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
 																<td><div class="badge badge-dark fw-bold">月給</div></td>
@@ -523,6 +540,7 @@
 															<tr>
 																<td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
 																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="渡辺 優子" data-employee-code="EMP010" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1300" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="11000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
 																<td>EMP010</td>
 																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
 																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
@@ -938,6 +956,157 @@
 			</div>
 		</div>
 		<!--end::Modal - 実績データ取込進捗-->
+		<!--begin::Modal - 従業員設定-->
+		<div class="modal fade" id="employee_setting_modal" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered mw-650px">
+				<div class="modal-content">
+					<div class="modal-header align-items-start p-8 border-bottom-1">
+						<div class="flex-column">
+							<div class="fs-3 fw-bolder" id="employee_setting_modal_title">従業員設定編集</div>
+						</div>
+						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
+							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
+						</div>
+					</div>
+					<div class="modal-body p-8">
+						<!--begin::Input group - 変更反映日時範囲-->
+						<div class="row mb-6">
+							<div class="d-flex flex-column col-12">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">変更反映日時範囲</label>
+								<div id="modal_daterange_picker" data-kt-daterangepicker="true" data-kt-daterangepicker-opens="left" class="btn btn-light d-flex align-items-center px-4 form-control-solid">
+									<i class="ki-outline ki-calendar fs-4 ms-0 me-1 text-gray-500"></i>
+									<div class="text-gray-700 fw-bold">日時範囲を読み込み中...</div>
+								</div>
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - 名前 & 従業員コード-->
+						<div class="row d-flex mb-6">
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">名前</label>
+								<input type="text" class="form-control fs-6 bg-secondary bg-opacity-25 text-gray-500" id="modal_employee_name" value="田中 太郎" disabled style="cursor: not-allowed;">
+							</div>
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">従業員コード</label>
+								<input type="text" class="form-control fs-6 bg-secondary bg-opacity-25 text-gray-500" id="modal_employee_code" value="EMP001" disabled style="cursor: not-allowed;">
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - 所属店舗 & ヘルプ先店舗-->
+						<div class="row d-flex mb-6">
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所属店舗</label>
+								<select class="form-select form-select-solid fs-6" id="modal_setting_store_select">
+									<option value="1" selected>ラクミーフレッシュ渋谷店</option>
+									<option value="2">ラクミーフレッシュ青山店</option>
+									<option value="3">ラクミーフレッシュ新宿店</option>
+									<option value="4">ラクミーフレッシュ沖縄店</option>
+									<option value="5">ラクミーフレッシュ赤坂店</option>
+								</select>
+							</div>
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">ヘルプ先店舗</label>
+								<select class="form-select form-select-solid fs-6" id="modal_setting_help_stores_select" multiple="multiple">
+									<option value="1">ラクミーフレッシュ渋谷店</option>
+									<option value="2" selected>ラクミーフレッシュ青山店</option>
+									<option value="3" selected>ラクミーフレッシュ新宿店</option>
+									<option value="4">ラクミーフレッシュ沖縄店</option>
+									<option value="5">ラクミーフレッシュ赤坂店</option>
+								</select>
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - 雇用区分 & 給与単位 & 単位給与額-->
+						<div class="row d-flex mb-6">
+							<div class="d-flex flex-column col-4">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">雇用区分</label>
+								<select class="form-select form-select-solid fs-6" id="modal_employment_type">
+									<option value="regular" selected>正社員</option>
+									<option value="part_time">パート</option>
+									<option value="temporary">アルバイト</option>
+								</select>
+							</div>
+							<div class="d-flex flex-column col-4">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">給与単位</label>
+								<select class="form-select form-select-solid fs-6" id="modal_salary_type">
+									<option value="monthly" selected>月給</option>
+									<option value="hourly">時給</option>
+								</select>
+							</div>
+							<div class="d-flex flex-column col-4">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">単位給与額</label>
+								<div class="input-group">
+									<span class="input-group-text border-0 bg-gray-100">¥</span>
+									<input type="text" class="form-control form-control-solid fs-6 number-input" id="modal_salary_amount" value="350,000">
+								</div>
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - 交通費単位 & 単位交通費-->
+						<div class="row d-flex mb-6">
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">交通費単位</label>
+								<select class="form-select form-select-solid fs-6" id="modal_transport_type">
+									<option value="daily">日額</option>
+									<option value="monthly" selected>月額</option>
+								</select>
+							</div>
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">単位交通費</label>
+								<div class="input-group">
+									<span class="input-group-text border-0 bg-gray-100">¥</span>
+									<input type="text" class="form-control form-control-solid fs-6 number-input" id="modal_transport_amount" value="15,000">
+								</div>
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - ヘルプ先交通費-->
+						<div class="row d-flex mb-6" id="modal_help_transport_section" style="display: none;">
+							<div class="d-flex flex-column col-12">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">ヘルプ先交通費</label>
+								<div id="modal_help_transport_list">
+									<!-- Dynamically populated by JavaScript -->
+								</div>
+							</div>
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group - 所定労働時間 & みなし残業時間-->
+						<div class="row d-none" id="modal_regular_employee_fields">
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所定労働時間</label>
+								<div class="input-group">
+									<input type="number" class="form-control form-control-solid fs-6" id="modal_working_hours" value="160">
+									<span class="input-group-text border-0 bg-gray-100">時間/月</span>
+								</div>
+							</div>
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">
+									<span>みなし残業時間</span>
+									<span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="時給制の場合は0を入力してください">
+										<i class="ki-duotone ki-information-2 text-gray-400 fs-4">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</span>
+									<span class="text-danger ms-1">*</span>
+								</label>
+								<div class="input-group">
+									<input type="number" class="form-control form-control-solid fs-6" id="modal_overtime_hours" value="30">
+									<span class="input-group-text border-0 bg-gray-100">時間/月</span>
+								</div>
+							</div>
+						</div>
+						<!--end::Input group-->
+					</div>
+					<div class="modal-footer p-6 border-top-1">
+						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
+						<button type="button" class="btn btn-primary" id="btn_save_employee_setting"><i class="ki-duotone ki-check fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>更新保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end::Modal - 従業員設定-->
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="assets/plugins/global/plugins.bundle.js"></script>
@@ -951,6 +1120,9 @@
 				// Initialize DataTables
 				var dataTableSettings = {
 					"order": [[0, "asc"]],
+					"columnDefs": [
+						{ "orderable": false, "targets": [0, 1, 2] }
+					],
 					"language": {
 						"decimal": ".",
 						"thousands": ",",
@@ -1000,10 +1172,12 @@
 						$('#monthly_filters').addClass('show active');
 						$('#daily_filters').removeClass('show active');
 						currentTab = 'monthly';
+						$('#shime_btn').show();
 					} else if (target === '#daily_tab') {
 						$('#daily_filters').addClass('show active');
 						$('#monthly_filters').removeClass('show active');
 						currentTab = 'daily';
+						$('#shime_btn').hide();
 					}
 					updateShimeText();
 				});
@@ -1074,20 +1248,8 @@
 				// Initialize on page load
 				togglePayrollMode($('#monthly_payroll_mode').val());
 
-				// CSV Export handlers
-				$('#monthly_csv_export').on('click', function() {
-					Swal.fire({
-						text: "CSVファイルをエクスポートしました",
-						icon: "success",
-						buttonsStyling: false,
-						confirmButtonText: "OK",
-						customClass: {
-							confirmButton: "btn btn-primary"
-						}
-					});
-				});
-
-				$('#daily_csv_export').on('click', function() {
+				// CSV Export handler
+				$('#csv_export').on('click', function() {
 					Swal.fire({
 						text: "CSVファイルをエクスポートしました",
 						icon: "success",
@@ -1159,6 +1321,293 @@
 					progressBar.style.width = '0%';
 					progressBar.setAttribute('aria-valuenow', '0');
 					progressText.textContent = '0%';
+				});
+
+				// Employee setting modal handler
+				var employeeSettingModal = document.getElementById('employee_setting_modal');
+				var currentEmployeeData = {}; // Store employee data for use in shown.bs.modal
+
+				employeeSettingModal.addEventListener('show.bs.modal', function (event) {
+					var button = event.relatedTarget;
+
+					// Store all employee data
+					currentEmployeeData = {
+						employeeName: button.getAttribute('data-employee-name'),
+						employeeCode: button.getAttribute('data-employee-code'),
+						employmentType: button.getAttribute('data-employment-type'),
+						salaryType: button.getAttribute('data-salary-type'),
+						salaryAmount: button.getAttribute('data-salary-amount'),
+						store: button.getAttribute('data-store'),
+						helpStores: button.getAttribute('data-help-stores'),
+						transportType: button.getAttribute('data-transport-type'),
+						transportAmount: button.getAttribute('data-transport-amount'),
+						workingHours: button.getAttribute('data-working-hours'),
+						overtimeHours: button.getAttribute('data-overtime-hours')
+					};
+
+					// Update employee name and code (these are disabled fields)
+					$('#modal_employee_name').val(currentEmployeeData.employeeName);
+					$('#modal_employee_code').val(currentEmployeeData.employeeCode);
+				});
+
+				// Initialize Select2 for employee setting modal
+				employeeSettingModal.addEventListener('shown.bs.modal', function () {
+					// Destroy existing Select2 instances
+					if ($('#modal_setting_store_select').hasClass('select2-hidden-accessible')) {
+						$('#modal_setting_store_select').select2('destroy');
+					}
+					if ($('#modal_setting_help_stores_select').hasClass('select2-hidden-accessible')) {
+						$('#modal_setting_help_stores_select').select2('destroy');
+					}
+					if ($('#modal_employment_type').hasClass('select2-hidden-accessible')) {
+						$('#modal_employment_type').select2('destroy');
+					}
+					if ($('#modal_salary_type').hasClass('select2-hidden-accessible')) {
+						$('#modal_salary_type').select2('destroy');
+					}
+					if ($('#modal_transport_type').hasClass('select2-hidden-accessible')) {
+						$('#modal_transport_type').select2('destroy');
+					}
+
+					// Set values BEFORE initializing Select2
+					$('#modal_employment_type').val(currentEmployeeData.employmentType || 'regular');
+					$('#modal_salary_type').val(currentEmployeeData.salaryType || 'monthly');
+					$('#modal_transport_type').val(currentEmployeeData.transportType || 'monthly');
+
+					// Initialize Select2
+					$('#modal_setting_store_select').select2({
+						dropdownParent: $('#employee_setting_modal'),
+						minimumResultsForSearch: Infinity
+					});
+					$('#modal_setting_help_stores_select').select2({
+						dropdownParent: $('#employee_setting_modal'),
+						placeholder: 'ヘルプ先店舗を選択してください'
+					});
+					$('#modal_employment_type').select2({
+						dropdownParent: $('#employee_setting_modal'),
+						minimumResultsForSearch: Infinity
+					});
+					$('#modal_salary_type').select2({
+						dropdownParent: $('#employee_setting_modal'),
+						minimumResultsForSearch: Infinity
+					});
+					$('#modal_transport_type').select2({
+						dropdownParent: $('#employee_setting_modal'),
+						minimumResultsForSearch: Infinity
+					});
+
+					// Update other form fields
+					$('#modal_salary_amount').val(currentEmployeeData.salaryAmount ? Number(currentEmployeeData.salaryAmount).toLocaleString() : '');
+					$('#modal_transport_amount').val(currentEmployeeData.transportAmount ? Number(currentEmployeeData.transportAmount).toLocaleString() : '');
+
+					// Update working hours for regular employees
+					if (currentEmployeeData.workingHours) {
+						$('#modal_working_hours').val(currentEmployeeData.workingHours);
+					}
+					if (currentEmployeeData.overtimeHours) {
+						$('#modal_overtime_hours').val(currentEmployeeData.overtimeHours);
+					}
+
+					// Update store selection
+					if (currentEmployeeData.store) {
+						$('#modal_setting_store_select option').each(function() {
+							if ($(this).text() === currentEmployeeData.store) {
+								$(this).prop('selected', true);
+							}
+						});
+					}
+
+					// Update help stores selection
+					if (currentEmployeeData.helpStores) {
+						var helpStoresArray = currentEmployeeData.helpStores.split(',');
+						$('#modal_setting_help_stores_select option').prop('selected', false);
+						$('#modal_setting_help_stores_select option').each(function() {
+							var optionText = $(this).text();
+							for (var i = 0; i < helpStoresArray.length; i++) {
+								if (optionText.includes(helpStoresArray[i].trim())) {
+									$(this).prop('selected', true);
+									break;
+								}
+							}
+						});
+					}
+
+					// Initialize tooltips
+					$('[data-bs-toggle="tooltip"]').tooltip();
+
+					// Toggle 所定労働時間 and みなし残業時間 visibility based on 雇用区分
+					var toggleModalRegularEmployeeFields = function(employmentType) {
+						console.log('toggleModalRegularEmployeeFields called with:', employmentType);
+						if (employmentType === 'regular') {
+							$('#modal_regular_employee_fields').removeClass('d-none').addClass('d-flex');
+							console.log('Showing regular employee fields');
+						} else {
+							$('#modal_regular_employee_fields').removeClass('d-flex').addClass('d-none');
+							console.log('Hiding regular employee fields');
+						}
+					};
+
+					// Immediately toggle based on stored employee data
+					console.log('Current employee data:', currentEmployeeData);
+					toggleModalRegularEmployeeFields(currentEmployeeData.employmentType || 'regular');
+
+					// Remove previous event handler to avoid duplicates
+					$('#modal_employment_type').off('change.employeefields');
+
+					// Listen to employment type change
+					$('#modal_employment_type').on('change.employeefields', function() {
+						var newValue = $(this).val();
+						console.log('Employment type changed to:', newValue);
+						toggleModalRegularEmployeeFields(newValue);
+					});
+
+					// Trigger change events to update Select2 display
+					$('#modal_setting_store_select').trigger('change.select2');
+					$('#modal_setting_help_stores_select').trigger('change');
+					$('#modal_salary_type').trigger('change.select2');
+					$('#modal_transport_type').trigger('change.select2');
+
+					// Initialize daterangepicker for 変更反映日時範囲
+					var selectedMonth = $('#monthly_month_filter').val() || '2025-12';
+					var yearMonth = selectedMonth.split('-');
+					var year = parseInt(yearMonth[0]);
+					var month = parseInt(yearMonth[1]);
+
+					// Calculate first and last day of the selected month
+					var startDate = moment([year, month - 1, 1]); // month is 0-indexed in moment
+					var endDate = moment(startDate).endOf('month');
+
+					// Destroy existing daterangepicker instance if it exists
+					var modalDaterangePicker = $('#modal_daterange_picker');
+					if (modalDaterangePicker.data('daterangepicker')) {
+						modalDaterangePicker.data('daterangepicker').remove();
+					}
+
+					// Initialize the daterangepicker
+					modalDaterangePicker.daterangepicker({
+						startDate: startDate,
+						endDate: endDate,
+						opens: 'left',
+						locale: {
+							format: 'YYYY/MM/D',
+							separator: ' - ',
+							applyLabel: '適用',
+							cancelLabel: 'キャンセル',
+							fromLabel: '開始日',
+							toLabel: '終了日',
+							customRangeLabel: 'カスタム',
+							daysOfWeek: ['日', '月', '火', '水', '木', '金', '土'],
+							monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+						}
+					}, function(start, end) {
+						// Callback function when dates are selected
+						modalDaterangePicker.find('div').html(start.format('YYYY/MM/D') + ' - ' + end.format('YYYY/MM/D'));
+					});
+
+					// Set initial display text
+					modalDaterangePicker.find('div').html(startDate.format('YYYY/MM/D') + ' - ' + endDate.format('YYYY/MM/D'));
+
+					// Handle ヘルプ先交通費 dynamic list in modal
+					var modalHelpTransportSection = $('#modal_help_transport_section');
+					var modalHelpTransportList = $('#modal_help_transport_list');
+
+					function initModalNumberInputFormatting(input) {
+						var $input = $(input);
+						$input.on('input', function() {
+							var rawValue = this.value.replace(/[^\d]/g, '');
+							if (!rawValue) {
+								this.value = '';
+								return;
+							}
+							this.value = Number(rawValue).toLocaleString();
+						});
+						$input.on('focus', function() {
+							this.value = this.value.replace(/,/g, '');
+						});
+						$input.on('blur', function() {
+							if (this.value) {
+								this.value = Number(this.value.replace(/,/g, '')).toLocaleString();
+							}
+						});
+					}
+
+					$('#modal_setting_help_stores_select').on('change', function() {
+						var selectedOptions = $(this).find('option:selected');
+						modalHelpTransportList.empty();
+
+						if (selectedOptions.length > 0) {
+							modalHelpTransportSection.show();
+							selectedOptions.each(function() {
+								var storeId = $(this).val();
+								var storeName = $(this).text();
+								var row = $(`
+									<div class="d-flex align-items-center gap-3 mb-3" data-store-id="${storeId}">
+										<div class="badge badge-light-primary fw-bold fs-7 py-3 px-4" style="min-width: 200px;">
+											${storeName}
+										</div>
+										<div class="input-group" style="max-width: 200px;">
+											<span class="input-group-text border-0 bg-gray-100">¥</span>
+											<input type="text" name="modal_help_transport_${storeId}"
+												   class="form-control form-control-solid fs-6 number-input"
+												   placeholder="金額を入力">
+										</div>
+									</div>
+								`);
+								modalHelpTransportList.append(row);
+								initModalNumberInputFormatting(row.find('input'));
+							});
+						} else {
+							modalHelpTransportSection.hide();
+						}
+					});
+
+					// Initialize help transport section on modal open
+					$('#modal_setting_help_stores_select').trigger('change');
+				});
+
+				// Save employee setting button handler
+				$('#btn_save_employee_setting').on('click', function() {
+					$('#employee_setting_modal').modal('hide');
+					Swal.fire({
+						text: "従業員設定を更新しました",
+						icon: "success",
+						buttonsStyling: false,
+						confirmButtonText: "OK",
+						customClass: {
+							confirmButton: "btn btn-primary"
+						}
+					});
+				});
+
+				// Number input formatting for modal
+				$('#employee_setting_modal .number-input').each(function() {
+					var input = this;
+					var previousValue = '';
+					$(input).on('input', function(e) {
+						var rawValue = this.value.replace(/[^\d]/g, '');
+						if (!rawValue) {
+							this.value = '';
+							previousValue = '';
+							return;
+						}
+						try {
+							var formattedValue = Number(rawValue).toLocaleString();
+							this.value = formattedValue;
+							previousValue = formattedValue;
+						} catch (err) {
+							this.value = previousValue;
+						}
+					});
+					$(input).on('focus', function() {
+						var rawValue = this.value.replace(/,/g, '');
+						this.value = rawValue;
+					});
+					$(input).on('blur', function() {
+						if (this.value) {
+							var rawValue = this.value.replace(/,/g, '');
+							this.value = Number(rawValue).toLocaleString();
+						}
+					});
 				});
 			});
 		</script>

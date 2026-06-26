@@ -133,10 +133,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年12月_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete">
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -154,10 +154,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年11月_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete">
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -175,10 +175,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年10月_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete disabled" disabled>
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -215,10 +215,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年12月15日_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete">
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -236,10 +236,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年12月14日_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete">
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -257,10 +257,10 @@
 																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		前回差分表示
 																	</button>
-																	<a href="payroll_reports.html" class="btn btn-sm btn-light-success me-2">
+																	<button class="btn btn-sm btn-light-success me-2 btn-load" data-bs-toggle="modal" data-bs-target="#import_progress_modal" data-name="2024年12月13日_勤怠データ">
 																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
 																		読み込み
-																	</a>
+																	</button>
 																	<button class="btn btn-sm btn-light-danger btn-delete disabled" disabled>
 																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
 																		削除
@@ -532,6 +532,26 @@
 			</div>
 		</div>
 		<!--end::Modal - Diff-->
+		<!--begin::Modal - 読み込み進捗-->
+		<div class="modal fade" id="import_progress_modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+			<div class="modal-dialog modal-dialog-centered mw-500px">
+				<div class="modal-content">
+					<div class="modal-header align-items-start p-8 border-0">
+						<div class="flex-column">
+							<div class="fs-3 fw-bolder">実績データ取込中</div>
+						</div>
+					</div>
+					<div class="modal-body p-8 pt-0">
+						<p class="text-gray-600 fs-6 mb-4">APIからデータを取得しています。しばらくお待ちください...</p>
+						<div class="progress h-20px mb-4">
+							<div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" id="import_progress_bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-gray-500 fs-7 mb-0 text-center" id="import_progress_text">0%</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end::Modal - 読み込み進捗-->
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
 		<script src="assets/plugins/global/plugins.bundle.js"></script>
@@ -542,6 +562,8 @@
 			$(document).ready(function() {
 				// Track current tab
 				var currentDataTab = 'monthly';
+				// Track the button that triggered the modal
+				var currentLoadButton = null;
 
 				// Tab switch handler
 				$('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -567,6 +589,11 @@
 				$('.btn-diff').on('click', function() {
 					var dataName = $(this).data('name');
 					$('#diff_modal_title').text('実績取込データ前回差分 - ' + dataName);
+				});
+
+				// Load button click - track which button was clicked
+				$('.btn-load').on('click', function() {
+					currentLoadButton = $(this);
 				});
 
 				// Delete button confirmation
@@ -599,6 +626,59 @@
 							});
 						}
 					});
+				});
+
+				// 読み込み progress modal
+				var importProgressModal = document.getElementById('import_progress_modal');
+				importProgressModal.addEventListener('shown.bs.modal', function () {
+					var progress = 0;
+					var progressBar = document.getElementById('import_progress_bar');
+					var progressText = document.getElementById('import_progress_text');
+
+					// Simulate API import progress
+					var interval = setInterval(function() {
+						progress += Math.random() * 15 + 5;
+						if (progress >= 100) {
+							progress = 100;
+							clearInterval(interval);
+
+							// Update to complete state
+							progressBar.style.width = '100%';
+							progressBar.setAttribute('aria-valuenow', '100');
+							progressText.textContent = '100% - 完了';
+
+							// Close modal and update button to 反映済み state
+							setTimeout(function() {
+								var modal = bootstrap.Modal.getInstance(importProgressModal);
+								modal.hide();
+
+								// Update the button to 反映済み state
+								if (currentLoadButton) {
+									currentLoadButton
+										.removeClass('btn-light-success btn-load')
+										.addClass('btn-secondary disabled')
+										.prop('disabled', true)
+										.removeAttr('data-bs-toggle')
+										.removeAttr('data-bs-target')
+										.html('<i class="ki-duotone ki-check-circle fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>反映済み');
+									currentLoadButton = null;
+								}
+							}, 500);
+						} else {
+							progressBar.style.width = progress + '%';
+							progressBar.setAttribute('aria-valuenow', Math.floor(progress));
+							progressText.textContent = Math.floor(progress) + '%';
+						}
+					}, 300);
+				});
+
+				// Reset progress when modal is hidden
+				importProgressModal.addEventListener('hidden.bs.modal', function () {
+					var progressBar = document.getElementById('import_progress_bar');
+					var progressText = document.getElementById('import_progress_text');
+					progressBar.style.width = '0%';
+					progressBar.setAttribute('aria-valuenow', '0');
+					progressText.textContent = '0%';
 				});
 			});
 		</script>

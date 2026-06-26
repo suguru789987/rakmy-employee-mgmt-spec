@@ -154,7 +154,7 @@
                   <!--begin::Card body-->
                   <div class="card-body border-top p-9 row pb-5 pt-6">
                     <!--begin::Input group - 名前-->
-                    <div class="flex-column mb-4 col-lg-6">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">名前</label>
                       <!--end::Label-->
@@ -166,7 +166,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 従業員コード-->
-                    <div class="flex-column mb-4 col-lg-6">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">従業員コード</label>
                       <!--end::Label-->
@@ -178,7 +178,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 所属店舗-->
-                    <div class="flex-column mb-4 col-lg-6">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">所属店舗</label>
                       <!--end::Label-->
@@ -196,7 +196,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - ヘルプ先店舗-->
-                    <div class="flex-column mb-4 col-lg-6">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8">ヘルプ先店舗</label>
                       <!--end::Label-->
@@ -214,13 +214,13 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 雇用区分-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">雇用区分</label>
                       <!--end::Label-->
                       <!--begin::Col-->
                       <div class="fv-row">
-                        <select name="employment_type" aria-label="雇用区分を選択してください" data-control="select2" data-placeholder="雇用区分を選択してください" class="form-select form-select-lg form-select-solid">
+                        <select name="employment_type" id="employment_type_select" aria-label="雇用区分を選択してください" data-control="select2" data-placeholder="雇用区分を選択してください" class="form-select form-select-lg form-select-solid">
                           <option value="regular" selected>正社員</option>
                           <option value="part_time">パート</option>
                           <option value="temporary">アルバイト</option>
@@ -230,7 +230,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 給与単位-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">給与単位</label>
                       <!--end::Label-->
@@ -245,7 +245,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 単位給与額-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">単位給与額</label>
                       <!--end::Label-->
@@ -260,7 +260,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 交通費単位-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">交通費単位</label>
                       <!--end::Label-->
@@ -275,7 +275,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 単位交通費-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">単位交通費</label>
                       <!--end::Label-->
@@ -289,8 +289,20 @@
                       <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group - ヘルプ先交通費-->
+                    <div class="flex-column mb-4 col-lg-12" id="help_transport_section" style="display: none;">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">ヘルプ先交通費</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row" id="help_transport_list">
+                        <!-- Dynamically populated by JavaScript -->
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
                     <!--begin::Input group - 所定労働時間-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3" id="working_hours_group" style="display: none;">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 required">所定労働時間</label>
                       <!--end::Label-->
@@ -305,17 +317,10 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - みなし残業時間-->
-                    <div class="flex-column mb-4 col-lg-4">
+                    <div class="flex-column mb-4 col-lg-3" id="overtime_hours_group" style="display: none;">
                       <!--begin::Label-->
                       <label class="col-form-label text-gray-600 fw-bold fs-8 d-inline-flex align-items-center">
                         <span>みなし残業時間</span>
-                        <span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="時給制の場合は0を入力してください">
-                          <i class="ki-duotone ki-information-2 text-gray-400 fs-4">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                            <span class="path3"></span>
-                          </i>
-                        </span>
                         <span class="text-danger ms-1">*</span>
                       </label>
                       <!--end::Label-->
@@ -962,6 +967,85 @@
             }
           });
         });
+
+        // Handle ヘルプ先交通費 dynamic list
+        var helpTransportSection = $('#help_transport_section');
+        var helpTransportList = $('#help_transport_list');
+
+        function initNumberInputFormatting(input) {
+          var $input = $(input);
+          $input.on('input', function() {
+            var rawValue = this.value.replace(/[^\d]/g, '');
+            if (!rawValue) {
+              this.value = '';
+              return;
+            }
+            this.value = Number(rawValue).toLocaleString();
+          });
+          $input.on('focus', function() {
+            this.value = this.value.replace(/,/g, '');
+          });
+          $input.on('blur', function() {
+            if (this.value) {
+              this.value = Number(this.value.replace(/,/g, '')).toLocaleString();
+            }
+          });
+        }
+
+        $('select[name="help_stores"]').on('change', function() {
+          var selectedOptions = $(this).find('option:selected');
+          helpTransportList.empty();
+
+          if (selectedOptions.length > 0) {
+            helpTransportSection.show();
+            selectedOptions.each(function() {
+              var storeId = $(this).val();
+              var storeName = $(this).text();
+              var row = $(`
+                <div class="d-flex align-items-center gap-3 mb-3" data-store-id="${storeId}">
+                  <div class="badge badge-light-primary fw-bold fs-7 py-3 px-4" style="min-width: 200px;">
+                    ${storeName}
+                  </div>
+                  <div class="input-group" style="max-width: 200px;">
+                    <span class="input-group-text border-0" style="background-color: #F9F9F9;">¥</span>
+                    <input type="text" name="help_transport_${storeId}"
+                           class="form-control form-control-solid border-0 number-input"
+                           placeholder="金額を入力">
+                  </div>
+                </div>
+              `);
+              helpTransportList.append(row);
+              initNumberInputFormatting(row.find('input'));
+            });
+          } else {
+            helpTransportSection.hide();
+          }
+        });
+
+        // Initialize help transport section on page load
+        $('select[name="help_stores"]').trigger('change');
+
+        // Toggle 所定労働時間 and みなし残業時間 visibility based on 雇用区分
+        var workingHoursGroup = document.getElementById('working_hours_group');
+        var overtimeHoursGroup = document.getElementById('overtime_hours_group');
+
+        function toggleRegularEmployeeFields(value) {
+          if (value === 'regular') {
+            workingHoursGroup.style.display = '';
+            overtimeHoursGroup.style.display = '';
+          } else {
+            workingHoursGroup.style.display = 'none';
+            overtimeHoursGroup.style.display = 'none';
+          }
+        }
+
+        // Listen to Select2 change event
+        $('#employment_type_select').on('change', function() {
+          toggleRegularEmployeeFields($(this).val());
+        });
+
+        // Initialize on page load
+        toggleRegularEmployeeFields($('#employment_type_select').val());
       });
 
       // Payroll mode toggle function

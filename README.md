@@ -5,9 +5,10 @@
 🌐 **公開ページ**: https://suguru789987.github.io/rakmy-employee-mgmt-spec/
 
 ## 出所
-- `rakmy/rakmy_new_design2022` ブランチ `feature/eemgt`（最終 push 2026-01-15）の
+- `rakmy/rakmy_new_design2022` ブランチ `feature/eemgt2`（人件費実績・従業員詳細を強化した最新版）の
   `docs/features/employeemgt/employee_management_system_specification_designmock.md` と
   従業員管理モックHTML（`employees.html` 他）を、**公開用に再構成**したもの。
+  ※モック画面は eemgt2 の最新版を反映済み（payroll_reports 大幅更新ほか）。
 
 ## 構成
 | パス | 内容 |

@@ -88,6 +88,15 @@
 											</a>
 										</div>
 										<div class="w-auto flex-md-grow-0 flex-grow-1">
+											<button type="button" class="btn btn-sm fs-7 fw-bold btn-dark nowrap w-100" id="export_employee_settings">
+												<i class="ki-duotone ki-file-down fs-4 ms-n1 me-0 mb-1">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												従業員設定･給与実績エクスポート
+											</button>
+										</div>
+										<div class="w-auto flex-md-grow-0 flex-grow-1">
 											<a href="employee_register.html" class="btn btn-sm fs-7 fw-bold btn-primary nowrap w-100">
 												<i class="ki-duotone ki-plus fs-4 ms-n1 me-0 mb-1">
 												</i>
@@ -125,6 +134,25 @@
 											</select>
 										</div>
 										<!--end::Store Filter-->
+										<!--begin::Month Filter-->
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">月</label>
+											<select class="form-select form-select-sm w-auto" id="month_filter">
+												<option value="2026-01" selected>2026年1月</option>
+												<option value="2025-12">2025年12月</option>
+												<option value="2025-11">2025年11月</option>
+												<option value="2025-10">2025年10月</option>
+												<option value="2025-09">2025年9月</option>
+												<option value="2025-08">2025年8月</option>
+												<option value="2025-07">2025年7月</option>
+												<option value="2025-06">2025年6月</option>
+												<option value="2025-05">2025年5月</option>
+												<option value="2025-04">2025年4月</option>
+												<option value="2025-03">2025年3月</option>
+												<option value="2025-02">2025年2月</option>
+											</select>
+										</div>
+										<!--end::Month Filter-->
 										<!--begin::Employment Type Filter-->
 										<div class="d-flex align-items-center gap-3">
 											<label class="fs-8 text-gray-600 nowrap">雇用区分</label>
@@ -136,6 +164,16 @@
 											</select>
 										</div>
 										<!--end::Employment Type Filter-->
+										<!--begin::Import Data Filter-->
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">取込データ</label>
+											<select class="form-select form-select-sm w-auto" id="import_data_filter">
+												<option value="2024-12" selected>2024年12月_勤怠データ</option>
+												<option value="2024-11">2024年11月_勤怠データ</option>
+												<option value="2024-10">2024年10月_勤怠データ</option>
+											</select>
+										</div>
+										<!--end::Import Data Filter-->
 									</div>
 									<!--end::Left Filters-->
 									<!--begin::Right Filters-->
@@ -145,17 +183,10 @@
 												<span class="path1"></span>
 												<span class="path2"></span>
 											</i>
-											<input type="text" class="form-control form-control-sm w-100 w-md-200px ps-11" placeholder="従業員名で検索" id="employee_search">
+											<input type="text" class="form-control form-control-sm w-100 w-md-150px ps-11" placeholder="従業員名で検索" id="employee_search">
 										</div>
 										<div class="d-flex gap-2">
-											<button type="button" class="btn btn-sm fs-7 fw-bold btn-dark nowrap flex-fill flex-md-grow-0" id="export_employee_settings">
-												<i class="ki-duotone ki-file-down fs-4 ms-n1 me-0 mb-1">
-													<span class="path1"></span>
-													<span class="path2"></span>
-												</i>
-												従業員設定･給与実績エクスポート
-											</button>
-											<button type="button" class="btn btn-sm btn-light-danger w-auto flex-shrink-0" id="kakutei_btn" data-bs-toggle="modal" data-bs-target="#kakutei_confirm_modal">
+											<button type="button" class="btn btn-sm btn-light-success w-auto flex-shrink-0" id="kakutei_btn" data-bs-toggle="modal" data-bs-target="#kakutei_confirm_modal">
 												<i class="ki-duotone ki-lock fs-4 me-1">
 													<span class="path1"></span>
 													<span class="path2"></span>
@@ -186,10 +217,9 @@
 												<thead>
 													<!--begin::Table row-->
 													<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
-														<th class="min-w-100px pt-5 pb-4 sticky-col sticky-col-1">名前</th>
-														<th class="min-w-75px pt-5 pb-4">従業員コード</th>
-														<th class="min-w-175px pt-5 pb-4">所属店舗</th>
-														<th class="min-w-175px pt-5 pb-4">ヘルプ先店舗</th>
+														<th class="min-w-75px pt-5 pb-4 sticky-col sticky-col-1">名前</th>
+														<th class="min-w-150px max-w-150px pt-5 pb-4">所属店舗</th>
+														<th class="min-w-150px max-w-150px pt-5 pb-4">ヘルプ先店舗</th>
 														<th class="min-w-75px pt-5 pb-4">雇用区分</th>
 														<th class="min-w-50px pt-5 pb-4">給与単位</th>
 														<th class="min-w-75px pt-5 pb-4 text-end">単位給与額</th>
@@ -207,7 +237,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
-														<td>EMP001</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 														<td>
 															<div class="d-flex flex-wrap gap-1">
@@ -245,7 +274,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
-														<td>EMP002</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
@@ -278,7 +306,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
-														<td>EMP003</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
 														<td>
 															<div class="d-flex flex-wrap gap-1">
@@ -315,7 +342,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
-														<td>EMP004</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">パート</div></td>
@@ -348,7 +374,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
-														<td>EMP005</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
 														<td>
 															<div class="d-flex flex-wrap gap-1">
@@ -385,7 +410,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">渡辺 由美</td>
-														<td>EMP006</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
@@ -418,7 +442,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">山本 大輔</td>
-														<td>EMP007</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ沖縄店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
@@ -451,7 +474,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">中村 真理</td>
-														<td>EMP008</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ赤坂店</div></td>
 														<td>
 															<div class="d-flex flex-wrap gap-1">
@@ -489,7 +511,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">小林 翔太</td>
-														<td>EMP009</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ沖縄店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">パート</div></td>
@@ -522,7 +543,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">加藤 さくら</td>
-														<td>EMP010</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ赤坂店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
@@ -555,7 +575,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">吉田 隆</td>
-														<td>EMP011</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></td>
 														<td>
 															<div class="d-flex flex-wrap gap-1">
@@ -592,7 +611,6 @@
 													<!--begin::Table row-->
 													<tr>
 														<td class="fw-bold sticky-col sticky-col-1">松本 愛</td>
-														<td>EMP012</td>
 														<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
 														<td></td>
 														<td><div class="badge badge-light-primary fw-bold">パート</div></td>
@@ -660,7 +678,7 @@
 					</div>
 					<div class="modal-footer p-6 border-top-1">
 						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
-						<button type="button" class="btn btn-danger" id="kakutei_confirm_submit">確定する</button>
+						<button type="button" class="btn btn-success" id="kakutei_confirm_submit">確定する</button>
 					</div>
 				</div>
 			</div>
@@ -683,7 +701,7 @@
 					</div>
 					<div class="modal-footer p-6 border-top-1">
 						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
-						<button type="button" class="btn btn-primary" id="kakutei_kaijo_confirm_submit">確定解除する</button>
+						<button type="button" class="btn btn-danger" id="kakutei_kaijo_confirm_submit">確定解除する</button>
 					</div>
 				</div>
 			</div>
@@ -701,6 +719,9 @@
 			// Datatable initialization
 			var employeesTable = $("#employees_datatable").DataTable({
 				pageLength: 50,
+				columnDefs: [
+					{ orderable: false, targets: -1 }
+				],
 				language: {
 				   "decimal": ".",
 				   "thousands": ",",
@@ -784,20 +805,34 @@
 			var kakuteiModal = new bootstrap.Modal(document.getElementById('kakutei_confirm_modal'));
 			var kakuteiKaijoModal = new bootstrap.Modal(document.getElementById('kakutei_kaijo_confirm_modal'));
 
+			// Get selected month text from filter
+			function getSelectedMonthText() {
+				return $('#month_filter option:selected').text();
+			}
+
 			// Update button state
 			function updateKakuteiButton() {
+				var monthText = getSelectedMonthText();
 				if (isKakutei) {
-					kakuteiBtn.removeClass('btn-light-danger').addClass('btn-light-primary');
-					kakuteiBtn.find('i').removeClass('ki-lock').addClass('ki-lock-2');
+					kakuteiBtn.removeClass('btn-light-success').addClass('btn-light-danger');
+					kakuteiBtn.find('i').attr('class', 'ki-duotone ki-lock-2 fs-4 me-1').html('<span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>');
 					kakuteiBtn.find('.kakutei-btn-text').text('確定解除');
 					kakuteiBtn.attr('data-bs-target', '#kakutei_kaijo_confirm_modal');
 				} else {
-					kakuteiBtn.removeClass('btn-light-primary').addClass('btn-light-danger');
-					kakuteiBtn.find('i').removeClass('ki-lock-2').addClass('ki-lock');
-					kakuteiBtn.find('.kakutei-btn-text').text('確定');
+					kakuteiBtn.removeClass('btn-light-danger').addClass('btn-light-success');
+					kakuteiBtn.find('i').attr('class', 'ki-duotone ki-lock fs-4 me-1').html('<span class="path1"></span><span class="path2"></span><span class="path3"></span>');
+					kakuteiBtn.find('.kakutei-btn-text').text(monthText + '確定');
 					kakuteiBtn.attr('data-bs-target', '#kakutei_confirm_modal');
 				}
 			}
+
+			// Update button text when month filter changes
+			$('#month_filter').on('change', function() {
+				updateKakuteiButton();
+			});
+
+			// Initialize button text on page load
+			updateKakuteiButton();
 
 			// 確定 submit handler
 			$('#kakutei_confirm_submit').on('click', function() {
