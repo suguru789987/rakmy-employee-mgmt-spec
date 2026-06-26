@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>範囲外の画面 — 従業員管理ページ 仕様モック</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+font-family:-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;background:#f6f8fa;color:#1f2328}
+.box{max-width:560px;background:#fff;border:1px solid #d0d7de;border-radius:12px;padding:40px;text-align:center;margin:24px}
+.ic{font-size:46px}
+h1{font-size:20px;margin:14px 0 6px}
+p{color:#656d76;line-height:1.8;font-size:14px;margin:6px 0}
+.btns{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+a.btn{display:inline-block;text-decoration:none;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600}
+a.b1{background:#0d6efd;color:#fff}
+a.b2{background:#fff;color:#0d6efd;border:1px solid #0d6efd}
+code{background:#eef1f4;padding:1px 6px;border-radius:5px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="ic">🚧</div>
+  <h1>この画面は「従業員管理」モックの範囲外です</h1>
+  <p>サイドバーやヘッダーの全社ナビ（売上分析・仕入・棚卸・請求・設定など）は、
+  本モックの対象機能（従業員管理）には含まれていません。</p>
+  <p>従業員管理フロー内の画面・ボタンは下記から辿れます。</p>
+  <div class="btns">
+    <a class="btn b1" href="/rakmy-employee-mgmt-spec/">← 仕様サイト トップ</a>
+    <a class="btn b2" href="/rakmy-employee-mgmt-spec/mock/employees.html">従業員一覧を開く</a>
+  </div>
+  <p style="margin-top:20px;font-size:12px">対象モック: 従業員一覧 / 登録 / 詳細 / 人件費実績 / 設定インポート / 設定取込データ <code>etc.</code></p>
+</div>
+</body>
+</html>
