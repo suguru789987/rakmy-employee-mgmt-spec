@@ -102,10 +102,42 @@
 								</div>
 								<!--end::Page title row-->
 								<!--begin::Filters-->
+								<!--begin::Row1 絞り込み-->
 								<div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-									<!--begin::Left Filters-->
 									<div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
-										<!--begin::Month Filter-->
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">店舗</label>
+											<select class="form-select form-select-sm w-auto" id="store_filter">
+												<option value="" selected>すべて</option>
+												<option value="1">ラクミーフレッシュ渋谷店</option>
+												<option value="2">ラクミーフレッシュ青山店</option>
+												<option value="3">ラクミーフレッシュ新宿店</option>
+												<option value="4">ラクミーフレッシュ沖縄店</option>
+												<option value="5">ラクミーフレッシュ赤坂店</option>
+											</select>
+										</div>
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">雇用区分</label>
+											<select class="form-select form-select-sm w-auto" id="employment_filter">
+												<option value="" selected>すべて</option>
+												<option value="regular">正社員</option>
+												<option value="part_time">パート</option>
+												<option value="temporary">アルバイト</option>
+											</select>
+										</div>
+										<div class="d-flex align-items-center position-relative">
+											<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+											<input type="text" class="form-control form-control-sm w-100 w-md-200px ps-11" placeholder="従業員名で検索" id="employee_search">
+										</div>
+									</div>
+									<a href="employee_register.html" class="btn btn-sm btn-primary w-auto flex-shrink-0 nowrap d-inline-flex align-items-center" id="employee_register_btn">
+										<i class="ki-duotone ki-plus fs-4 me-1"></i>従業員登録
+									</a>
+								</div>
+								<!--end::Row1-->
+								<!--begin::Row2 対象データ-->
+								<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
+									<div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
 										<div class="d-flex align-items-center gap-3">
 											<label class="fs-8 text-gray-600 nowrap">月</label>
 											<select class="form-select form-select-sm w-auto" id="month_filter">
@@ -123,19 +155,6 @@
 												<option value="2025-02">2025年2月</option>
 											</select>
 										</div>
-										<!--end::Month Filter-->
-										<!--begin::Employment Type Filter-->
-										<div class="d-flex align-items-center gap-3">
-											<label class="fs-8 text-gray-600 nowrap">雇用区分</label>
-											<select class="form-select form-select-sm w-auto" id="employment_filter">
-												<option value="">すべて</option>
-												<option value="regular">正社員</option>
-												<option value="part_time">パート</option>
-												<option value="temporary">アルバイト</option>
-											</select>
-										</div>
-										<!--end::Employment Type Filter-->
-										<!--begin::Import Data Filter-->
 										<div class="d-flex align-items-center gap-3">
 											<label class="fs-8 text-gray-600 nowrap">取込データ</label>
 											<select class="form-select form-select-sm w-auto" id="import_data_filter">
@@ -144,42 +163,12 @@
 												<option value="2024-10">2024年10月_勤怠データ</option>
 											</select>
 										</div>
-										<!--end::Import Data Filter-->
-										<!--begin::設定取込データへ-->
-										<a href="settings_data_import.html" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="settings_data_import_btn">
-											<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>設定取込データへ
-										</a>
-										<!--end::設定取込データへ-->
 									</div>
-									<!--end::Left Filters-->
-									<!--begin::Right Filters-->
-									<div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3 w-100 w-md-auto flex-md-grow-1">
-										<!--begin::Store Filter-->
-										<div class="d-flex align-items-center gap-3">
-											<label class="fs-8 text-gray-600 nowrap">店舗</label>
-											<select class="form-select form-select-sm w-auto" id="store_filter">
-												<option value="">すべて</option>
-												<option value="1">ラクミーフレッシュ渋谷店</option>
-												<option value="2">ラクミーフレッシュ青山店</option>
-												<option value="3">ラクミーフレッシュ新宿店</option>
-												<option value="4">ラクミーフレッシュ沖縄店</option>
-												<option value="5">ラクミーフレッシュ赤坂店</option>
-											</select>
-										</div>
-										<!--end::Store Filter-->
-										<div class="d-flex align-items-center position-relative">
-											<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500">
-												<span class="path1"></span>
-												<span class="path2"></span>
-											</i>
-											<input type="text" class="form-control form-control-sm w-100 w-md-150px ps-11" placeholder="従業員名で検索" id="employee_search">
-										</div>
-										<a href="employee_register.html" class="btn btn-sm btn-primary w-auto flex-shrink-0 nowrap d-inline-flex align-items-center ms-md-auto" id="employee_register_btn">
-											<i class="ki-duotone ki-plus fs-4 me-1"></i>従業員登録
-										</a>
-									</div>
-									<!--end::Right Filters-->
+									<a href="settings_data_import.html" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="settings_data_import_btn">
+										<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>設定取込データへ
+									</a>
 								</div>
+								<!--end::Row2-->
 								<!--end::Filters-->
 							</div>
 							<!--end::Container-->
