@@ -756,6 +756,38 @@
 			$('#csv_position_section').on('hide.bs.collapse', function() {
 				$('#position_toggle_icon').removeClass('ki-up').addClass('ki-down');
 			});
+
+			// === CSVテンプレートのダウンロード（従業員設定/給与設定）===
+			function downloadCsvTemplate(filename, rows) {
+				var csv = rows.map(function(r) {
+					return r.map(function(c) {
+						c = (c == null ? '' : String(c));
+						return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c;
+					}).join(',');
+				}).join('\r\n');
+				var blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' }); // BOM付き(Excel日本語対応)
+				var url = URL.createObjectURL(blob);
+				var a = document.createElement('a');
+				a.href = url; a.download = filename;
+				document.body.appendChild(a); a.click(); document.body.removeChild(a);
+				URL.revokeObjectURL(url);
+			}
+			// 従業員設定テンプレート（仕様: 登録フォームの本人/所属系＋適用日付）
+			$('#download_employee_template').on('click', function(e) {
+				e.preventDefault();
+				downloadCsvTemplate('従業員設定_テンプレート.csv', [
+					['従業員コード', '氏名', '雇用区分', '所属店舗', 'ヘルプ先店舗', '適用日付'],
+					['EMP-001', '山田 太郎', '正社員', 'ラクミーフレッシュ渋谷店', 'ラクミーフレッシュ青山店;ラクミーフレッシュ新宿店', '2026/06/26']
+				]);
+			});
+			// 給与設定テンプレート（仕様: 登録フォームの給与/交通費/労働時間＋適用日付）
+			$('#download_payroll_template').on('click', function(e) {
+				e.preventDefault();
+				downloadCsvTemplate('給与設定_テンプレート.csv', [
+					['従業員コード', '給与単位', '単位給与額', '交通費単位', '単位交通費', 'ヘルプ先交通費', '所定労働時間', 'みなし残業時間', '適用日付'],
+					['EMP-001', '月給', '320000', '月額', '18000', 'ラクミーフレッシュ青山店:700;ラクミーフレッシュ新宿店:900', '160', '20', '2026/06/26']
+				]);
+			});
 		</script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
