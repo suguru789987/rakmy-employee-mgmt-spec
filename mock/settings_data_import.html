@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<!--begin::Head-->
+	<head><base href="">
+		<title>ラクミー 経営管理システム - 設定取込データ</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex">
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico">
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp-noto.min.css">
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/custom.css" rel="stylesheet" media="all">
+	<link href="assets/css/headerbg.css" rel="stylesheet" type="text/css">
+		<!--end::Global Stylesheets Bundle-->
+		<!--begin::Vendor Stylesheets(used by this page)-->
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css">
+		<!--end::Vendor Stylesheets-->
+		<!--begin::jQuery CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script src="assets/js/include.js"></script>
+		<!--end::jQuery CDN -->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Sidebar-->
+				<script>include_sidebar_company();</script>
+				<!--end::Sidebar-->
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid">
+					<!--Begin::Header-->
+					<script>include_header_company();</script>
+					<!--End::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid">
+						<!--begin::Toolbar-->
+						<div class="my-4" id="kt_toolbar">
+							<!--begin::Container-->
+							<div id="kt_toolbar_container" class="container-xxl d-flex flex-column align-middle">
+								<!--begin::Page title row-->
+								<div class="d-flex justify-content-between align-items-center gap-2 mb-2">
+									<!--begin::Page title-->
+									<div class="page-title d-flex align-items-center flex-wrap min-w-0">
+										<!--begin::Title-->
+										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center text-truncate">設定取込データ</h1>
+										<!--end::Title-->
+										<!--begin::Separator-->
+										<span class="h-20px border-gray-300 border-start ms-5 me-4 d-none d-md-block"></span>
+										<!--end::Separator-->
+										<!--begin::Breadcrumb-->
+										<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-8 my-1 d-none d-md-flex">
+											<!--begin::Item-->
+											<li class="breadcrumb-item text-muted">
+												<a href="index.html" class="text-muted text-hover-primary">ホーム</a>
+											</li>
+											<!--end::Item-->
+											<!--begin::Item-->
+											<li class="breadcrumb-item">
+												<span class="bullet bg-gray-300 w-5px h-1px"></span>
+											</li>
+											<!--end::Item-->
+											<!--begin::Item-->
+											<li class="breadcrumb-item text-dark">設定取込データ</li>
+											<!--end::Item-->
+										</ul>
+										<!--end::Breadcrumb-->
+									</div>
+									<!--end::Page title-->
+									<!--begin::Actions-->
+									<a href="employees.html" class="btn btn-sm btn-gray flex-shrink-0 text-nowrap w-auto">
+										<i class="ki-duotone ki-arrow-right fs-4 me-1">
+											<span class="path1"></span>
+											<span class="path2"></span>
+										</i>
+										従業員一覧へ
+									</a>
+									<!--end::Actions-->
+								</div>
+								<!--end::Page title row-->
+								<!--begin::Nav tabs-->
+								<ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-7 fw-bold border-0 mb-1">
+									<li class="nav-item">
+										<a class="nav-link active" data-bs-toggle="tab" href="#employee_settings_tab">従業員設定</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#salary_settings_tab">給与設定</a>
+									</li>
+								</ul>
+								<!--end::Nav tabs-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Toolbar-->
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div id="kt_content_container" class="container-xxl">
+								<!--begin::Card-->
+								<div class="card">
+									<!--begin::Card body-->
+									<div class="card-body p-0 pb-2">
+										<!--begin::Tab content-->
+										<div class="tab-content">
+											<!--begin::Employee Settings Tab-->
+											<div class="tab-pane fade show active" id="employee_settings_tab" role="tabpanel">
+												<!--begin::Table wrapper-->
+												<div class="table-responsive">
+													<table id="employee_settings_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+														<thead>
+															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+																<th class="min-w-150px pt-5">取込データ名</th>
+																<th class="min-w-400px pt-5 text-end">アクション</th>
+															</tr>
+														</thead>
+														<tbody class="text-gray-600 fw-bold">
+															<tr>
+																<td class="fw-bold">2024年12月_従業員設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年12月_従業員設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年12月_従業員設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete">
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td class="fw-bold">2024年11月_従業員設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年11月_従業員設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年11月_従業員設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete">
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td class="fw-bold">2024年10月_従業員設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年10月_従業員設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年10月_従業員設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete disabled" disabled>
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<!--end::Table wrapper-->
+											</div>
+											<!--end::Employee Settings Tab-->
+
+											<!--begin::Salary Settings Tab-->
+											<div class="tab-pane fade" id="salary_settings_tab" role="tabpanel">
+												<!--begin::Table wrapper-->
+												<div class="table-responsive">
+													<table id="salary_settings_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+														<thead>
+															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+																<th class="min-w-150px pt-5">取込データ名</th>
+																<th class="min-w-400px pt-5 text-end">アクション</th>
+															</tr>
+														</thead>
+														<tbody class="text-gray-600 fw-bold">
+															<tr>
+																<td class="fw-bold">2024年12月_給与設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年12月_給与設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年12月_給与設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete">
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td class="fw-bold">2024年11月_給与設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年11月_給与設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年11月_給与設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete">
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+															<tr>
+																<td class="fw-bold">2024年10月_給与設定データ</td>
+																<td class="text-end text-nowrap">
+																	<button class="btn btn-sm btn-light-primary me-2 btn-preview" data-bs-toggle="modal" data-bs-target="#modal_preview" data-name="2024年10月_給与設定データ">
+																		<i class="ki-duotone ki-eye fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+																		プレビュー
+																	</button>
+																	<button class="btn btn-sm btn-light-dark me-2 btn-diff" data-bs-toggle="modal" data-bs-target="#modal_diff" data-name="2024年10月_給与設定データ">
+																		<i class="ki-duotone ki-arrow-mix fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		前回差分表示
+																	</button>
+																	<a href="employees.html" class="btn btn-sm btn-light-success me-2">
+																		<i class="ki-duotone ki-entrance-right fs-5 me-1"><span class="path1"></span><span class="path2"></span></i>
+																		読み込み
+																	</a>
+																	<button class="btn btn-sm btn-light-danger btn-delete disabled" disabled>
+																		<i class="ki-duotone ki-trash fs-5 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+																		削除
+																	</button>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<!--end::Table wrapper-->
+											</div>
+											<!--end::Salary Settings Tab-->
+										</div>
+										<!--end::Tab content-->
+									</div>
+									<!--end::Card body-->
+								</div>
+								<!--end::Card-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--end::Main-->
+		<!--begin::Modal - Preview-->
+		<div class="modal fade" id="modal_preview" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header align-items-start p-8">
+						<div class="flex-column">
+							<div class="fs-3 fw-bolder" id="preview_modal_title">設定取込データプレビュー</div>
+						</div>
+						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
+							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
+						</div>
+					</div>
+					<div class="modal-body p-0">
+						<!--begin::Preview Table-->
+						<div id="preview_table">
+							<div class="table-responsive">
+								<table class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+									<thead>
+										<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+											<th class="min-w-100px pt-5">名前</th>
+											<th class="min-w-75px pt-5">従業員コード</th>
+											<th class="min-w-175px pt-5">所属店舗</th>
+											<th class="min-w-175px pt-5">ヘルプ先店舗</th>
+											<th class="min-w-75px pt-5">雇用区分</th>
+											<th class="min-w-50px pt-5">給与単位</th>
+											<th class="min-w-75px pt-5 text-end">単位給与額</th>
+											<th class="min-w-50px pt-5">交通費単位</th>
+											<th class="min-w-75px pt-5 text-end">単位交通費</th>
+											<th class="min-w-75px pt-5 text-end">所定労働時間</th>
+											<th class="min-w-75px pt-5 text-end">みなし残業時間</th>
+										</tr>
+									</thead>
+									<tbody class="text-gray-600 fw-bold">
+										<tr>
+											<td class="fw-bold">田中 太郎</td>
+											<td>EMP001</td>
+											<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+											<td>
+												<div class="d-flex flex-wrap gap-1">
+													<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div>
+													<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div>
+												</div>
+											</td>
+											<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+											<td><div class="badge badge-dark fw-bold">月給</div></td>
+											<td class="text-end fw-bold">350,000円</td>
+											<td><div class="badge badge-secondary fw-bold">月額</div></td>
+											<td class="text-end fw-bold">15,000円</td>
+											<td class="text-end fw-bold">160時間</td>
+											<td class="text-end fw-bold">30時間</td>
+										</tr>
+										<tr>
+											<td class="fw-bold">佐藤 花子</td>
+											<td>EMP002</td>
+											<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+											<td></td>
+											<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+											<td><div class="badge badge-dark fw-bold">月給</div></td>
+											<td class="text-end fw-bold">320,000円</td>
+											<td><div class="badge badge-secondary fw-bold">月額</div></td>
+											<td class="text-end fw-bold">12,000円</td>
+											<td class="text-end fw-bold">160時間</td>
+											<td class="text-end fw-bold">20時間</td>
+										</tr>
+										<tr>
+											<td class="fw-bold">高橋 美咲</td>
+											<td>EMP004</td>
+											<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+											<td></td>
+											<td><div class="badge badge-light-primary fw-bold">パート</div></td>
+											<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+											<td class="text-end fw-bold">1,250円</td>
+											<td><div class="badge badge-light fw-bold">日額</div></td>
+											<td class="text-end fw-bold">800円</td>
+											<td class="text-end fw-bold">80時間</td>
+											<td class="text-end fw-bold">0時間</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--end::Preview Table-->
+					</div>
+					<div class="modal-footer p-6 border-top-0">
+						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">閉じる</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end::Modal - Preview-->
+		<!--begin::Modal - Diff-->
+		<div class="modal fade" id="modal_diff" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered mw-850px">
+				<div class="modal-content">
+					<div class="modal-header align-items-start p-8">
+						<div class="flex-column">
+							<div class="fs-3 fw-bolder" id="diff_modal_title">設定取込データ前回差分</div>
+						</div>
+						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
+							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
+						</div>
+					</div>
+					<div class="modal-body p-0">
+						<div class="table-responsive">
+							<table class="table align-middle table-row-bordered gy-3 gs-7 fs-7 w-100">
+								<thead>
+									<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+										<th class="min-w-100px pt-5">名前</th>
+										<th class="min-w-100px pt-5 text-end">単位給与額</th>
+										<th class="min-w-100px pt-5 text-end">所定労働時間</th>
+										<th class="min-w-100px pt-5 text-end">みなし残業時間</th>
+									</tr>
+								</thead>
+								<tbody class="text-gray-600 fw-bold">
+									<tr>
+										<td class="fw-bold">田中 太郎</td>
+										<td class="text-end">
+											<div class="d-flex flex-column">
+												<span class="text-gray-500 fs-8">前回: 330,000円</span>
+												<span class="text-dark fw-bold">新規: 350,000円</span>
+											</div>
+										</td>
+										<td class="text-end">-</td>
+										<td class="text-end">
+											<div class="d-flex flex-column">
+												<span class="text-gray-500 fs-8">前回: 20時間</span>
+												<span class="text-dark fw-bold">新規: 30時間</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="fw-bold">佐藤 花子</td>
+										<td class="text-end">
+											<div class="d-flex flex-column">
+												<span class="text-gray-500 fs-8">前回: 300,000円</span>
+												<span class="text-dark fw-bold">新規: 320,000円</span>
+											</div>
+										</td>
+										<td class="text-end">
+											<div class="d-flex flex-column">
+												<span class="text-gray-500 fs-8">前回: 150時間</span>
+												<span class="text-dark fw-bold">新規: 160時間</span>
+											</div>
+										</td>
+										<td class="text-end">-</td>
+									</tr>
+									<tr>
+										<td class="fw-bold">鈴木 一郎</td>
+										<td class="text-end">
+											<div class="d-flex flex-column">
+												<span class="text-gray-500 fs-8">前回: 360,000円</span>
+												<span class="text-dark fw-bold">新規: 380,000円</span>
+											</div>
+										</td>
+										<td class="text-end">-</td>
+										<td class="text-end">-</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer p-6 border-top-0">
+						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">閉じる</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end::Modal - Diff-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript-->
+		<script>
+			$(document).ready(function() {
+				// Track current tab
+				var currentDataTab = 'employee';
+
+				// Tab switch handler
+				$('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+					var target = $(e.target).attr('href');
+					currentDataTab = target === '#employee_settings_tab' ? 'employee' : 'salary';
+				});
+
+				// Preview button click - show appropriate table
+				$('.btn-preview').on('click', function() {
+					var dataName = $(this).data('name');
+					$('#preview_modal_title').text('設定取込データプレビュー - ' + dataName);
+				});
+
+				// Diff button click
+				$('.btn-diff').on('click', function() {
+					var dataName = $(this).data('name');
+					$('#diff_modal_title').text('設定取込データ前回差分 - ' + dataName);
+				});
+
+				// Delete button confirmation
+				$('.btn-delete:not(.disabled)').on('click', function() {
+					var row = $(this).closest('tr');
+					var dataName = row.find('td:first').text();
+
+					Swal.fire({
+						title: '削除の確認',
+						text: dataName + ' を削除しますか？',
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonText: '削除する',
+						cancelButtonText: 'キャンセル',
+						customClass: {
+							confirmButton: 'btn btn-danger',
+							cancelButton: 'btn btn-light-dark'
+						},
+						buttonsStyling: false
+					}).then(function(result) {
+						if (result.isConfirmed) {
+							Swal.fire({
+								text: dataName + ' を削除しました',
+								icon: 'success',
+								confirmButtonText: 'OK',
+								customClass: {
+									confirmButton: 'btn btn-primary'
+								},
+								buttonsStyling: false
+							});
+						}
+					});
+				});
+			});
+		</script>
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>
