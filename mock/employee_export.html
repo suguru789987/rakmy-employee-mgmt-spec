@@ -50,9 +50,15 @@
 										<!--STEP1 種別-->
 										<div class="mb-8">
 											<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">① エクスポート種別</label>
-											<div class="d-flex gap-8">
-												<label class="form-check form-check-custom form-check-solid"><input class="form-check-input" type="radio" name="export_type" value="settings" checked><span class="form-check-label fw-bold ms-2">設定</span></label>
-												<label class="form-check form-check-custom form-check-solid"><input class="form-check-input" type="radio" name="export_type" value="actual"><span class="form-check-label fw-bold ms-2">実績</span></label>
+											<div class="d-flex flex-wrap gap-4">
+												<input type="radio" class="btn-check" name="export_type" value="settings" id="type_settings" checked>
+												<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-8 py-4 min-w-160px" for="type_settings">
+													<i class="ki-outline ki-setting-2 fs-2x me-3"></i><span class="fs-5 fw-bold">設定</span>
+												</label>
+												<input type="radio" class="btn-check" name="export_type" value="actual" id="type_actual">
+												<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-8 py-4 min-w-160px" for="type_actual">
+													<i class="ki-outline ki-chart-simple fs-2x me-3"></i><span class="fs-5 fw-bold">実績</span>
+												</label>
 											</div>
 										</div>
 										<div class="separator separator-dashed mb-8"></div>
@@ -61,9 +67,15 @@
 										<div id="section_settings">
 											<div class="mb-6">
 												<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 対象（複数選択可）</label>
-												<div class="d-flex gap-8">
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input target-chk" type="checkbox" id="t_employee" data-items="items_employee" checked><span class="form-check-label fw-bold ms-2">従業員設定</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input target-chk" type="checkbox" id="t_payroll" data-items="items_payroll" checked><span class="form-check-label fw-bold ms-2">給与設定</span></label>
+												<div class="d-flex flex-wrap gap-4">
+													<input type="checkbox" class="btn-check target-chk" id="t_employee" data-items="items_employee" checked>
+													<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-6 py-3 min-w-160px" for="t_employee">
+														<i class="ki-outline ki-profile-user fs-2 me-2"></i><span class="fs-6 fw-bold">従業員設定</span>
+													</label>
+													<input type="checkbox" class="btn-check target-chk" id="t_payroll" data-items="items_payroll" checked>
+													<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-6 py-3 min-w-160px" for="t_payroll">
+														<i class="ki-outline ki-dollar fs-2 me-2"></i><span class="fs-6 fw-bold">給与設定</span>
+													</label>
 												</div>
 											</div>
 											<div class="mb-4" id="items_employee">
