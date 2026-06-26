@@ -26,6 +26,12 @@
 			.item-card-emp{border-left:4px solid #009ef7;} .item-card-emp .card-header{background:#eef6fe;} .item-card-emp .card-header i{color:#009ef7;}
 			.item-card-pay{border-left:4px solid #50cd89;} .item-card-pay .card-header{background:#eefaf3;} .item-card-pay .card-header i{color:#50cd89;}
 			.item-card-act{border-left:4px solid #f1bc00;} .item-card-act .card-header{background:#fef9e7;} .item-card-act .card-header i{color:#d9a800;}
+			.export-section{border:1px solid #e1e3ea;border-radius:14px;padding:22px 24px 10px;margin-bottom:26px;background:#fff;}
+			.export-section-head{font-weight:800;font-size:1.1rem;margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid #eef0f3;display:flex;align-items:center;}
+			.export-section-settings{border-top:5px solid #50cd89;}
+			.export-section-settings .export-section-head{color:#2c9a63;}
+			.export-section-actual{border-top:5px solid #f1bc00;}
+			.export-section-actual .export-section-head{color:#b88a00;}
 		</style>
 	</head>
 	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -81,7 +87,8 @@
 										<div class="separator separator-dashed mb-8"></div>
 
 										<!--SETTINGS-->
-										<div id="section_settings">
+										<div id="section_settings" class="export-section export-section-settings">
+											<div class="export-section-head"><i class="ki-outline ki-setting-2 fs-2 me-2"></i>設定エクスポート</div>
 											<div class="mb-6">
 												<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 対象（複数選択可）</label>
 												<div class="d-flex flex-wrap gap-4">
@@ -135,7 +142,8 @@
 										</div>
 
 										<!--ACTUAL-->
-										<div id="section_actual" style="display:none;">
+										<div id="section_actual" class="export-section export-section-actual" style="display:none;">
+											<div class="export-section-head"><i class="ki-outline ki-chart-simple fs-2 me-2"></i>実績エクスポート</div>
 											<div class="mb-6 row">
 												<div class="col-lg-4">
 													<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 給与実績の月</label>
