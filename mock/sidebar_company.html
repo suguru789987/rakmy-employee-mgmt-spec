@@ -1,0 +1,690 @@
+<!--begin::Aside-->
+<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, xxl: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+	<!--begin::Brand-->
+	<div class="aside-logo flex-column-auto" id="kt_aside_logo">
+		<!--begin::Logo-->
+		<a href="#">
+			<img alt="Logo" src="assets/media/logos/logo_product.svg" class="h-25px logo">
+		</a>
+		<!--end::Logo-->
+	</div>
+	<!--end::Brand-->
+	<!--begin::Aside menu-->
+	<div class="aside-menu flex-column-fluid">
+		<!--begin::Aside Menu-->
+		<div class="hover-scroll-overlay-y my-5 px-3 aside_mobile" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
+			<!--begin::Menu-->
+			<div class="menu menu-rounded menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 w-230px" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="index.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-home-1">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">ダッシュボード</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="announcements.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-notification">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+							</i>
+						</span>
+						<span class="menu-title">お知らせ</span>
+					</a>
+				</div>
+				<div class="menu-item mobile-hide tablet-hide">
+					<div class="menu-content pt-8 pb-2">
+						<span class="menu-section text-muted fs-8 ls-0">分析</span>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-chart-simple-2">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+							</i>
+						</span>
+						<span class="menu-title">売上分析</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-3 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="analysis_sales_abc_revenue.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">ABC分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="analysis_sales_item.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="analysis_timezone.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">時間帯別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="analysis_sales_and_cus_dow.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">曜日別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="analysis_paymentmethod.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">支払種別分析</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">売上分析</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="analysis_sales_abc_revenue.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">ABC分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="analysis_sales_item.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="analysis_timezone.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">時間帯別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="analysis_sales_and_cus_dow.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">曜日別分析</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="analysis_paymentmethod.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">支払種別分析</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-chart">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">仕入分析</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="purchasing_supplier.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">仕入先別分析</span>
+							</a>
+							<a class="menu-link py-3 px-4" href="purchasing_item.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品別分析</span>
+							</a>
+							<a class="menu-link py-3 px-4" href="purchasing_label.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">費目別分析</span>
+							</a>
+							<a class="menu-link py-3 px-4" href="analysis_cost_unit.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品仕入単価</span>
+							</a>
+							<a class="menu-link py-3 px-4" href="purchasing_labelfiltered.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">平均単価推移</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">仕入分析</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="purchasing_supplier.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">仕入先別分析</span>
+							</a>
+							<a class="menu-link" href="purchasing_item.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品別分析</span>
+							</a>
+							<a class="menu-link" href="purchasing_label.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">費目別分析</span>
+							</a>
+							<a class="menu-link" href="analysis_cost_unit.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">商品仕入単価</span>
+							</a>
+							<a class="menu-link" href="purchasing_labelfiltered.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">平均単価推移</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-graph-3">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">詳細分析</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="progress.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">進捗分析</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">詳細分析</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="progress.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">進捗分析</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-graph-4">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">集計</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="bva.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">予実対比</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="monthly.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">月次レポート</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="daily.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">日次レポート</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">集計</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="bva.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">予実対比</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="monthly.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">月次レポート</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="daily.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">日次レポート</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="#">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-exit-down">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">ダウンロード</span>
+					</a>
+				</div>
+				<div class="menu-item mobile-hide">
+					<div class="menu-content pt-8 pb-2">
+						<span class="menu-section text-muted fs-8 ls-0">登録・管理</span>
+					</div>
+				</div>
+				<div class="menu-item mobile-hide" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start">
+					<div class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-color-swatch">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+								<i class="path5"></i>
+								<i class="path6"></i>
+								<i class="path7"></i>
+								<i class="path8"></i>
+								<i class="path9"></i>
+								<i class="path10"></i>
+								<i class="path11"></i>
+								<i class="path12"></i>
+								<i class="path13"></i>
+								<i class="path14"></i>
+								<i class="path15"></i>
+								<i class="path16"></i>
+								<i class="path17"></i>
+								<i class="path18"></i>
+								<i class="path19"></i>
+								<i class="path20"></i>
+								<i class="path21"></i>
+							</i>
+						</span>
+						<span class="menu-title">ラベル</span>
+						<span class="menu-arrow"></span>
+					</div>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="labelsetting.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">登録</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="labels.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">一覧</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">ラベル</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="labelsetting.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">登録</span>
+							</a>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="labels.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">一覧</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="invoices.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-scroll">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+							</i>
+						</span>
+						<span class="menu-title">納品書</span>
+					</a>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">小口現金</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="expenseitem.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">経費項目設定</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-wallet">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+							</i>
+						</span>
+						<span class="menu-title">小口現金</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="expenseitem.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">経費項目設定</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="inventories.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-lots-shopping">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+								<i class="path5"></i>
+								<i class="path6"></i>
+								<i class="path7"></i>
+								<i class="path8"></i>
+							</i>
+						</span>
+						<span class="menu-title">棚卸</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="shoplist.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-shop">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+								<i class="path5"></i>
+							</i>
+						</span>
+						<span class="menu-title">店舗</span>
+					</a>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention">
+					<span class="menu-link py-3 px-4">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-address-book">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+							</i>
+						</span>
+						<span class="menu-title">従業員管理</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown py-3 px-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="employees.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">従業員一覧</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="payroll_reports.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">人件費実績</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="actual_data_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">実績取込データ</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="settings_data_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">設定取込データ</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link py-3 px-4" href="employee_payroll_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">従業員設定インポート</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item-mobile">
+					<div class="menu-item">
+						<div class="menu-content pt-4 pb-2">
+							<span class="menu-section text-muted fs-8 ls-0">従業員管理</span>
+						</div>
+					</div>
+					<div class="menu-sub menu-sub-accordion menu-active-bg show">
+						<div class="menu-item">
+							<a class="menu-link" href="employees.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">従業員一覧</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="payroll_reports.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">人件費実績</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="actual_data_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">実績取込データ</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="settings_data_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">設定取込データ</span>
+							</a>
+						</div>
+						<div class="menu-item">
+							<a class="menu-link" href="employee_payroll_import.html">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">従業員設定インポート</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="userlist.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-profile-user">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+							</i>
+						</span>
+						<span class="menu-title">ユーザー</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="stocking_transfer_lists.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-arrow-zigzag">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">店舗間商品移動</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<div class="menu-content pt-8 pb-2">
+						<span class="menu-section text-muted fs-8 ls-0">設定</span>
+					</div>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="profile.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-briefcase">
+								<i class="path1"></i>
+								<i class="path2"></i>
+							</i>
+						</span>
+						<span class="menu-title">会社情報</span>
+					</a>
+				</div>
+				<div class="menu-item">
+					<a class="menu-link py-3 px-4" href="billing.html">
+						<span class="menu-icon">
+							<i class="ki-duotone ki-bill">
+								<i class="path1"></i>
+								<i class="path2"></i>
+								<i class="path3"></i>
+								<i class="path4"></i>
+								<i class="path5"></i>
+								<i class="path6"></i>
+							</i>
+						</span>
+						<span class="menu-title">お支払い</span>
+					</a>
+				</div>
+			</div>
+			<!--end::Menu-->
+		</div>
+		<!--end::Aside Menu-->
+	</div>
+	<!--end::Aside menu-->
+</div>
+<!--end::Aside-->

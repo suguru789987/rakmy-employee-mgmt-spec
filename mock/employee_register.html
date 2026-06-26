@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <!--begin::Head-->
+  <head>
+    <base href="" />
+    <title>ラクミー 経営管理システム - 従業員登録</title>
+    <meta charset="utf-8" /><meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <!--begin::Fonts-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp-noto.min.css"
+    />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link
+      href="assets/plugins/global/plugins.bundle.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/custom.css" rel="stylesheet" media="all" />
+    <link href="assets/css/headerbg.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <!--begin::jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="assets/js/include.js"></script>
+    <!--end::jQuery CDN -->
+  </head>
+  <!--end::Head-->
+  <!--begin::Body-->
+  <body
+    id="kt_body"
+    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+    style="
+      --kt-toolbar-height: 55px;
+      --kt-toolbar-height-tablet-and-mobile: 55px;
+    "
+  >
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+      <!--begin::Page-->
+      <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Sidebar-->
+        <script>
+          include_sidebar_company();
+        </script>
+        <!--end::Sidebar-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+          <!--Begin::Header-->
+          <script>
+            include_header_company();
+          </script>
+          <!--End::Header-->
+          <!--begin::Content-->
+          <div class="content d-flex flex-column flex-column-fluid">
+            <!--begin::Toolbar-->
+            <div class="my-6 my-sm-5" id="kt_toolbar">
+              <!--begin::Container-->
+              <div
+                id="kt_toolbar_container"
+                class="container-xxl d-flex flex-stack"
+              >
+                <!--begin::Page title-->
+                <div
+                  data-kt-swapper="true"
+                  data-kt-swapper-mode="prepend"
+                  data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                  class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0"
+                >
+                  <!--begin::Title-->
+                  <h1
+                    class="d-flex text-dark fw-bolder fs-4 align-items-center my-1"
+                  >
+                    従業員登録
+                  </h1>
+                  <!--end::Title-->
+                  <!--begin::Separator-->
+                  <span
+                    class="h-20px border-gray-300 border-start ms-5 me-4"
+                  ></span>
+                  <!--end::Separator-->
+                  <!--begin::Breadcrumb-->
+                  <ul
+                    class="breadcrumb breadcrumb-separatorless fw-bold fs-8 my-1"
+                  >
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                      <a href="index.html" class="text-muted text-hover-primary"
+                        >ホーム</a
+                      >
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                      <span class="bullet bg-gray-300 w-5px h-1px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                      <a href="employees.html" class="text-muted text-hover-primary"
+                        >従業員一覧</a
+                      >
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                      <span class="bullet bg-gray-300 w-5px h-1px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">従業員登録</li>
+                    <!--end::Item-->
+                  </ul>
+                  <!--end::Breadcrumb-->
+                </div>
+                <!--end::Page title-->
+                <!--begin::Actions-->
+                <div class="d-flex align-items-center mobile-w-100 gap-2">
+                  <div class="w-auto flex-md-grow-0 flex-grow-1">
+                    <a href="employees.html" class="btn btn-sm fs-7 fw-bold btn-light-dark nowrap w-100">
+                      <i class="ki-duotone ki-arrow-left fs-4 me-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                      </i>
+                      従業員一覧へ
+                    </a>
+                  </div>
+                  <div class="w-auto flex-md-grow-0 flex-grow-1">
+                    <a href="employee_payroll_import.html" class="btn btn-sm fs-7 fw-bold btn-primary nowrap w-100">
+                      <i class="ki-duotone ki-file-up fs-4 me-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                      </i>
+                      CSVインポート
+                    </a>
+                  </div>
+                </div>
+                <!--end::Actions-->
+              </div>
+              <!--end::Container-->
+            </div>
+            <!--end::Toolbar-->
+            <!--begin::Post-->
+            <div class="post d-flex flex-column-fluid mb-8">
+              <!--begin::Container-->
+              <div class="container-xxl">
+                <!--begin::Basic info-->
+                <div class="card">
+                  <!--begin::Card header-->
+                  <div class="card-header border-0">
+                    <!--begin::Card title-->
+                    <div class="card-title mt-2 mt-lg-4">
+                      <h3 class="fw-bolder me-2 fs-5">基本情報</h3>
+                    </div>
+                    <!--end::Card title-->
+                  </div>
+                  <!--begin::Card header-->
+                  <!--begin::Card body-->
+                  <div class="card-body border-top p-9 row pb-5 pt-6">
+                    <!--begin::Input group - 名前-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">名前</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <input type="text" name="employee_name" class="form-control form-control-lg form-control-solid text-gray-800 fs-7" placeholder="従業員名を入力" value="">
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 従業員コード-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">従業員コード</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <input type="text" name="employee_code" class="form-control form-control-lg form-control-solid text-gray-800 fs-7" placeholder="従業員コードを入力" value="">
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 所属店舗-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">所属店舗</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <select name="store" aria-label="所属店舗を選択" data-control="select2" data-placeholder="所属店舗を選択" class="form-select form-select-lg form-select-solid">
+                          <option value="" selected="selected">選択してください</option>
+                          <option value="1">ラクミーフレッシュ渋谷店</option>
+                          <option value="2">ラクミーフレッシュ青山店</option>
+                          <option value="3">ラクミーフレッシュ新宿店</option>
+                          <option value="4">ラクミーフレッシュ沖縄店</option>
+                          <option value="5">ラクミーフレッシュ赤坂店</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - ヘルプ先店舗-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8">ヘルプ先店舗</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <select name="help_stores" aria-label="ヘルプ先店舗を選択" data-control="select2" data-placeholder="ヘルプ先店舗を選択" class="form-select form-select-lg form-select-solid" multiple="multiple">
+                          <option value="1">ラクミーフレッシュ渋谷店</option>
+                          <option value="2">ラクミーフレッシュ青山店</option>
+                          <option value="3">ラクミーフレッシュ新宿店</option>
+                          <option value="4">ラクミーフレッシュ沖縄店</option>
+                          <option value="5">ラクミーフレッシュ赤坂店</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 雇用区分-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">雇用区分</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <select name="employment_type" id="employment_type_select" aria-label="雇用区分を選択" data-control="select2" data-placeholder="雇用区分を選択" class="form-select form-select-lg form-select-solid">
+                          <option value="" selected="selected">選択してください</option>
+                          <option value="regular">正社員</option>
+                          <option value="part_time">パート</option>
+                          <option value="temporary">アルバイト</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 給与単位-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">給与単位</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <select name="salary_type" id="salary_type_select" aria-label="給与単位を選択" data-control="select2" data-placeholder="給与単位を選択" class="form-select form-select-lg form-select-solid" data-hide-search="true">
+                          <option value="" selected="selected">選択してください</option>
+                          <option value="monthly">月給</option>
+                          <option value="hourly">時給</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 単位給与額-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">単位給与額</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;">¥</span>
+                          <input type="text" name="salary_amount" class="form-control form-control-solid border-0 py-2.5 fs-6 number-input" placeholder="金額を入力" value="">
+                        </div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 交通費単位-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">交通費単位</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <select name="transport_type" aria-label="交通費単位を選択" data-control="select2" data-placeholder="交通費単位を選択" class="form-select form-select-lg form-select-solid" data-hide-search="true">
+                          <option value="" selected="selected">選択してください</option>
+                          <option value="daily">日額</option>
+                          <option value="monthly">月額</option>
+                        </select>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 単位交通費-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">単位交通費</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;">¥</span>
+                          <input type="text" name="transport_amount" class="form-control form-control-solid border-0 py-2.5 fs-6 number-input" placeholder="金額を入力" value="">
+                        </div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - ヘルプ先交通費-->
+                    <div class="flex-column mb-4 col-lg-12" id="help_transport_section" style="display: none;">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">ヘルプ先交通費</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row" id="help_transport_list">
+                        <!-- Dynamically populated by JavaScript -->
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - 所定労働時間-->
+                    <div class="flex-column mb-4 col-lg-3" id="working_hours_group" style="display: none;">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">所定労働時間</label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <input type="number" name="working_hours" class="form-control form-control-solid border-0 py-2.5 fs-6" placeholder="数値を入力" value="">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;">時間/月</span>
+                        </div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group - みなし残業時間-->
+                    <div class="flex-column mb-4 col-lg-3" id="overtime_hours_group" style="display: none;">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 d-inline-flex align-items-center">
+                        <span>みなし残業時間</span>
+                        <span class="text-danger ms-1">*</span>
+                      </label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <input type="number" name="overtime_hours" class="form-control form-control-solid border-0 py-2.5 fs-6" placeholder="数値を入力" value="">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;">時間/月</span>
+                        </div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                  </div>
+                  <!--end::Card body-->
+                  <!--begin::Actions-->
+                  <div class="card-footer d-flex justify-content-between py-6 px-9">
+                    <a href="employees.html" class="btn btn-light text-gray-600 d-inline-flex align-items-center"><i class="ki-outline ki-cross fs-3 text-gray-600"></i>キャンセル</a>
+                    <button type="button" class="btn btn-primary d-inline-flex align-items-center" id="employee_submit">
+                      <span class="indicator-label"><span class="d-inline-flex align-items-center"><i class="ki-outline ki-check fs-3 me-1"></i>登録</span></span>
+                      <span class="indicator-progress"><span class="d-inline-flex align-items-center">登録中...<span class="spinner-border spinner-border-sm ms-2"></span></span></span>
+                    </button>
+                  </div>
+                  <!--end::Actions-->
+                </div>
+                <!--end::Basic info-->
+              </div>
+              <!--end::Container-->
+            </div>
+            <!--end::Post-->
+          </div>
+          <!--end::Content-->
+        </div>
+        <!--end::Wrapper-->
+      </div>
+      <!--end::Page-->
+    </div>
+    <!--end::Root-->
+    <!--end::Main-->
+    <!--begin::Javascript-->
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="assets/js/select2.js"></script>
+    <script>
+      // Thousand separator for number inputs
+      document.addEventListener('DOMContentLoaded', function() {
+        const numberInputs = document.getElementsByClassName('number-input');
+        Array.from(numberInputs).forEach(input => {
+          let previousValue = '';
+          input.addEventListener('input', function(e) {
+            const rawValue = this.value.replace(/[^\d]/g, '');
+            if (!rawValue) {
+              this.value = '';
+              previousValue = '';
+              return;
+            }
+            try {
+              const formattedValue = Number(rawValue).toLocaleString();
+              this.value = formattedValue;
+              previousValue = formattedValue;
+            } catch {
+              this.value = previousValue;
+            }
+          });
+          input.addEventListener('focus', function() {
+            const rawValue = this.value.replace(/,/g, '');
+            this.value = rawValue;
+          });
+          input.addEventListener('blur', function() {
+            if (this.value) {
+              const rawValue = this.value.replace(/,/g, '');
+              this.value = Number(rawValue).toLocaleString();
+            }
+          });
+        });
+      });
+
+      // Toggle 所定労働時間 and みなし残業時間 visibility based on 雇用区分
+      $(document).ready(function() {
+        var workingHoursGroup = document.getElementById('working_hours_group');
+        var overtimeHoursGroup = document.getElementById('overtime_hours_group');
+
+        function toggleRegularEmployeeFields(value) {
+          if (value === 'regular') {
+            workingHoursGroup.style.display = '';
+            overtimeHoursGroup.style.display = '';
+          } else {
+            workingHoursGroup.style.display = 'none';
+            overtimeHoursGroup.style.display = 'none';
+          }
+        }
+
+        // Listen to Select2 change event
+        $('#employment_type_select').on('change', function() {
+          toggleRegularEmployeeFields($(this).val());
+        });
+
+        // Handle ヘルプ先交通費 dynamic list
+        var helpTransportSection = $('#help_transport_section');
+        var helpTransportList = $('#help_transport_list');
+
+        function initNumberInputFormatting(input) {
+          var $input = $(input);
+          $input.on('input', function() {
+            var rawValue = this.value.replace(/[^\d]/g, '');
+            if (!rawValue) {
+              this.value = '';
+              return;
+            }
+            this.value = Number(rawValue).toLocaleString();
+          });
+          $input.on('focus', function() {
+            this.value = this.value.replace(/,/g, '');
+          });
+          $input.on('blur', function() {
+            if (this.value) {
+              this.value = Number(this.value.replace(/,/g, '')).toLocaleString();
+            }
+          });
+        }
+
+        $('select[name="help_stores"]').on('change', function() {
+          var selectedOptions = $(this).find('option:selected');
+          helpTransportList.empty();
+
+          if (selectedOptions.length > 0) {
+            helpTransportSection.show();
+            selectedOptions.each(function() {
+              var storeId = $(this).val();
+              var storeName = $(this).text();
+              var row = $(`
+                <div class="d-flex align-items-center gap-3 mb-3" data-store-id="${storeId}">
+                  <div class="badge badge-light-primary fw-bold fs-7 py-3 px-4" style="min-width: 200px;">
+                    ${storeName}
+                  </div>
+                  <div class="input-group" style="max-width: 200px;">
+                    <span class="input-group-text border-0" style="background-color: #F9F9F9;">¥</span>
+                    <input type="text" name="help_transport_${storeId}"
+                           class="form-control form-control-solid border-0 number-input"
+                           placeholder="金額を入力" required>
+                  </div>
+                </div>
+              `);
+              helpTransportList.append(row);
+              initNumberInputFormatting(row.find('input'));
+            });
+          } else {
+            helpTransportSection.hide();
+          }
+        });
+      });
+
+      // Form submission with loading animation
+      const submitButton = document.getElementById('employee_submit');
+
+      submitButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Show loading state
+        submitButton.setAttribute('data-kt-indicator', 'on');
+        submitButton.disabled = true;
+
+        // Simulate API call
+        setTimeout(function() {
+          // Hide loading state
+          submitButton.removeAttribute('data-kt-indicator');
+          submitButton.disabled = false;
+
+          // Show success message
+          Swal.fire({
+            text: "従業員を登録しました",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "OK",
+            customClass: {
+              confirmButton: "btn btn-primary"
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = 'employees.html';
+            }
+          });
+        }, 1500);
+      });
+    </script>
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+  </body>
+  <!--end::Body-->
+</html>

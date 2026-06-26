@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.header-fixed .header {
+	background: #1DD1A1 !important;
+}
+
+.header-tablet-and-mobile-fixed .header {
+	background: #1DD1A1 !important;
+}

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<!--begin::Head-->
+	<head><base href="">
+		<title>ラクミー 経営管理システム - 従業員設定インポート</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex">
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico">
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp-noto.min.css">
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/custom.css" rel="stylesheet" media="all">
+	<link href="assets/css/headerbg.css" rel="stylesheet" type="text/css">
+		<!--end::Global Stylesheets Bundle-->
+		<!--begin::jQuery CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script src="assets/js/include.js"></script>
+		<!--end::jQuery CDN -->
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Sidebar-->
+				<script>include_sidebar_company();</script>
+				<!--end::Sidebar-->
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid">
+					<!--Begin::Header-->
+					<script>include_header_company();</script>
+					<!--End::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid">
+						<!--begin::Toolbar-->
+						<div class="my-5 my-sm-4" id="kt_toolbar">
+							<!--begin::Container-->
+							<div id="kt_toolbar_container" class="container-xxl d-flex flex-stack align-middle">
+								<!--begin::Page title-->
+								<div class="page-title d-flex align-items-center flex-wrap col-xs-12 col-xxl-6">
+									<!--begin::Title-->
+									<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center">従業員設定インポート</h1>
+									<!--end::Title-->
+									<!--begin::Separator-->
+									<span class="h-20px border-gray-300 border-start ms-5 me-4"></span>
+									<!--end::Separator-->
+									<!--begin::Breadcrumb-->
+									<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-8 mt-2 mb-1">
+										<!--begin::Item-->
+										<li class="breadcrumb-item text-muted">
+											<a href="index.html" class="text-muted text-hover-primary">ホーム</a>
+										</li>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<li class="breadcrumb-item">
+											<span class="bullet bg-gray-300 w-5px h-1px"></span>
+										</li>
+										<!--end::Item-->
+										<!--begin::Item-->
+										<li class="breadcrumb-item text-dark">従業員設定インポート</li>
+										<!--end::Item-->
+									</ul>
+									<!--end::Breadcrumb-->
+								</div>
+								<!--end::Page title-->
+								<!--begin::Actions-->
+								<div class="d-flex align-items-center flex-wrap gap-2">
+									<a href="employees.html" class="btn btn-sm fs-7 fw-bold btn-light-dark nowrap">
+										<i class="ki-duotone ki-arrow-left fs-4 me-1">
+											<span class="path1"></span>
+											<span class="path2"></span>
+										</i>
+										従業員一覧
+									</a>
+									<a href="column_mapping_templates.html" class="btn btn-sm fs-7 fw-bold btn-primary nowrap">
+										<i class="ki-duotone ki-setting-2 fs-4 me-1">
+											<span class="path1"></span>
+											<span class="path2"></span>
+										</i>
+										列マッピングテンプレート管理
+									</a>
+								</div>
+								<!--end::Actions-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Toolbar-->
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div id="kt_content_container" class="container-xxl mb-4 mb-md-8">
+								<!--begin::Card-->
+								<div class="card">
+									<!--begin::Card header-->
+									<div class="card-header border-0">
+										<!--begin::Card title-->
+										<div class="card-title mt-2 mt-lg-4">
+											<h3 class="fw-bolder me-2 fs-5">CSVインポート</h3>
+										</div>
+										<!--end::Card title-->
+										<!--begin::Card toolbar-->
+										<div class="card-toolbar">
+											<div class="d-flex flex-wrap gap-3">
+												<a href="#" class="btn btn-sm btn-light-primary" id="download_employee_template">
+													<i class="ki-outline ki-file-down fs-5 me-1"></i>従業員設定CSVテンプレート
+												</a>
+												<a href="#" class="btn btn-sm btn-light-primary" id="download_payroll_template">
+													<i class="ki-outline ki-file-down fs-5 me-1"></i>給与設定CSVテンプレート
+												</a>
+											</div>
+										</div>
+										<!--end::Card toolbar-->
+									</div>
+									<!--end::Card header-->
+									<!--begin::Card body-->
+									<div class="card-body border-top p-9 pt-6">
+										<!--begin::Form-->
+										<form id="import_form" class="form" name="importform">
+											<!--begin::Input group - データ種類-->
+											<div class="mb-6">
+												<!--begin::Label-->
+												<label class="col-form-label text-gray-600 fw-bold fs-8 required">データ種類</label>
+												<!--end::Label-->
+												<!--begin::Col-->
+												<div class="fv-row">
+													<select class="form-select form-select-lg form-select-solid" id="data_type_select">
+														<option value=""></option>
+														<option value="kot_employee_attendance">King of Time 従業員一覧（勤怠管理）</option>
+														<option value="kot_unit_price">King of Time 単価データ（勤怠管理）</option>
+														<option value="kot_employee_hr">King of Time 従業員一覧（人事労務）</option>
+														<option value="jobcan_staff_attendance">ジョブカン スタッフ情報（勤怠管理）</option>
+														<option value="jobcan_employee_payroll">ジョブカン 従業員データ（給与計算）</option>
+													</select>
+													<div class="form-text text-gray-600 fs-8 mt-3">インポートするCSVファイルの元となる勤怠管理システムを選択してください</div>
+												</div>
+												<!--end::Col-->
+											</div>
+											<!--end::Input group-->
+											<!--begin::Input group - テンプレート選択-->
+											<div class="mb-6" id="template_select_wrapper" style="display: none;">
+												<!--begin::Label-->
+												<label class="col-form-label text-gray-600 fw-bold fs-8">列マッピングテンプレート</label>
+												<!--end::Label-->
+												<!--begin::Col-->
+												<div class="fv-row">
+													<select class="form-select form-select-lg form-select-solid" id="template_select">
+														<option value="">テンプレートを使用しない</option>
+														<!-- Dynamically populated based on selected data type -->
+													</select>
+													<div class="form-text text-gray-600 fs-8 mt-3">選択したテンプレートの設定が取り込み列設定に自動適用されます</div>
+												</div>
+												<!--end::Col-->
+											</div>
+											<!--end::Input group-->
+											<!--begin::Input group - CSVファイル-->
+											<div class="mb-6">
+												<!--begin::Label-->
+												<label class="col-form-label text-gray-600 fw-bold fs-8 required">CSVファイル</label>
+												<!--end::Label-->
+												<!--begin::Col-->
+												<div class="fv-row">
+													<!--begin::Dropzone-->
+													<div class="dropzone" id="kt_dropzone">
+														<!--begin::Message-->
+														<div class="dz-message needsclick">
+															<i class="ki-duotone ki-file-up fs-2qx text-primary">
+																<span class="path1"></span>
+																<span class="path2"></span>
+															</i>
+															<div class="ms-4">
+																<div class="fs-6 fw-bold text-gray-900">ファイルをドラッグ＆ドロップ</div>
+																<span class="fs-8 fw-semibold text-gray-600">または クリックしてファイルを選択</span>
+															</div>
+														</div>
+														<!--end::Message-->
+													</div>
+													<!--end::Dropzone-->
+													<div class="form-text text-gray-600 fs-8 mt-3">
+														<span class="fw-semibold">対応ファイル形式 :</span> CSV (.csv)<br>
+														<span class="fw-semibold">最大ファイルサイズ :</span> 10MB
+													</div>
+												</div>
+												<!--end::Col-->
+											</div>
+											<!--end::Input group-->
+											<!--begin::Input group - CSV位置合わせ設定-->
+											<div class="mb-6">
+												<!--begin::Toggle Button-->
+												<div class="d-flex align-items-center">
+													<button type="button" class="btn btn-sm btn-light-primary" data-bs-toggle="collapse" data-bs-target="#csv_position_section" aria-expanded="true">
+														<i class="ki-outline ki-setting-2 fs-5 me-1"></i>CSV位置合わせ設定
+														<i class="ki-outline ki-up fs-5 ms-1" id="position_toggle_icon"></i>
+													</button>
+													<span class="form-text text-gray-500 fs-8 ms-4">CSVファイルのヘッダー行やデータ開始位置を設定します</span>
+												</div>
+												<!--end::Toggle Button-->
+												<!--begin::Collapsible Content-->
+												<div class="collapse show mt-4" id="csv_position_section">
+													<div class="card card-bordered">
+														<div class="card-body p-5">
+															<div class="row g-4">
+																<div class="col-md-4">
+																	<label class="form-label fs-8 text-gray-600">ヘッダー行</label>
+																	<input type="number" class="form-control form-control-sm" id="header_row" value="1" min="1">
+																	<div class="form-text fs-8">列名が含まれる行番号</div>
+																</div>
+																<div class="col-md-4">
+																	<label class="form-label fs-8 text-gray-600">データ開始行</label>
+																	<input type="number" class="form-control form-control-sm" id="data_start_row" value="2" min="1">
+																	<div class="form-text fs-8">データが始まる行番号</div>
+																</div>
+																<div class="col-md-4">
+																	<label class="form-label fs-8 text-gray-600">開始列</label>
+																	<input type="number" class="form-control form-control-sm" id="start_column" value="1" min="1">
+																	<div class="form-text fs-8">データが始まる列番号</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--end::Collapsible Content-->
+											</div>
+											<!--end::Input group-->
+											<!--begin::Input group - 取り込み列設定-->
+											<div class="mb-6" id="column_selection_wrapper" style="display: none;">
+												<!--begin::Label-->
+												<label class="col-form-label text-gray-600 fw-bold fs-8">取り込み列設定</label>
+												<!--end::Label-->
+												<div class="card card-bordered">
+													<div class="card-body p-5">
+														<!--begin::Toolbar-->
+														<div class="d-flex justify-content-between align-items-center mb-4">
+															<div class="d-flex gap-2">
+																<button type="button" class="btn btn-sm btn-light-primary" id="select_all_columns">
+																	<i class="ki-outline ki-check-square fs-5 me-1"></i>全選択
+																</button>
+																<button type="button" class="btn btn-sm btn-light" id="deselect_all_columns">
+																	<i class="ki-outline ki-abstract-14 fs-5 me-1"></i>全解除
+																</button>
+															</div>
+															<span class="text-gray-600 fs-8" id="column_count">検出列数: 0列</span>
+														</div>
+														<!--end::Toolbar-->
+														<!--begin::Table wrapper-->
+														<div class="table-responsive">
+															<table class="table table-row-bordered table-row-gray-200 align-middle gs-4 gy-3" id="column_selection_table">
+																<thead>
+																	<tr class="fw-bold text-gray-600 fs-8">
+																		<th class="w-60px text-center">取込</th>
+																		<th class="min-w-150px">CSV列名</th>
+																		<th class="min-w-150px">反映先テーブル</th>
+																		<th class="min-w-200px">ラクミー列名</th>
+																	</tr>
+																</thead>
+																<tbody id="column_selection_tbody">
+																	<!-- Dynamically populated from CSV -->
+																</tbody>
+															</table>
+														</div>
+														<!--end::Table wrapper-->
+													</div>
+												</div>
+											</div>
+											<!--end::Input group-->
+											<!--begin::Notice-->
+											<div class="notice d-flex bg-light-warning rounded p-5 mb-4">
+												<i class="ki-duotone ki-information-5 fs-2x text-warning me-4">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+												</i>
+												<div class="d-flex flex-stack flex-grow-1">
+													<div class="fw-semibold">
+														<div class="text-gray-900 fw-bold fs-7 mb-3">インポートに関する注意事項</div>
+														<div class="fs-8 text-gray-700">
+															<ul class="mb-0 ps-6">
+																<li>CSVファイルの1行目はヘッダー行として処理されます</li>
+																<li>従業員コードが一致する既存データは上書きされます</li>
+																<li>新規の従業員コードの場合は新規登録として処理されます</li>
+																<li>インポート結果は「従業員設定履歴」画面で確認できます</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--end::Notice-->
+										</form>
+										<!--end::Form-->
+									</div>
+									<!--end::Card body-->
+									<!--begin::Actions-->
+									<div class="card-footer d-flex justify-content-between py-6 px-9">
+										<a href="employees.html" class="btn btn-light text-gray-600 d-inline-flex align-items-center"><i class="ki-outline ki-cross fs-3 text-gray-600"></i>キャンセル</a>
+										<button type="button" class="btn btn-primary d-inline-flex align-items-center" id="import_submit">
+											<span class="indicator-label"><i class="ki-outline ki-check fs-3"></i>登録</span>
+											<span class="indicator-progress">登録中...
+												<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+											</span>
+										</button>
+									</div>
+									<!--end::Actions-->
+								</div>
+								<!--end::Card-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="assets/js/daterange.js"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script>
+			// Initialize Select2 for data type select (without icon template)
+			$('#data_type_select').select2({
+				minimumResultsForSearch: Infinity,
+				placeholder: 'データ種類を選択してください'
+			});
+
+			// Initialize Select2 for template select
+			$('#template_select').select2({
+				minimumResultsForSearch: Infinity,
+				placeholder: 'テンプレートを使用しない'
+			});
+
+			// Mock template data (same as in column_mapping_templates.html)
+			var mockTemplates = {
+				kot_employee_attendance: [
+					{
+						id: 1,
+						name: 'KoT標準インポート設定',
+						mappings: [
+							{ csvColumn: '従業員コード', targetTable: 'employee', rakmyColumn: 'employee_code', import: true },
+							{ csvColumn: '氏名', targetTable: 'employee', rakmyColumn: 'full_name', import: true },
+							{ csvColumn: '所属グループコード', targetTable: 'employee', rakmyColumn: 'department_code', import: true },
+							{ csvColumn: '所属グループ', targetTable: 'employee', rakmyColumn: 'store', import: true },
+							{ csvColumn: '雇用区分', targetTable: 'employee', rakmyColumn: 'employment_type', import: true },
+							{ csvColumn: '時給', targetTable: 'payroll', rakmyColumn: 'hourly_wage', import: true },
+							{ csvColumn: '基本給', targetTable: 'payroll', rakmyColumn: 'base_salary', import: true },
+							{ csvColumn: '交通費', targetTable: 'payroll', rakmyColumn: 'daily_transport', import: true }
+						]
+					},
+					{
+						id: 2,
+						name: 'KoT詳細インポート設定',
+						mappings: [
+							{ csvColumn: '従業員コード', targetTable: 'employee', rakmyColumn: 'employee_code', import: true },
+							{ csvColumn: '姓', targetTable: 'employee', rakmyColumn: 'last_name', import: true },
+							{ csvColumn: '名', targetTable: 'employee', rakmyColumn: 'first_name', import: true },
+							{ csvColumn: '所属グループ', targetTable: 'employee', rakmyColumn: 'store', import: true },
+							{ csvColumn: '電話番号', targetTable: 'employee', rakmyColumn: 'phone', import: true },
+							{ csvColumn: 'メール', targetTable: 'employee', rakmyColumn: 'email', import: true },
+							{ csvColumn: '雇用区分コード', targetTable: 'employee', rakmyColumn: 'employment_type_code', import: true },
+							{ csvColumn: '雇用区分', targetTable: 'employee', rakmyColumn: 'employment_type', import: true },
+							{ csvColumn: '時給', targetTable: 'payroll', rakmyColumn: 'hourly_wage', import: true },
+							{ csvColumn: '日給', targetTable: 'payroll', rakmyColumn: 'daily_wage', import: true },
+							{ csvColumn: '所定労働時間', targetTable: 'payroll', rakmyColumn: 'scheduled_work_hours', import: true },
+							{ csvColumn: 'みなし労働時間', targetTable: 'payroll', rakmyColumn: 'deemed_work_hours', import: true }
+						]
+					}
+				],
+				kot_unit_price: [
+					{
+						id: 3,
+						name: 'KoT単価インポート',
+						mappings: [
+							{ csvColumn: '従業員コード', targetTable: 'payroll', rakmyColumn: 'employee_code', import: true },
+							{ csvColumn: '時給', targetTable: 'payroll', rakmyColumn: 'hourly_wage', import: true },
+							{ csvColumn: '日給単価', targetTable: 'payroll', rakmyColumn: 'daily_wage', import: true },
+							{ csvColumn: '基本給', targetTable: 'payroll', rakmyColumn: 'base_salary', import: true },
+							{ csvColumn: '定期代', targetTable: 'payroll', rakmyColumn: 'commuter_pass', import: true }
+						]
+					}
+				],
+				kot_employee_hr: [],
+				jobcan_staff_attendance: [
+					{
+						id: 4,
+						name: 'Jobcan基本設定',
+						mappings: [
+							{ csvColumn: 'スタッフコード', targetTable: 'employee', rakmyColumn: 'employee_code', import: true },
+							{ csvColumn: 'スタッフ名', targetTable: 'employee', rakmyColumn: 'full_name', import: true },
+							{ csvColumn: '所属', targetTable: 'employee', rakmyColumn: 'store', import: true },
+							{ csvColumn: '雇用形態', targetTable: 'employee', rakmyColumn: 'employment_type', import: true },
+							{ csvColumn: '時給', targetTable: 'payroll', rakmyColumn: 'hourly_wage', import: true },
+							{ csvColumn: '交通費', targetTable: 'payroll', rakmyColumn: 'daily_transport', import: true }
+						]
+					}
+				],
+				jobcan_employee_payroll: [
+					{
+						id: 5,
+						name: 'Jobcan給与計算インポート',
+						mappings: [
+							{ csvColumn: '従業員番号', targetTable: 'employee', rakmyColumn: 'employee_code', import: true },
+							{ csvColumn: '氏名', targetTable: 'employee', rakmyColumn: 'full_name', import: true },
+							{ csvColumn: '部門コード', targetTable: 'employee', rakmyColumn: 'department_code', import: true },
+							{ csvColumn: '部門名', targetTable: 'employee', rakmyColumn: 'store', import: true },
+							{ csvColumn: '雇用区分', targetTable: 'employee', rakmyColumn: 'employment_type', import: true },
+							{ csvColumn: '時給', targetTable: 'payroll', rakmyColumn: 'hourly_wage', import: true },
+							{ csvColumn: '基本給', targetTable: 'payroll', rakmyColumn: 'base_salary', import: true },
+							{ csvColumn: '所定労働時間', targetTable: 'payroll', rakmyColumn: 'scheduled_work_hours', import: true },
+							{ csvColumn: '契約労働日数', targetTable: 'payroll', rakmyColumn: 'contract_work_days', import: true },
+							{ csvColumn: '定期代', targetTable: 'payroll', rakmyColumn: 'commuter_pass', import: true }
+						]
+					}
+				]
+			};
+
+			// Load templates for selected data type
+			function loadTemplatesForDataType(dataType) {
+				var $templateSelect = $('#template_select');
+				$templateSelect.empty();
+				$templateSelect.append('<option value="">テンプレートを使用しない</option>');
+
+				if (dataType && mockTemplates[dataType]) {
+					mockTemplates[dataType].forEach(function(template) {
+						$templateSelect.append('<option value="' + template.id + '">' + template.name + '</option>');
+					});
+				}
+
+				// Show or hide template selector
+				if (dataType) {
+					$('#template_select_wrapper').show();
+				} else {
+					$('#template_select_wrapper').hide();
+				}
+			}
+
+			// Apply template to column selection table
+			function applyTemplate(templateId) {
+				var dataType = $('#data_type_select').val();
+				if (!dataType || !mockTemplates[dataType]) return;
+
+				var template = mockTemplates[dataType].find(function(t) {
+					return t.id == templateId;
+				});
+
+				if (template) {
+					var $tbody = $('#column_selection_tbody');
+					$tbody.empty();
+
+					template.mappings.forEach(function(mapping, index) {
+						var row = createColumnRowFromTemplate(index, mapping);
+						$tbody.append(row);
+					});
+
+					$('#column_count').text('検出列数: ' + template.mappings.length + '列');
+					$('#column_selection_wrapper').show();
+				}
+			}
+
+			// Create column row from template data
+			function createColumnRowFromTemplate(index, mapping) {
+				var targetTableOptions = `
+					<option value="">選択してください</option>
+					<option value="employee" ${mapping.targetTable === 'employee' ? 'selected' : ''}>従業員設定データ</option>
+					<option value="payroll" ${mapping.targetTable === 'payroll' ? 'selected' : ''}>給与設定データ</option>
+				`;
+
+				var rakmyColumnOptions = '<option value="">先にテーブルを選択</option>';
+				if (mapping.targetTable && columnConfig[mapping.targetTable]) {
+					rakmyColumnOptions = '<option value="">列を選択してください</option>';
+					columnConfig[mapping.targetTable].forEach(function(col) {
+						var selected = mapping.rakmyColumn === col.value ? 'selected' : '';
+						rakmyColumnOptions += '<option value="' + col.value + '" ' + selected + '>' + col.label + '</option>';
+					});
+				}
+
+				return `
+					<tr class="column-row" data-index="${index}">
+						<td class="text-center">
+							<div class="form-check form-check-custom form-check-sm justify-content-center">
+								<input class="form-check-input column-checkbox" type="checkbox" id="col_check_${index}" ${mapping.import ? 'checked' : ''}>
+							</div>
+						</td>
+						<td>
+							<span class="fs-7 fw-semibold text-gray-800">${mapping.csvColumn}</span>
+						</td>
+						<td>
+							<select class="form-select form-select-sm target-table-select">
+								${targetTableOptions}
+							</select>
+						</td>
+						<td>
+							<select class="form-select form-select-sm rakmy-column-select" ${mapping.targetTable ? '' : 'disabled'}>
+								${rakmyColumnOptions}
+							</select>
+						</td>
+					</tr>
+				`;
+			}
+
+			// When data type changes, load available templates
+			$('#data_type_select').on('change', function() {
+				var dataType = $(this).val();
+				loadTemplatesForDataType(dataType);
+				$('#template_select').val('').trigger('change');
+			});
+
+			// When template is selected, populate column settings
+			$('#template_select').on('change', function() {
+				var templateId = $(this).val();
+				if (templateId) {
+					applyTemplate(templateId);
+				}
+			});
+
+			// Column configuration for Rakmy tables
+			var columnConfig = {
+				employee: [
+					{ value: 'employee_code', label: '従業員コード' },
+					{ value: 'department_code', label: '所属コード' },
+					{ value: 'store', label: '所属店舗' },
+					{ value: 'last_name', label: '姓' },
+					{ value: 'first_name', label: '名' },
+					{ value: 'full_name', label: '名前' },
+					{ value: 'phone', label: '電話番号' },
+					{ value: 'email', label: 'メールアドレス' },
+					{ value: 'category_code', label: '区分コード' },
+					{ value: 'category', label: '区分' },
+					{ value: 'employment_type_code', label: '雇用区分コード' },
+					{ value: 'employment_type', label: '雇用区分' }
+				],
+				payroll: [
+					{ value: 'employee_code', label: '従業員コード' },
+					{ value: 'department_code', label: '所属コード' },
+					{ value: 'category_code', label: '区分コード' },
+					{ value: 'category', label: '区分' },
+					{ value: 'employment_type_code', label: '雇用区分コード' },
+					{ value: 'employment_type', label: '雇用区分' },
+					{ value: 'hourly_wage', label: '時給' },
+					{ value: 'daily_wage', label: '日給単価' },
+					{ value: 'base_salary', label: '基本給' },
+					{ value: 'daily_transport', label: '日額交通費' },
+					{ value: 'commuter_pass', label: '定期代' },
+					{ value: 'scheduled_work_hours', label: '所定労働時間' },
+					{ value: 'contract_work_days', label: '契約労働日数' },
+					{ value: 'deemed_work_hours', label: 'みなし労働時間' },
+					{ value: 'deemed_work_days', label: 'みなし労働日数' }
+				]
+			};
+
+			// Simple CSV line parser (handles quoted fields)
+			function parseCSVLine(line) {
+				var result = [];
+				var current = '';
+				var inQuotes = false;
+
+				for (var i = 0; i < line.length; i++) {
+					var char = line[i];
+
+					if (char === '"') {
+						inQuotes = !inQuotes;
+					} else if (char === ',' && !inQuotes) {
+						result.push(current.trim());
+						current = '';
+					} else {
+						current += char;
+					}
+				}
+				result.push(current.trim());
+				return result;
+			}
+
+			// Parse CSV and populate column selection table
+			function parseCSVAndPopulate(file) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var content = e.target.result;
+					var headerRow = parseInt($('#header_row').val()) || 1;
+					var startCol = parseInt($('#start_column').val()) || 1;
+
+					// Split into lines and get header row
+					var lines = content.split(/\r?\n/);
+					if (lines.length >= headerRow) {
+						var headers = parseCSVLine(lines[headerRow - 1]);
+						// Apply start column offset
+						headers = headers.slice(startCol - 1);
+						populateColumnTable(headers);
+					}
+				};
+				// Try to detect encoding - default to Shift_JIS for Japanese CSV files
+				reader.readAsText(file, 'Shift_JIS');
+			}
+
+			// Populate column selection table with headers from CSV
+			function populateColumnTable(headers) {
+				var $tbody = $('#column_selection_tbody');
+				$tbody.empty();
+
+				headers.forEach(function(header, index) {
+					if (header) { // Skip empty headers
+						var row = createColumnRow(index, header.trim());
+						$tbody.append(row);
+					}
+				});
+
+				var validCount = headers.filter(function(h) { return h && h.trim(); }).length;
+				$('#column_count').text('検出列数: ' + validCount + '列');
+				$('#column_selection_wrapper').show();
+			}
+
+			// Create a single column row for the selection table
+			function createColumnRow(index, columnName) {
+				return `
+					<tr class="column-row" data-index="${index}">
+						<td class="text-center">
+							<div class="form-check form-check-custom form-check-sm justify-content-center">
+								<input class="form-check-input column-checkbox" type="checkbox" id="col_check_${index}" checked>
+							</div>
+						</td>
+						<td>
+							<span class="fs-7 fw-semibold text-gray-800">${columnName}</span>
+						</td>
+						<td>
+							<select class="form-select form-select-sm target-table-select">
+								<option value="">選択してください</option>
+								<option value="employee">従業員設定データ</option>
+								<option value="payroll">給与設定データ</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-select form-select-sm rakmy-column-select" disabled>
+								<option value="">先にテーブルを選択</option>
+							</select>
+						</td>
+					</tr>
+				`;
+			}
+
+			// Select all columns
+			$('#select_all_columns').on('click', function() {
+				$('.column-checkbox').prop('checked', true);
+			});
+
+			// Deselect all columns
+			$('#deselect_all_columns').on('click', function() {
+				$('.column-checkbox').prop('checked', false);
+			});
+
+			// Update Rakmy column options when target table changes
+			$('#column_selection_tbody').on('change', '.target-table-select', function() {
+				var $row = $(this).closest('tr');
+				var tableType = $(this).val();
+				var $rakmySelect = $row.find('.rakmy-column-select');
+
+				$rakmySelect.empty();
+				if (tableType && columnConfig[tableType]) {
+					$rakmySelect.prop('disabled', false);
+					$rakmySelect.append('<option value="">列を選択してください</option>');
+					columnConfig[tableType].forEach(function(col) {
+						$rakmySelect.append('<option value="' + col.value + '">' + col.label + '</option>');
+					});
+				} else {
+					$rakmySelect.prop('disabled', true);
+					$rakmySelect.append('<option value="">先にテーブルを選択</option>');
+				}
+			});
+
+			// Initialize Dropzone
+			var myDropzone = new Dropzone("#kt_dropzone", {
+				url: "#", // Mockup - no actual upload
+				paramName: "file",
+				maxFiles: 1,
+				maxFilesize: 10, // MB
+				acceptedFiles: ".csv",
+				addRemoveLinks: true,
+				dictRemoveFile: "削除",
+				dictCancelUpload: "キャンセル",
+				dictInvalidFileType: "このファイル形式はサポートされていません",
+				dictFileTooBig: "ファイルが大きすぎます（最大10MB）",
+				autoProcessQueue: false, // Mockup - don't actually process
+				init: function() {
+					this.on("addedfile", function(file) {
+						// If there's already a file, remove it
+						if (this.files.length > 1) {
+							this.removeFile(this.files[0]);
+						}
+						// Parse CSV and populate column selection
+						if (file.name.endsWith('.csv')) {
+							parseCSVAndPopulate(file);
+						}
+					});
+					this.on("removedfile", function(file) {
+						// Hide column selection when file is removed
+						$('#column_selection_wrapper').hide();
+						$('#column_selection_tbody').empty();
+						$('#column_count').text('検出列数: 0列');
+					});
+				}
+			});
+
+			// Re-parse CSV when position settings change
+			$('#header_row, #start_column').on('change', function() {
+				if (myDropzone.files.length > 0) {
+					parseCSVAndPopulate(myDropzone.files[0]);
+				}
+			});
+
+			// Form submission with loading animation
+			const submitButton = document.getElementById('import_submit');
+
+			submitButton.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				// Show loading state
+				submitButton.setAttribute('data-kt-indicator', 'on');
+				submitButton.disabled = true;
+
+				// Simulate API call
+				setTimeout(function() {
+					// Hide loading state
+					submitButton.removeAttribute('data-kt-indicator');
+					submitButton.disabled = false;
+
+					// Show success message
+					Swal.fire({
+						text: "CSVファイルをインポートしました",
+						icon: "success",
+						buttonsStyling: false,
+						confirmButtonText: "OK",
+						customClass: {
+							confirmButton: "btn btn-primary"
+						}
+					}).then((result) => {
+						if (result.isConfirmed) {
+							window.location.href = 'employees.html';
+						}
+					});
+				}, 2000);
+			});
+
+			// Toggle icon for CSV position settings collapse
+			$('#csv_position_section').on('show.bs.collapse', function() {
+				$('#position_toggle_icon').removeClass('ki-down').addClass('ki-up');
+			});
+			$('#csv_position_section').on('hide.bs.collapse', function() {
+				$('#position_toggle_icon').removeClass('ki-up').addClass('ki-down');
+			});
+		</script>
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>従業員管理ページ 検証プラン</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-light.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<style>
+body{margin:0;background:#f6f8fa}
+.topbar{background:#198754;color:#fff;padding:12px 24px;font-weight:700;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.topbar a{color:#fff;text-decoration:none;font-weight:400;font-size:14px;opacity:.9}
+.topbar a:hover{opacity:1;text-decoration:underline}
+.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:24px auto;padding:32px;background:#fff;border:1px solid #d0d7de;border-radius:8px}
+.markdown-body table{display:table;width:100%}
+</style>
+</head>
+<body>
+<div class="topbar">
+  ✅ 従業員管理ページ 検証プラン
+  <a href="index.html">← トップ</a>
+  <a href="spec.html">仕様書</a>
+  <a href="mock/employees.html">モックを見る</a>
+</div>
+<article id="content" class="markdown-body">読み込み中…</article>
+<script>
+fetch('verification-plan.md').then(r=>r.text()).then(t=>{document.getElementById('content').innerHTML=marked.parse(t);})
+.catch(e=>{document.getElementById('content').textContent='verification-plan.md を読み込めませんでした: '+e;});
+</script>
+</body>
+</html>

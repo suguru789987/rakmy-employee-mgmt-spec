@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ラクミー経営管理 従業員管理ページ 仕様モック</title>
+<style>
+:root{--blue:#0d6efd;--green:#198754;--ink:#1f2328;--mut:#656d76;--line:#d0d7de;--bg:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+.hero{background:linear-gradient(135deg,#0d6efd,#198754);color:#fff;padding:48px 24px 40px}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.hero h1{margin:0 0 8px;font-size:26px}
+.hero p{margin:4px 0;opacity:.92;font-size:14px}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:2px 12px;font-size:12px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:28px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;text-decoration:none;color:inherit;transition:.15s;display:block}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card .ic{font-size:30px}
+.card h2{font-size:17px;margin:10px 0 6px}
+.card p{font-size:13px;color:var(--mut);margin:0}
+.tag{font-size:11px;color:#fff;border-radius:6px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+.tag.b{background:var(--blue)}.tag.g{background:var(--green)}.tag.k{background:#6e7781}
+section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px 26px;margin:22px 0}
+h3{margin-top:0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:#f6f8fa}
+.note{font-size:12px;color:var(--mut);background:#fff8e6;border:1px solid #f0d98a;border-radius:8px;padding:12px 16px}
+code{background:#eef1f4;padding:1px 6px;border-radius:5px;font-size:12px}
+footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
+.mock-list{columns:2;font-size:13px}
+.mock-list a{color:var(--blue)}
+@media(max-width:560px){.mock-list{columns:1}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap">
+    <h1>ラクミーウェブ経営管理 ― 従業員管理ページ 仕様モック</h1>
+    <p>会社スコープ（V69）向け 従業員管理機能のデザインモック・仕様書・検証プラン一式</p>
+    <p>出所: <code>rakmy/rakmy_new_design2022</code> ブランチ <code>feature/eemgt</code>（最終 push 2026-01-15）</p>
+    <span class="badge">公開用に再構成 ／ 実テーブル名・顧客PIIなし</span>
+  </div>
+</div>
+<div class="wrap">
+  <div class="grid">
+    <a class="card" href="spec.html">
+      <div class="ic">📄</div>
+      <h2>仕様書 <span class="tag b">SPEC</span></h2>
+      <p>従業員管理6ページの実装計画書（画面詳細・項目・遷移・モックデータ要件）。</p>
+    </a>
+    <a class="card" href="verification-plan.html">
+      <div class="ic">✅</div>
+      <h2>検証プラン <span class="tag g">TEST</span></h2>
+      <p>画面別テストケース＋前提入力データ。正常/異常系・モード切替・遷移を網羅。</p>
+    </a>
+    <a class="card" href="mock/employees.html">
+      <div class="ic">🖥️</div>
+      <h2>モック画面 <span class="tag k">MOCK</span></h2>
+      <p>従業員一覧から各画面へ。Metronicテーマで実画面に近い見た目。</p>
+    </a>
+  </div>
+
+  <section>
+    <h3>モック画面一覧</h3>
+    <div class="mock-list">
+      <p><a href="mock/employees.html">① 従業員一覧</a> <code>/employees</code></p>
+      <p><a href="mock/employee_register.html">② 従業員登録</a> <code>/employee_register</code></p>
+      <p><a href="mock/employee_detail.html">③ 従業員詳細</a> <code>/employee_detail</code></p>
+      <p><a href="mock/payroll_reports.html">④ 人件費実績</a> <code>/payroll_reports</code></p>
+      <p><a href="mock/employee_payroll_import.html">⑥ 従業員設定インポート</a> <code>/employee_payroll_import</code></p>
+      <p>⑤ 従業員設定履歴 <span class="tag k">未作成</span></p>
+    </div>
+    <p class="note">⑤ <code>employee_payroll_histories.html</code> は仕様には存在するが <code>feature/eemgt</code> に未commit（モックなし）。検証プランでは仕様のみ記載。</p>
+  </section>
+
+  <section>
+    <h3>前提入力データ（検証用）</h3>
+    <table>
+      <tr><th>#</th><th>ファイル</th><th>用途</th></tr>
+      <tr><td>01</td><td><a href="data/01_店舗マスタ.tsv">店舗マスタ</a></td><td>所属/ヘルプ先店舗の選択肢（5店）</td></tr>
+      <tr><td>02</td><td><a href="data/02_従業員マスタ.tsv">従業員マスタ</a></td><td>一覧・詳細の母数（12名・全項目）</td></tr>
+      <tr><td>03</td><td><a href="data/03_ヘルプ先交通費.tsv">ヘルプ先交通費</a></td><td>登録/詳細の動的フォーム</td></tr>
+      <tr><td>04</td><td><a href="data/04_設定変更履歴.tsv">設定変更履歴</a></td><td>適用済/予約中・変更ソース</td></tr>
+      <tr><td>05</td><td><a href="data/05_月次給与実績.tsv">月次給与実績</a></td><td>概算列＋実績列</td></tr>
+      <tr><td>06</td><td><a href="data/06_日次給与実績.tsv">日次給与実績</a></td><td>実働/ヘルプ/深夜残業</td></tr>
+      <tr><td>07</td><td><a href="data/07_インポートCSV_KingOfTime_sample.csv">取込CSV (KingOfTime)</a></td><td>正常系インポート</td></tr>
+      <tr><td>08</td><td><a href="data/08_インポートCSV_ジョブカン_sample.csv">取込CSV (ジョブカン)</a></td><td>表記ゆれヘッダー</td></tr>
+      <tr><td>09</td><td><a href="data/09_インポートCSV_異常系_sample.csv">取込CSV (異常系)</a></td><td>バリデーション検証</td></tr>
+    </table>
+  </section>
+
+  <section class="note">
+    <strong>ガバナンス:</strong> 本サイトは社内アプリ <code>rakmy_new_design2022</code> 由来の<strong>デザインモック</strong>を公開用に再構成したもの。実テーブル名・実列名・顧客PIIは含まない（FAX/納品書画像 <code>media/fax/</code> は除外済み、氏名・店舗・テナント名はダミー）。実データマッピングは private リポを参照。
+  </section>
+</div>
+<footer>ラクミー経営管理 / 従業員管理ページ 仕様モック · PdM: suguru789987</footer>
+</body>
+</html>
