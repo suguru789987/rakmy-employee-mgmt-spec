@@ -13,6 +13,15 @@
 		<link href="assets/css/headerbg.css" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		<script src="assets/js/include.js"></script>
+		<style>
+			/* 大きめトグルボタン：未選択=薄グレー、選択=塗りつぶし緑＋チェック表示 */
+			.btn-bigtoggle { background:#f4f6f8; border:2px solid #e4e7ec; color:#5e6278; border-radius:12px; transition:.15s; }
+			.btn-bigtoggle:hover { border-color:#50cd89; color:#1b1b29; }
+			.btn-bigtoggle .chk-on { display:none; }
+			.btn-check:checked + .btn-bigtoggle { background:#50cd89; border-color:#36a96b; color:#fff; box-shadow:0 6px 16px rgba(80,205,137,.35); }
+			.btn-check:checked + .btn-bigtoggle i, .btn-check:checked + .btn-bigtoggle span { color:#fff !important; }
+			.btn-check:checked + .btn-bigtoggle .chk-on { display:inline-flex; }
+		</style>
 	</head>
 	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<div class="d-flex flex-column flex-root">
@@ -49,15 +58,18 @@
 									<div class="card-body p-9">
 										<!--STEP1 種別-->
 										<div class="mb-8">
-											<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">① エクスポート種別</label>
+											<label class="fs-6 fw-bolder text-gray-800 mb-1 d-block">① エクスポート種別<span class="badge badge-light-primary ms-2 fs-9 align-middle">複数選択可</span></label>
+											<div class="text-muted fs-8 mb-3">設定・実績の<strong>両方が必要な場合は両方を選択</strong>してください（両方ともエクスポートされます）。</div>
 											<div class="d-flex flex-wrap gap-4">
-												<input type="radio" class="btn-check" name="export_type" value="settings" id="type_settings" checked>
-												<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-8 py-4 min-w-160px" for="type_settings">
+												<input type="checkbox" class="btn-check export-type-chk" id="type_settings" data-section="section_settings" checked>
+												<label class="btn btn-bigtoggle d-flex align-items-center justify-content-center px-8 py-4 min-w-180px" for="type_settings">
 													<i class="ki-outline ki-setting-2 fs-2x me-3"></i><span class="fs-5 fw-bold">設定</span>
+													<i class="ki-solid ki-check-circle fs-2 ms-3 chk-on"></i>
 												</label>
-												<input type="radio" class="btn-check" name="export_type" value="actual" id="type_actual">
-												<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-8 py-4 min-w-160px" for="type_actual">
+												<input type="checkbox" class="btn-check export-type-chk" id="type_actual" data-section="section_actual">
+												<label class="btn btn-bigtoggle d-flex align-items-center justify-content-center px-8 py-4 min-w-180px" for="type_actual">
 													<i class="ki-outline ki-chart-simple fs-2x me-3"></i><span class="fs-5 fw-bold">実績</span>
+													<i class="ki-solid ki-check-circle fs-2 ms-3 chk-on"></i>
 												</label>
 											</div>
 										</div>
@@ -69,12 +81,14 @@
 												<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 対象（複数選択可）</label>
 												<div class="d-flex flex-wrap gap-4">
 													<input type="checkbox" class="btn-check target-chk" id="t_employee" data-items="items_employee" checked>
-													<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-6 py-3 min-w-160px" for="t_employee">
+													<label class="btn btn-bigtoggle d-flex align-items-center justify-content-center px-6 py-3 min-w-170px" for="t_employee">
 														<i class="ki-outline ki-profile-user fs-2 me-2"></i><span class="fs-6 fw-bold">従業員設定</span>
+														<i class="ki-solid ki-check-circle fs-3 ms-2 chk-on"></i>
 													</label>
 													<input type="checkbox" class="btn-check target-chk" id="t_payroll" data-items="items_payroll" checked>
-													<label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex align-items-center justify-content-center px-6 py-3 min-w-160px" for="t_payroll">
+													<label class="btn btn-bigtoggle d-flex align-items-center justify-content-center px-6 py-3 min-w-170px" for="t_payroll">
 														<i class="ki-outline ki-dollar fs-2 me-2"></i><span class="fs-6 fw-bold">給与設定</span>
+														<i class="ki-solid ki-check-circle fs-3 ms-2 chk-on"></i>
 													</label>
 												</div>
 											</div>
@@ -168,10 +182,9 @@
 			];
 			var TODAY = '2026/06/26';
 
-			// 種別切替
-			$('input[name="export_type"]').on('change', function() {
-				if ($(this).val() === 'settings') { $('#section_settings').show(); $('#section_actual').hide(); }
-				else { $('#section_settings').hide(); $('#section_actual').show(); }
+			// 種別切替（複数選択可：設定/実績それぞれのセクションを表示/非表示）
+			$('.export-type-chk').on('change', function() {
+				$('#' + $(this).data('section')).toggle($(this).is(':checked'));
 			});
 			// 対象チェックで項目グループ表示切替
 			$('.target-chk').on('change', function() {
@@ -215,14 +228,16 @@
 			function warn(t) { if (window.Swal) Swal.fire({ icon: 'warning', text: t, confirmButtonText: 'OK', buttonsStyling: false, customClass: { confirmButton: 'btn btn-primary' } }); else alert(t); }
 
 			$('#do_export').on('click', function() {
-				var type = $('input[name="export_type"]:checked').val();
+				var doS = $('#type_settings').is(':checked'), doA = $('#type_actual').is(':checked');
+				if (!doS && !doA) { warn('エクスポート種別（設定／実績）を選択してください'); return; }
 				var done = [];
-				if (type === 'settings') {
+				if (doS) {
 					var e = $('#t_employee').is(':checked'), p = $('#t_payroll').is(':checked');
-					if (!e && !p) { warn('従業員設定・給与設定の少なくとも一方を選択してください'); return; }
+					if (!e && !p) { warn('設定の対象（従業員設定／給与設定）を選択してください'); return; }
 					if (e) { var ce = selectedCols('[data-group="emp"]'); if (!ce.length) { warn('従業員設定のデータ項目を1つ以上選択してください'); return; } download('従業員設定_エクスポート.csv', ce); done.push('従業員設定'); }
 					if (p) { var cp = selectedCols('[data-group="pay"]'); if (!cp.length) { warn('給与設定のデータ項目を1つ以上選択してください'); return; } download('給与設定_エクスポート.csv', cp); done.push('給与設定'); }
-				} else {
+				}
+				if (doA) {
 					var ca = selectedCols('[data-group="act"]'); if (!ca.length) { warn('実績のデータ項目を1つ以上選択してください'); return; }
 					var mv = $('#actual_month').val(), mt = $('#actual_month option:selected').text();
 					download('給与実績_' + mv + '_エクスポート.csv', ca, mt); done.push('給与実績(' + mt + ')');
