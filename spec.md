@@ -132,13 +132,44 @@
 ### ページ6: employee_payroll_import.html (従業員設定インポート)
 - **パス**: /employee_payroll_import
 - **パンくず**: ホーム - 従業員設定インポート
-- **ツールバーボタン**: 従業員設定履歴 → `employee_payroll_histories.html`
+- **ツールバーボタン**:
+  - 従業員一覧 → `employees.html`
+  - 列マッピングテンプレート管理 → `column_mapping_templates.html`
 - **フォーム**:
-  - データ種類 (単一選択: King of Time/ジョブカン)
+  - データ種類 (単一選択: King of Time/ジョブカン/新規作成)
+  - 列マッピングテンプレート (選択時に取り込み列設定に自動適用)
   - CSVファイル (ドラッグ&ドロップエリア)
+  - CSV位置合わせ設定 (折りたたみ可能)
+    - ヘッダー行、データ開始行、開始列
+  - 取り込み列設定テーブル (CSV読み込み時に表示)
 - **下部ボタン**:
   - キャンセル → `employees.html`
-  - 登録 → ローダー → 完了トースト → `employee_payroll_histories.html`
+  - 登録 → ローダー → 完了トースト → `employees.html`
+
+### ページ7: column_mapping_templates.html (列マッピングテンプレート)
+- **パス**: /column_mapping_templates
+- **パンくず**: ホーム - 従業員設定インポート - 列マッピングテンプレート
+- **ツールバーボタン**:
+  - 従業員設定インポートへ → `employee_payroll_import.html`
+  - テンプレート登録 → モーダル
+- **フィルター**: データ種類
+- **テーブル列**:
+  - テンプレート名
+  - データ種類 (badge-light)
+  - マッピング数
+  - アクション (編集, 削除)
+- **モーダル**:
+  1. **テンプレート登録**:
+     - テンプレート名 (必須)
+     - データ種類 (必須): 新規作成（従業員設定）/新規作成（給与設定）/King of Time/ジョブカン
+     - 列マッピング設定テーブル (動的行追加)
+       - 取込チェックボックス、CSV列名、反映先テーブル、ラクミー列名
+  2. **テンプレート編集**: 登録と同じ構造、既存データを読み込み
+- **列マッピング表インポートセクション**:
+  - カードヘッダー: テンプレートダウンロードボタン
+  - ファイルアップロード (ドラッグ&ドロップ)
+  - 対応形式: CSV (.csv)、最大10MB
+  - インポートボタン (ローディング付き)
 
 ---
 
@@ -282,4 +313,5 @@ function togglePayrollMode(mode) {
 | 作成 | `payroll_reports.html` |
 | 作成 | `employee_payroll_histories.html` |
 | 作成 | `employee_payroll_import.html` |
+| 作成 | `column_mapping_templates.html` |
 | 作成 | `docs/features/employeemgt/implementation_plan.md` |
