@@ -334,19 +334,31 @@
                       <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group - 適用日付（所定労働時間/みなし残業時間の下に配置）-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 d-inline-flex align-items-center">
+                        <span>適用日付</span>
+                        <span class="text-danger ms-1">*</span>
+                      </label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;"><i class="ki-outline ki-calendar fs-4"></i></span>
+                          <input type="text" id="apply_date" name="apply_date" class="form-control form-control-solid border-0 py-2.5 fs-6" value="2026/06/26" autocomplete="off" placeholder="YYYY/MM/DD">
+                        </div>
+                        <div class="form-text fs-9">未来日＝予約／当日・過去＝即時反映</div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
                   </div>
                   <!--end::Card body-->
                   <!--begin::Card footer - Actions-->
-                  <div class="card-footer d-flex flex-stack flex-wrap gap-3 py-6 px-9">
+                  <div class="card-footer d-flex justify-content-between py-6 px-9">
                     <a href="employees.html" class="btn btn-light text-gray-600 d-inline-flex align-items-center"><i class="ki-outline ki-arrow-left fs-3 text-gray-600"></i>一覧へ戻る</a>
-                    <div class="d-flex align-items-center flex-wrap gap-3">
-                      <!--begin::適用日付（更新予約を置換）-->
-                      <div class="d-flex align-items-center gap-2">
-                        <label class="fs-8 fw-bold text-gray-600 nowrap d-inline-flex align-items-center"><i class="ki-outline ki-calendar fs-4 me-1"></i>適用日付<span class="text-danger ms-1">*</span></label>
-                        <input type="text" class="form-control form-control-sm w-140px" id="apply_date" value="2026/06/26" autocomplete="off" placeholder="YYYY/MM/DD">
-                        <span class="fs-9 text-muted nowrap">未来日＝予約／当日・過去＝即時反映</span>
-                      </div>
-                      <!--end::適用日付-->
+                    <div class="d-flex gap-2">
                       <button type="button" class="btn btn-light-danger d-inline-flex align-items-center" id="btn_delete_employee"><i class="ki-outline ki-trash fs-3"></i>従業員削除</button>
                       <button type="button" class="btn btn-primary d-inline-flex align-items-center" id="btn_save_employee">
                         <span class="indicator-label d-inline-flex align-items-center"><i class="ki-outline ki-check fs-3 me-1"></i>保存</span>
