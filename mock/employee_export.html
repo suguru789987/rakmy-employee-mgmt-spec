@@ -21,6 +21,11 @@
 			.btn-check:checked + .btn-bigtoggle { background:#50cd89; border-color:#36a96b; color:#fff; box-shadow:0 6px 16px rgba(80,205,137,.35); }
 			.btn-check:checked + .btn-bigtoggle i, .btn-check:checked + .btn-bigtoggle span { color:#fff !important; }
 			.btn-check:checked + .btn-bigtoggle .chk-on { display:inline-flex; }
+			.item-card{border-radius:10px;}
+			.item-card .card-header{border-bottom:1px solid #eef0f3;border-radius:10px 10px 0 0;}
+			.item-card-emp{border-left:4px solid #009ef7;} .item-card-emp .card-header{background:#eef6fe;} .item-card-emp .card-header i{color:#009ef7;}
+			.item-card-pay{border-left:4px solid #50cd89;} .item-card-pay .card-header{background:#eefaf3;} .item-card-pay .card-header i{color:#50cd89;}
+			.item-card-act{border-left:4px solid #f1bc00;} .item-card-act .card-header{background:#fef9e7;} .item-card-act .card-header i{color:#d9a800;}
 		</style>
 	</head>
 	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -92,9 +97,13 @@
 													</label>
 												</div>
 											</div>
-											<div class="mb-4" id="items_employee">
-												<label class="fs-7 fw-bold text-gray-700 mb-3 d-block">③ 従業員設定のデータ項目</label>
-												<div class="d-flex flex-wrap gap-x-8 gap-y-3" data-group="emp">
+											<div class="card card-bordered item-card item-card-emp mb-4" id="items_employee">
+								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-profile-user fs-5 me-2"></i>③ 従業員設定のデータ項目</span>
+									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
+								</div>
+								<div class="card-body py-4 px-5">
+									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="emp">
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="雇用区分" checked><span class="form-check-label ms-2">雇用区分</span></label>
@@ -102,10 +111,15 @@
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="ヘルプ先店舗" checked><span class="form-check-label ms-2">ヘルプ先店舗</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-2">適用日付</span></label>
 												</div>
-											</div>
-											<div class="mb-2" id="items_payroll">
-												<label class="fs-7 fw-bold text-gray-700 mb-3 d-block">③ 給与設定のデータ項目</label>
-												<div class="d-flex flex-wrap gap-x-8 gap-y-3" data-group="pay">
+								</div>
+							</div>
+											<div class="card card-bordered item-card item-card-pay mb-4" id="items_payroll">
+								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-dollar fs-5 me-2"></i>③ 給与設定のデータ項目</span>
+									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
+								</div>
+								<div class="card-body py-4 px-5">
+									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="pay">
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="給与単位" checked><span class="form-check-label ms-2">給与単位</span></label>
@@ -116,7 +130,8 @@
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="みなし残業時間" checked><span class="form-check-label ms-2">みなし残業時間</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-2">適用日付</span></label>
 												</div>
-											</div>
+								</div>
+							</div>
 										</div>
 
 										<!--ACTUAL-->
@@ -134,9 +149,13 @@
 													</select>
 												</div>
 											</div>
-											<div class="mb-2">
-												<label class="fs-7 fw-bold text-gray-700 mb-3 d-block">③ 実績のデータ項目</label>
-												<div class="d-flex flex-wrap gap-x-8 gap-y-3" data-group="act">
+											<div class="card card-bordered item-card item-card-act mb-4" id="items_act">
+								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-chart-simple fs-5 me-2"></i>③ 実績のデータ項目</span>
+									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
+								</div>
+								<div class="card-body py-4 px-5">
+									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="act">
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="対象年月" checked><span class="form-check-label ms-2">対象年月</span></label>
@@ -148,7 +167,8 @@
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="深夜残業代"><span class="form-check-label ms-2">深夜残業代</span></label>
 													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="実績給与" checked><span class="form-check-label ms-2">実績給与</span></label>
 												</div>
-											</div>
+								</div>
+							</div>
 										</div>
 									</div>
 									<div class="card-footer d-flex justify-content-between py-6 px-9">
@@ -243,6 +263,11 @@
 					download('給与実績_' + mv + '_エクスポート.csv', ca, mt); done.push('給与実績(' + mt + ')');
 				}
 				if (window.Swal) Swal.fire({ icon: 'success', text: done.join('・') + ' をエクスポートしました（各' + EMP.length + '件）', confirmButtonText: 'OK', buttonsStyling: false, customClass: { confirmButton: 'btn btn-primary' } });
+			});
+			$('.toggle-all').on('click', function() {
+				var $b = $(this).closest('.item-card').find('.it');
+				var allOn = $b.filter(':checked').length === $b.length;
+				$b.prop('checked', !allOn);
 			});
 		</script>
 	</body>
