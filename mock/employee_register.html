@@ -346,6 +346,25 @@
                       <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group - 適用日付-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <!--begin::Label-->
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 d-inline-flex align-items-center">
+                        <span>適用日付</span>
+                        <span class="text-danger ms-1">*</span>
+                      </label>
+                      <!--end::Label-->
+                      <!--begin::Col-->
+                      <div class="fv-row">
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-text border-0" style="background-color: #F9F9F9;"><i class="ki-outline ki-calendar fs-4"></i></span>
+                          <input type="text" name="apply_date" id="reg_apply_date" class="form-control form-control-solid border-0 py-2.5 fs-6" placeholder="YYYY/MM/DD" value="2026/06/26" autocomplete="off">
+                        </div>
+                        <div class="form-text fs-9">この内容を適用する日付。未来日＝予約、当日＝即時登録。</div>
+                      </div>
+                      <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
                   </div>
                   <!--end::Card body-->
                   <!--begin::Actions-->
@@ -382,6 +401,10 @@
     <script>
       // Thousand separator for number inputs
       document.addEventListener('DOMContentLoaded', function() {
+        // 適用日付（カレンダー）
+        if (window.jQuery && $("#reg_apply_date").length && $.fn.flatpickr) {
+          $("#reg_apply_date").flatpickr({ dateFormat: "Y/m/d", allowInput: true });
+        }
         const numberInputs = document.getElementsByClassName('number-input');
         Array.from(numberInputs).forEach(input => {
           let previousValue = '';

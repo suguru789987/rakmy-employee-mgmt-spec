@@ -337,13 +337,19 @@
                   </div>
                   <!--end::Card body-->
                   <!--begin::Card footer - Actions-->
-                  <div class="card-footer d-flex justify-content-between py-6 px-9">
+                  <div class="card-footer d-flex flex-stack flex-wrap gap-3 py-6 px-9">
                     <a href="employees.html" class="btn btn-light text-gray-600 d-inline-flex align-items-center"><i class="ki-outline ki-arrow-left fs-3 text-gray-600"></i>一覧へ戻る</a>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex align-items-center flex-wrap gap-3">
+                      <!--begin::適用日付（更新予約を置換）-->
+                      <div class="d-flex align-items-center gap-2">
+                        <label class="fs-8 fw-bold text-gray-600 nowrap d-inline-flex align-items-center"><i class="ki-outline ki-calendar fs-4 me-1"></i>適用日付<span class="text-danger ms-1">*</span></label>
+                        <input type="text" class="form-control form-control-sm w-140px" id="apply_date" value="2026/06/26" autocomplete="off" placeholder="YYYY/MM/DD">
+                        <span class="fs-9 text-muted nowrap">未来日＝予約／当日・過去＝即時反映</span>
+                      </div>
+                      <!--end::適用日付-->
                       <button type="button" class="btn btn-light-danger d-inline-flex align-items-center" id="btn_delete_employee"><i class="ki-outline ki-trash fs-3"></i>従業員削除</button>
-                      <button type="button" class="btn btn-light-primary d-inline-flex align-items-center" id="btn_schedule_update" data-bs-toggle="modal" data-bs-target="#modal_schedule_update"><i class="ki-outline ki-calendar fs-3"></i>更新予約</button>
                       <button type="button" class="btn btn-primary d-inline-flex align-items-center" id="btn_save_employee">
-                        <span class="indicator-label d-inline-flex align-items-center"><i class="ki-outline ki-check fs-3 me-1"></i>保存・即時更新</span>
+                        <span class="indicator-label d-inline-flex align-items-center"><i class="ki-outline ki-check fs-3 me-1"></i>保存</span>
                         <span class="indicator-progress">保存中...
                           <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                         </span>
@@ -776,34 +782,7 @@
     <!--end::Root-->
     <!--end::Main-->
 
-    <!--begin::Modal - Schedule Update-->
-    <div class="modal fade" id="modal_schedule_update" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered mw-450px">
-        <div class="modal-content">
-          <div class="modal-header align-items-start p-8">
-            <div class="flex-column">
-              <div class="fs-3 fw-bolder">更新予約</div>
-            </div>
-            <!--begin::Close-->
-            <div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
-              <i class="ki-outline ki-cross text-gray-500 fs-1"></i>
-            </div>
-            <!--end::Close-->
-          </div>
-          <div class="modal-body p-8">
-            <div class="d-flex flex-column">
-              <label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">反映日時を選択してください</label>
-              <input type="text" class="form-control" placeholder="日時を選択してください" id="schedule_date">
-            </div>
-          </div>
-          <div class="modal-footer p-8 pt-0 border-0">
-            <button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary" id="btn_confirm_schedule">予約する</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--end::Modal-->
+    <!--（更新予約モーダルは廃止：フッターの「適用日付」に統合）-->
 
     <!--begin::Modal - Edit Setting-->
     <div class="modal fade" id="modal_edit_setting" tabindex="-1" aria-hidden="true">
@@ -1137,8 +1116,26 @@
       });
 
       // Save employee
+      // Initialize Flatpickr for 適用日付 (apply date) and edit setting date
+      $("#apply_date").flatpickr({ dateFormat: "Y/m/d", allowInput: true });
+      $("#edit_setting_date").flatpickr();
+
       document.getElementById('btn_save_employee').addEventListener('click', function() {
         const btn = this;
+        const applyVal = (document.getElementById('apply_date').value || '').trim();
+        if (!applyVal) {
+          Swal.fire({
+            text: "適用日付を選択してください",
+            icon: "warning",
+            buttonsStyling: false,
+            confirmButtonText: "OK",
+            customClass: { confirmButton: "btn btn-primary" }
+          });
+          return;
+        }
+        // 未来日＝予約、当日・過去＝即時反映
+        const today = "2026/06/26";
+        const isFuture = applyVal > today;
         btn.setAttribute('data-kt-indicator', 'on');
         btn.disabled = true;
 
@@ -1147,7 +1144,7 @@
           btn.disabled = false;
 
           Swal.fire({
-            text: "従業員情報を更新しました",
+            text: isFuture ? (applyVal + " からの適用を予約しました") : "従業員情報を即時反映しました",
             icon: "success",
             buttonsStyling: false,
             confirmButtonText: "OK",
@@ -1158,41 +1155,6 @@
             window.location.href = 'employees.html';
           });
         }, 1500);
-      });
-
-      // Initialize Flatpickr for schedule date
-      $("#schedule_date").flatpickr();
-
-      // Initialize Flatpickr for edit setting date
-      $("#edit_setting_date").flatpickr();
-
-      // Schedule update confirmation
-      document.getElementById('btn_confirm_schedule').addEventListener('click', function() {
-        const scheduleDate = document.getElementById('schedule_date').value;
-        if (!scheduleDate) {
-          Swal.fire({
-            text: "反映日時を選択してください",
-            icon: "warning",
-            buttonsStyling: false,
-            confirmButtonText: "OK",
-            customClass: {
-              confirmButton: "btn btn-primary"
-            }
-          });
-          return;
-        }
-
-        $('#modal_schedule_update').modal('hide');
-
-        Swal.fire({
-          text: "更新を予約しました",
-          icon: "success",
-          buttonsStyling: false,
-          confirmButtonText: "OK",
-          customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
       });
 
       // CSV Export

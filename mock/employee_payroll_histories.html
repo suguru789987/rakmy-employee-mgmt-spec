@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<!--begin::Head-->
+	<head><base href="">
+		<title>ラクミー 経営管理システム - 従業員設定履歴</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex">
+		<link rel="shortcut icon" href="assets/media/logos/favicon.ico">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp-noto.min.css">
+		<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+		<link href="assets/css/custom.css" rel="stylesheet" media="all">
+		<link href="assets/css/headerbg.css" rel="stylesheet" type="text/css">
+		<link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script src="assets/js/include.js"></script>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<div class="d-flex flex-column flex-root">
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Sidebar-->
+				<script>include_sidebar_company();</script>
+				<!--end::Sidebar-->
+				<div class="wrapper d-flex flex-column flex-row-fluid">
+					<!--Begin::Header-->
+					<script>include_header_company();</script>
+					<!--End::Header-->
+					<div class="content d-flex flex-column flex-column-fluid">
+						<!--begin::Toolbar-->
+						<div class="my-6 my-sm-5" id="kt_toolbar">
+							<div class="container-xxl">
+								<div class="d-flex flex-stack mobile-flex-column gap-4 mb-5">
+									<!--begin::Page title-->
+									<div class="page-title d-flex align-items-center flex-wrap mb-sm-0">
+										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center my-1">従業員設定履歴</h1>
+										<span class="h-20px border-gray-300 border-start ms-5 me-4"></span>
+										<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-8 my-1">
+											<li class="breadcrumb-item text-muted"><a href="index.html" class="text-muted text-hover-primary">ホーム</a></li>
+											<li class="breadcrumb-item"><span class="bullet bg-gray-300 w-5px h-1px"></span></li>
+											<li class="breadcrumb-item text-dark">従業員設定履歴</li>
+										</ul>
+									</div>
+									<!--end::Page title-->
+									<!--begin::Actions-->
+									<div class="d-flex align-items-center mobile-w-100 gap-2">
+										<div class="w-auto flex-md-grow-0 flex-grow-1">
+											<a href="employee_payroll_import.html" class="btn btn-sm fs-7 fw-bold btn-light-dark nowrap w-100">
+												<i class="ki-duotone ki-file-up fs-4 ms-n1 me-0 mb-1"><span class="path1"></span><span class="path2"></span></i>
+												CSVインポート
+											</a>
+										</div>
+									</div>
+									<!--end::Actions-->
+								</div>
+								<!--begin::Filters-->
+								<div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+									<!--begin::Left Filters-->
+									<div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">変更ソース</label>
+											<select class="form-select form-select-sm w-auto" id="source_filter">
+												<option value="">すべて</option>
+												<option value="ユーザー操作">ユーザー操作</option>
+												<option value="更新予約">更新予約</option>
+												<option value="King of Time">CSVインポート(King of Time)</option>
+												<option value="ジョブカン">CSVインポート(ジョブカン)</option>
+											</select>
+										</div>
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">店舗</label>
+											<select class="form-select form-select-sm w-auto" id="store_filter">
+												<option value="">すべて</option>
+												<option value="ラクミーフレッシュ渋谷店">ラクミーフレッシュ渋谷店</option>
+												<option value="ラクミーフレッシュ青山店">ラクミーフレッシュ青山店</option>
+												<option value="ラクミーフレッシュ新宿店">ラクミーフレッシュ新宿店</option>
+												<option value="ラクミーフレッシュ沖縄店">ラクミーフレッシュ沖縄店</option>
+												<option value="ラクミーフレッシュ赤坂店">ラクミーフレッシュ赤坂店</option>
+											</select>
+										</div>
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">雇用区分</label>
+											<select class="form-select form-select-sm w-auto" id="employment_filter">
+												<option value="">すべて</option>
+												<option value="正社員">正社員</option>
+												<option value="パート">パート</option>
+												<option value="アルバイト">アルバイト</option>
+											</select>
+										</div>
+										<div class="d-flex align-items-center gap-3">
+											<label class="fs-8 text-gray-600 nowrap">編集日時範囲</label>
+											<input type="text" class="form-control form-control-sm w-auto" id="editdate_range" placeholder="期間を選択" autocomplete="off" style="min-width:190px">
+										</div>
+									</div>
+									<!--end::Left Filters-->
+									<!--begin::Right Filters-->
+									<div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-3 w-100 w-md-auto">
+										<div class="d-flex align-items-center position-relative">
+											<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4 text-gray-500"><span class="path1"></span><span class="path2"></span></i>
+											<input type="text" class="form-control form-control-sm w-100 w-md-150px ps-11" placeholder="従業員名で検索" id="employee_search">
+										</div>
+										<button type="button" class="btn btn-sm btn-primary w-auto flex-shrink-0" id="history_csv_export">
+											<i class="ki-outline ki-file-down fs-5 me-1"></i>CSVエクスポート
+										</button>
+									</div>
+									<!--end::Right Filters-->
+								</div>
+								<!--end::Filters-->
+							</div>
+						</div>
+						<!--end::Toolbar-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<div id="kt_content_container" class="container-xxl">
+								<div class="card mb-5 mb-xl-10">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+											<table id="histories_datatable" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+												<thead>
+													<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+														<th class="min-w-100px pt-5 pb-4 sticky-col sticky-col-1">名前</th>
+														<th class="min-w-100px pt-5 pb-4">変更反映日時</th>
+														<th class="min-w-75px pt-5 pb-4">雇用区分</th>
+														<th class="min-w-50px pt-5 pb-4">給与単位</th>
+														<th class="min-w-75px pt-5 pb-4 text-end">単位給与額</th>
+														<th class="min-w-50px pt-5 pb-4">交通費単位</th>
+														<th class="min-w-75px pt-5 pb-4 text-end">単位交通費</th>
+														<th class="min-w-75px pt-5 pb-4 text-end">所定労働時間</th>
+														<th class="min-w-75px pt-5 pb-4 text-end">みなし残業時間</th>
+														<th class="min-w-150px pt-5 pb-4">所属店舗</th>
+														<th class="min-w-150px pt-5 pb-4">ヘルプ先店舗</th>
+														<th class="min-w-50px pt-5 pb-4">ステータス</th>
+														<th class="min-w-100px pt-5 pb-4">編集日時</th>
+														<th class="min-w-100px pt-5 pb-4">変更ソース</th>
+													</tr>
+												</thead>
+												<tbody class="text-gray-600 fw-bold">
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">田中 太郎</a></td>
+														<td>2026/08/01 00:00</td>
+														<td><span class="badge badge-light-primary">正社員</span></td>
+														<td><span class="badge badge-dark">月給</span></td>
+														<td class="text-end">¥340,000</td>
+														<td><span class="badge badge-light">月額</span></td>
+														<td class="text-end">¥18,000</td>
+														<td class="text-end">160時間</td>
+														<td class="text-end">20時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+														<td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
+														<td><span class="badge badge-light-warning">予約中</span></td>
+														<td>2026/06/25 11:00</td>
+														<td><span class="badge badge-light">更新予約</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">田中 太郎</a></td>
+														<td>2026/06/01 00:00</td>
+														<td><span class="badge badge-light-primary">正社員</span></td>
+														<td><span class="badge badge-dark">月給</span></td>
+														<td class="text-end">¥320,000</td>
+														<td><span class="badge badge-light">月額</span></td>
+														<td class="text-end">¥18,000</td>
+														<td class="text-end">160時間</td>
+														<td class="text-end">20時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+														<td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
+														<td><span class="badge badge-light-primary">適用中</span></td>
+														<td>2026/05/18 09:30</td>
+														<td><span class="badge badge-light">ユーザー操作</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">渡辺 由美</a></td>
+														<td>2026/05/01 00:00</td>
+														<td><span class="badge badge-light-primary">正社員</span></td>
+														<td><span class="badge badge-dark">月給</span></td>
+														<td class="text-end">¥350,000</td>
+														<td><span class="badge badge-light">月額</span></td>
+														<td class="text-end">¥22,000</td>
+														<td class="text-end">160時間</td>
+														<td class="text-end">30時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ新宿店</span></td>
+														<td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ渋谷店</span><span class="badge badge-light">ラクミーフレッシュ赤坂店</span></div></td>
+														<td><span class="badge badge-light-primary">適用中</span></td>
+														<td>2026/04/22 16:40</td>
+														<td><span class="badge badge-light">King of Time</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">鈴木 一郎</a></td>
+														<td>2026/06/01 00:00</td>
+														<td><span class="badge badge-light-info">パート</span></td>
+														<td><span class="badge badge-secondary">時給</span></td>
+														<td class="text-end">¥1,200</td>
+														<td><span class="badge badge-light">日額</span></td>
+														<td class="text-end">¥600</td>
+														<td class="text-end">120時間</td>
+														<td class="text-end">0時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ青山店</span></td>
+														<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+														<td><span class="badge badge-light-primary">適用中</span></td>
+														<td>2026/05/28 10:12</td>
+														<td><span class="badge badge-light">ジョブカン</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">佐藤 花子</a></td>
+														<td>2026/04/01 00:00</td>
+														<td><span class="badge badge-light-primary">正社員</span></td>
+														<td><span class="badge badge-dark">月給</span></td>
+														<td class="text-end">¥280,000</td>
+														<td><span class="badge badge-light">月額</span></td>
+														<td class="text-end">¥15,000</td>
+														<td class="text-end">160時間</td>
+														<td class="text-end">15時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+														<td><span class="text-gray-400">―</span></td>
+														<td><span class="badge badge-light-primary">適用中</span></td>
+														<td>2026/03/20 14:05</td>
+														<td><span class="badge badge-light">ユーザー操作</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">高橋 美咲</a></td>
+														<td>2026/03/01 00:00</td>
+														<td><span class="badge badge-light-warning">アルバイト</span></td>
+														<td><span class="badge badge-secondary">時給</span></td>
+														<td class="text-end">¥1,100</td>
+														<td><span class="badge badge-light">日額</span></td>
+														<td class="text-end">¥500</td>
+														<td class="text-end">80時間</td>
+														<td class="text-end">0時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ青山店</span></td>
+														<td><span class="text-gray-400">―</span></td>
+														<td><span class="badge badge-light-danger">過去</span></td>
+														<td>2026/02/24 09:00</td>
+														<td><span class="badge badge-light">King of Time</span></td>
+													</tr>
+													<tr>
+														<td class="sticky-col sticky-col-1"><a href="employee_detail.html" class="text-gray-800 text-hover-primary fw-bold">山本 大輔</a></td>
+														<td>2026/02/01 00:00</td>
+														<td><span class="badge badge-light-primary">正社員</span></td>
+														<td><span class="badge badge-dark">月給</span></td>
+														<td class="text-end">¥300,000</td>
+														<td><span class="badge badge-light">月額</span></td>
+														<td class="text-end">¥30,000</td>
+														<td class="text-end">160時間</td>
+														<td class="text-end">20時間</td>
+														<td><span class="badge badge-light">ラクミーフレッシュ沖縄店</span></td>
+														<td><span class="text-gray-400">―</span></td>
+														<td><span class="badge badge-light-danger">過去</span></td>
+														<td>2026/01/20 13:22</td>
+														<td><span class="badge badge-light">ユーザー操作</span></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end::Post-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--begin::Javascript-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
+		<script src="assets/js/scripts.bundle.js"></script>
+		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<script>
+			// DataTable initialization (Japanese)
+			var historiesTable = $("#histories_datatable").DataTable({
+				pageLength: 50,
+				order: [[12, "desc"]],
+				language: {
+					"decimal": ".",
+					"thousands": ",",
+					"sProcessing": "処理中...",
+					"sZeroRecords": "データはありません。",
+					"sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+					"sInfoEmpty": " 0 件中 0 から 0 まで表示",
+					"sInfoFiltered": "（全 _MAX_ 件より抽出）",
+					"sInfoPostFix": "",
+					"sSearch": "検索:",
+					"sUrl": "",
+					"oPaginate": { "sFirst": "先頭", "sLast": "最終" }
+				}
+			});
+
+			function esc(v){ return v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+
+			// 変更ソース → 列13
+			$("#source_filter").on("change", function(){
+				var v = $(this).val();
+				historiesTable.column(13).search(v ? esc(v) : "", true, false).draw();
+			});
+			// 雇用区分 → 列2
+			$("#employment_filter").on("change", function(){
+				var v = $(this).val();
+				historiesTable.column(2).search(v ? "^"+esc(v)+"$" : "", true, false).draw();
+			});
+			// 店舗（所属店舗=列9 / ヘルプ先=列10 のどちらかに一致）
+			$("#store_filter").on("change", function(){
+				var v = $(this).val();
+				if(!v){ historiesTable.column(9).search("").column(10).search("").draw(); return; }
+				// 所属 or ヘルプ先 を OR 検索（カスタム）
+				$.fn.dataTable.ext.search = [];
+				$.fn.dataTable.ext.search.push(function(settings, data){
+					return data[9].indexOf(v) > -1 || data[10].indexOf(v) > -1;
+				});
+				historiesTable.draw();
+			});
+			// 従業員名 → 列0
+			$("#employee_search").on("keyup", function(){
+				historiesTable.column(0).search(this.value).draw();
+			});
+			// 編集日時範囲 → 列12（YYYY/MM/DD 範囲のカスタムフィルタ）
+			$.fn.dataTable.ext.searchEditDate = null;
+			$("#editdate_range").on("change keyup", function(){
+				var raw = this.value.trim();
+				var m = raw.match(/(\d{4}\/\d{2}\/\d{2}).*?(\d{4}\/\d{2}\/\d{2})/);
+				$.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(function(f){ return f.name !== "editdate"; });
+				if(m){
+					var lo = m[1], hi = m[2];
+					var fn = function(settings, data){
+						var d = (data[12]||"").slice(0,10);
+						return d >= lo && d <= hi;
+					};
+					fn.name = "editdate";
+					$.fn.dataTable.ext.search.push(fn);
+				}
+				historiesTable.draw();
+			});
+			try { if($.fn.daterangepicker){ $("#editdate_range").daterangepicker({ autoUpdateInput:false, locale:{ format:"YYYY/MM/DD", separator:" 〜 ", cancelLabel:"クリア", applyLabel:"適用" } })
+				.on("apply.daterangepicker", function(ev,p){ $(this).val(p.startDate.format("YYYY/MM/DD")+" 〜 "+p.endDate.format("YYYY/MM/DD")).trigger("change"); })
+				.on("cancel.daterangepicker", function(){ $(this).val("").trigger("change"); }); } } catch(e){}
+
+			// CSVエクスポート（モック）
+			$("#history_csv_export").on("click", function(){
+				if(window.Swal){ Swal.fire({ icon:"success", title:"エクスポートしました", text:"従業員設定履歴をCSVエクスポートしました", confirmButtonText:"OK" }); }
+				else { alert("従業員設定履歴をCSVエクスポートしました"); }
+			});
+		</script>
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>
