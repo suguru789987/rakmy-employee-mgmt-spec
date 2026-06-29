@@ -32,6 +32,9 @@
 			.export-section-settings .export-section-head{color:#2c9a63;}
 			.export-section-actual{border-top:5px solid #f1bc00;}
 			.export-section-actual .export-section-head{color:#b88a00;}
+			.export-section-detail{border-top:5px solid #5e6278;} .export-section-detail .export-section-head{color:#3f4254;}
+			.item-card .form-check{padding:4px 0;}
+			.item-card .form-check-input{margin-top:0;}
 		</style>
 	</head>
 	<body class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -87,10 +90,11 @@
 										<div class="separator separator-dashed mb-8"></div>
 
 										<!--SETTINGS-->
-										<div id="section_settings" class="export-section export-section-settings">
-											<div class="export-section-head"><i class="ki-outline ki-setting-2 fs-2 me-2"></i>設定エクスポート</div>
+										<div class="export-section export-section-detail">
+										<div class="export-section-head">② エクスポートデータ詳細選択</div>
+										<div id="section_settings">
 											<div class="mb-6">
-												<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 対象（複数選択可）</label>
+												<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">対象（複数選択可）</label>
 												<div class="d-flex flex-wrap gap-4">
 													<input type="checkbox" class="btn-check target-chk" id="t_employee" data-items="items_employee" checked>
 													<label class="btn btn-bigtoggle d-flex align-items-center justify-content-center px-6 py-3 min-w-170px" for="t_employee">
@@ -106,47 +110,46 @@
 											</div>
 											<div class="card card-bordered item-card item-card-emp mb-4" id="items_employee">
 								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
-									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-profile-user fs-5 me-2"></i>③ 従業員設定のデータ項目</span>
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-profile-user fs-5 me-2"></i>従業員設定のデータ項目</span>
 									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
 								</div>
 								<div class="card-body py-4 px-5">
-									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="emp">
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="雇用区分" checked><span class="form-check-label ms-2">雇用区分</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所属店舗" checked><span class="form-check-label ms-2">所属店舗</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="ヘルプ先店舗" checked><span class="form-check-label ms-2">ヘルプ先店舗</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-2">適用日付</span></label>
+									<div class="d-flex flex-wrap gap-x-10 gap-y-4" data-group="emp">
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-3 nowrap">従業員コード</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-3 nowrap">氏名</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="雇用区分" checked><span class="form-check-label ms-3 nowrap">雇用区分</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所属店舗" checked><span class="form-check-label ms-3 nowrap">所属店舗</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="ヘルプ先店舗" checked><span class="form-check-label ms-3 nowrap">ヘルプ先店舗</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-3 nowrap">適用日付</span></label>
 												</div>
 								</div>
 							</div>
 											<div class="card card-bordered item-card item-card-pay mb-4" id="items_payroll">
 								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
-									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-dollar fs-5 me-2"></i>③ 給与設定のデータ項目</span>
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-dollar fs-5 me-2"></i>給与設定のデータ項目</span>
 									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
 								</div>
 								<div class="card-body py-4 px-5">
-									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="pay">
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="給与単位" checked><span class="form-check-label ms-2">給与単位</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="単位給与額" checked><span class="form-check-label ms-2">単位給与額</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="交通費単位" checked><span class="form-check-label ms-2">交通費単位</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="単位交通費" checked><span class="form-check-label ms-2">単位交通費</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所定労働時間" checked><span class="form-check-label ms-2">所定労働時間</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="みなし残業時間" checked><span class="form-check-label ms-2">みなし残業時間</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-2">適用日付</span></label>
+									<div class="d-flex flex-wrap gap-x-10 gap-y-4" data-group="pay">
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-3 nowrap">従業員コード</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-3 nowrap">氏名</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="給与単位" checked><span class="form-check-label ms-3 nowrap">給与単位</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="単位給与額" checked><span class="form-check-label ms-3 nowrap">単位給与額</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="交通費単位" checked><span class="form-check-label ms-3 nowrap">交通費単位</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="単位交通費" checked><span class="form-check-label ms-3 nowrap">単位交通費</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所定労働時間" checked><span class="form-check-label ms-3 nowrap">所定労働時間</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="みなし残業時間" checked><span class="form-check-label ms-3 nowrap">みなし残業時間</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="適用日付"><span class="form-check-label ms-3 nowrap">適用日付</span></label>
 												</div>
 								</div>
 							</div>
 										</div>
 
 										<!--ACTUAL-->
-										<div id="section_actual" class="export-section export-section-actual" style="display:none;">
-											<div class="export-section-head"><i class="ki-outline ki-chart-simple fs-2 me-2"></i>実績エクスポート</div>
+										<div id="section_actual" style="display:none;">
 											<div class="mb-6 row">
 												<div class="col-lg-4">
-													<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">② 給与実績の月</label>
+													<label class="fs-6 fw-bolder text-gray-800 mb-3 d-block">給与実績の月</label>
 													<select class="form-select form-select-solid" id="actual_month">
 														<option value="2026-01" selected>2026年1月</option>
 														<option value="2025-12">2025年12月</option>
@@ -159,25 +162,25 @@
 											</div>
 											<div class="card card-bordered item-card item-card-act mb-4" id="items_act">
 								<div class="card-header min-h-40px px-5 py-2 d-flex align-items-center">
-									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-chart-simple fs-5 me-2"></i>③ 実績のデータ項目</span>
+									<span class="fw-bold fs-7 text-gray-800"><i class="ki-outline ki-chart-simple fs-5 me-2"></i>実績のデータ項目</span>
 									<a class="ms-auto fs-8 fw-bold text-primary toggle-all" style="cursor:pointer">全選択/解除</a>
 								</div>
 								<div class="card-body py-4 px-5">
-									<div class="d-flex flex-wrap gap-x-6 gap-y-3" data-group="act">
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-2">従業員コード</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-2">氏名</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="対象年月" checked><span class="form-check-label ms-2">対象年月</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="雇用区分" checked><span class="form-check-label ms-2">雇用区分</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所属店舗" checked><span class="form-check-label ms-2">所属店舗</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="概算給与" checked><span class="form-check-label ms-2">概算給与</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="総労働時間" checked><span class="form-check-label ms-2">総労働時間</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="ヘルプ人件費"><span class="form-check-label ms-2">ヘルプ人件費</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="深夜残業代"><span class="form-check-label ms-2">深夜残業代</span></label>
-													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="実績給与" checked><span class="form-check-label ms-2">実績給与</span></label>
+									<div class="d-flex flex-wrap gap-x-10 gap-y-4" data-group="act">
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="従業員コード" checked><span class="form-check-label ms-3 nowrap">従業員コード</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="氏名" checked><span class="form-check-label ms-3 nowrap">氏名</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="対象年月" checked><span class="form-check-label ms-3 nowrap">対象年月</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="雇用区分" checked><span class="form-check-label ms-3 nowrap">雇用区分</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="所属店舗" checked><span class="form-check-label ms-3 nowrap">所属店舗</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="概算給与" checked><span class="form-check-label ms-3 nowrap">概算給与</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="総労働時間" checked><span class="form-check-label ms-3 nowrap">総労働時間</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="ヘルプ人件費"><span class="form-check-label ms-3 nowrap">ヘルプ人件費</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="深夜残業代"><span class="form-check-label ms-3 nowrap">深夜残業代</span></label>
+													<label class="form-check form-check-custom form-check-solid"><input class="form-check-input it" type="checkbox" data-col="実績給与" checked><span class="form-check-label ms-3 nowrap">実績給与</span></label>
 												</div>
 								</div>
 							</div>
-										</div>
+										</div></div>
 									</div>
 									<div class="card-footer d-flex justify-content-between py-6 px-9">
 										<a href="employees.html" class="btn btn-light text-gray-600 d-inline-flex align-items-center"><i class="ki-outline ki-cross fs-3 me-1"></i>キャンセル</a>
