@@ -44,15 +44,14 @@ tr.gate td{background:#ffe9e9}
 </div>
 <div class="wrap">
   <div class="head">
-    <h1>検証プラン（準備18行 ＋ 検証106件）</h1>
-    <p><strong>上から順に実行します。</strong> 最初の「準備」18行で前提データと初期設定値を作り、以降の検証行はその準備行IDを参照します（例：<code>前提＝S-05 S-08</code>）。操作の検証と計算の検証は<strong>前提が共通なので1本にまとめています</strong>（区分列で切り替え可）。</p>
-    <p>⚠️ <strong>S-02（算式の確定）と S-03（サンプルデータの再作成）はゲート</strong>です。ここが終わるまで計算の検証（C-）は期待値が作れません。／ スクリーンショットは <code>ID.png</code>（例 <code>T-D04.png</code>）で保存してください。</p>
+    <h1>検証プラン（準備9行 ＋ 検証45件）</h1>
+    <p><strong>上から順に実行します。</strong> 最初の「準備」9行で前提データと初期設定値を作り、以降の検証行はその準備行IDを参照します（例：<code>前提＝S-05 S-08</code>）。操作の検証と計算の検証は<strong>前提が共通なので1本にまとめています</strong>（区分列で切り替え可）。</p>
+    <p><strong>2日間（8/12〜13）で回せる最小構成です。</strong>関連する確認をまとめて1件にし、全10画面・全39受入条件をカバーしています。／ ⚠️ <strong>S-02（算式の確定）と S-03（サンプルデータの再作成）はゲート</strong>で、ここが終わるまで計算の検証（C-）は期待値が作れません。／ スクリーンショットは <code>ID.png</code>（例 <code>T-D04.png</code>）で保存してください。</p>
     <div class="tools">
       <button class="f on" data-k="">すべて</button>
       <button class="f" data-k="準備">準備のみ</button>
       <button class="f" data-k="操作">操作の検証</button>
       <button class="f" data-k="計算">計算の検証</button>
-      <button class="f" data-k="Must">Mustのみ</button>
       <button class="f" data-k="【異常】">異常系のみ</button>
       <input id="q" type="search" placeholder="絞り込み（例: 締め / AC-16 / エクスポート）">
       <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
@@ -69,7 +68,6 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g
 function cell(v,j){
   var h=esc(v);
   if(j===2) return '<span class="b-'+v+'">'+h+'</span>';
-  if(j===3 && v==='Must') return '<span class="must">Must</span>';
   return h;
 }
 function render(){
@@ -79,7 +77,7 @@ function render(){
     if(quick && line.indexOf(quick)<0) continue;
     if(q && line.toLowerCase().indexOf(q)<0) continue;
     n++;
-    var cls = r[0]==='準備' ? (r[5].indexOf('【ゲート】')===0?'prep gate':'prep') : '';
+    var cls = r[0]==='準備' ? (r[4].indexOf('★')===0?'prep gate':'prep') : '';
     out+='<tr class="'+cls+'">';
     for(var j=0;j<r.length;j++) out+='<td>'+cell(r[j],j)+'</td>';
     out+='</tr>';
