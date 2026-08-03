@@ -44,11 +44,40 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
   </div>
 </div>
 <div class="wrap">
+  <section style="background:#fff;border:1px solid #d0d7de;border-left:4px solid #6f42c1;border-radius:8px;padding:18px 22px;margin-bottom:22px">
+    <h2 style="margin:0 0 6px;font-size:17px">2026-08-03 デリバリー（PdM版・引き継ぎ用）</h2>
+    <p style="margin:0 0 12px;font-size:13px;color:#57606a;line-height:1.7">
+      仕様書・受入条件表・検証プランの3点セット。仕様書は<strong>概要 → シンプルな画面遷移 → ケース別の遷移フロー → フロー詳細</strong>の順で、経営判断に必要な内容（課題・KPI・スコープ・Go/No-Go・リスク）も統合しています。
+    </p>
+    <div class="grid">
+      <a class="card" href="pdm-spec.html">
+        <div class="ic">📘</div>
+        <h2>仕様書（PdM版） <span class="tag b">SPEC</span></h2>
+        <p>全8部。9フローのケース別遷移／設計判断の理由／未確定6件／リスク登録簿／Go・No-Go基準。</p>
+      </a>
+      <a class="card" href="acceptance.html">
+        <div class="ic">✅</div>
+        <h2>受入条件表 <span class="tag g">AC</span></h2>
+        <p>32条件。定量の合格基準・判定方法・優先度・不合格時の影響・対応検証ID。</p>
+      </a>
+      <a class="card" href="test-plan-ops.html">
+        <div class="ic">🧭</div>
+        <h2>検証プラン（操作系） <span class="tag g">66件</span></h2>
+        <p>画面・遷移・入力・バリデーション。初期設定と期待値つき。</p>
+      </a>
+      <a class="card" href="test-plan-calc.html">
+        <div class="ic">🧮</div>
+        <h2>検証プラン（計算系） <span class="tag k">20件</span></h2>
+        <p>人件費の計算・締め・日割り。算式の確定がゲート。計算根拠つき。</p>
+      </a>
+    </div>
+  </section>
+
   <div class="grid">
     <a class="card" href="spec.html">
       <div class="ic">📄</div>
-      <h2>仕様書 <span class="tag b">SPEC</span></h2>
-      <p>従業員管理6ページの実装計画書（画面詳細・項目・遷移・モックデータ要件）。</p>
+      <h2>仕様書（実装計画書） <span class="tag b">SPEC</span></h2>
+      <p>エンジニア向け。従業員管理8ページの画面詳細・項目・遷移・モックデータ要件。</p>
     </a>
     <a class="card" href="verification-plan.html">
       <div class="ic">✅</div>
