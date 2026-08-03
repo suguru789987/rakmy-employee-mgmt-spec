@@ -16,7 +16,7 @@
 |---|---|---|
 | **仕様書（PdM版）** | https://suguru789987.github.io/rakmy-employee-mgmt-spec/pdm-spec.html | `20260803_01_従業員管理_仕様書_PdM版.md` |
 | **受入条件表**（39条件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/acceptance.html | `20260803_02_従業員管理_受入条件表.tsv` |
-| **検証プラン**（準備16行＋検証100件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
+| **検証プラン**（準備18行＋検証106件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
 
 仕様書は **概要 → シンプルな画面遷移 → ケース別の遷移フロー → フロー詳細** の順で構成し、経営判断に必要な内容（課題・価値仮説・KPI・スコープ／Non-goal・判断待ち6件・リスク登録簿・Go/No-Go基準・縮退時の最小スコープ）も統合しています。
 
@@ -29,7 +29,7 @@
 | `spec.html` / `spec.md` | 仕様書（実装計画書） |
 | `verification-plan.html` / `verification-plan.md` | 検証プラン（画面別テストケース） |
 | `data/01〜15` | 検証の前提入力データ（店舗/従業員マスタ・履歴・実績・取込CSV・勤務データ・突合シート） |
-| `mock/` | モック画面5枚＋共有テーマ（Metronic）assets |
+| `mock/` | モック画面10枚＋サイドバー/ヘッダー＋共有テーマ（Metronic）assets |
 
 ## モック画面
 | 画面 | ファイル | パス |
@@ -39,7 +39,7 @@
 | 従業員詳細 | `mock/employee_detail.html` | `/employee_detail` |
 | 人件費実績 | `mock/payroll_reports.html` | `/payroll_reports` |
 | 従業員設定インポート | `mock/employee_payroll_import.html` | `/employee_payroll_import` |
-| 従業員設定履歴 | （未作成・仕様のみ） | `/employee_payroll_histories` |
+| 従業員設定履歴 | `mock/employee_payroll_histories.html` | `/employee_payroll_histories` |
 
 ## ガバナンス
 - 本リポは**デザインモック**。実テーブル名・実列名・顧客PIIを含まない。
