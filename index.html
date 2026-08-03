@@ -62,7 +62,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       </a>
       <a class="card" href="test-plan.html">
         <div class="ic">🧪</div>
-        <h2>検証プラン <span class="tag g">準備16＋100件</span></h2>
+        <h2>検証プラン <span class="tag g">準備18＋100件</span></h2>
         <p>操作と計算を1本に統合。上部の準備行で前提データ・初期設定値を作り、以降の検証行が参照。</p>
       </a>
     </div>
@@ -102,7 +102,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
   </section>
 
   <section>
-    <h3>前提入力データ（検証用）</h3>
+    <h3>前提入力データ（検証用・15ファイル）</h3>
     <table>
       <tr><th>#</th><th>ファイル</th><th>用途</th></tr>
       <tr><td>01</td><td><a href="data/01_店舗マスタ.tsv">店舗マスタ</a></td><td>所属/ヘルプ先店舗の選択肢（5店）</td></tr>
@@ -114,6 +114,12 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       <tr><td>07</td><td><a href="data/07_インポートCSV_KingOfTime_sample.csv">取込CSV (KingOfTime)</a></td><td>正常系インポート</td></tr>
       <tr><td>08</td><td><a href="data/08_インポートCSV_ジョブカン_sample.csv">取込CSV (ジョブカン)</a></td><td>表記ゆれヘッダー</td></tr>
       <tr><td>09</td><td><a href="data/09_インポートCSV_異常系_sample.csv">取込CSV (異常系)</a></td><td>バリデーション検証</td></tr>
+      <tr><td>10</td><td><a href="data/10_インポートCSV_給与設定_sample.csv">取込CSV (給与設定)</a></td><td>給与設定テンプレート形式・ヘルプ先交通費つき</td></tr>
+      <tr><td>11</td><td><a href="data/11_インポートCSV_先頭説明行あり_sample.csv">取込CSV (先頭説明行あり)</a></td><td>CSV位置合わせ設定の検証</td></tr>
+      <tr><td>12</td><td><a href="data/12_従業員マスタ_設定未入力.tsv">従業員マスタ (設定未入力)</a></td><td>締め前バリデーションの検証</td></tr>
+      <tr><td>13</td><td><a href="data/13_勤務データ_2026-05_全稼働日.tsv">勤務データ 2026-05 (全稼働日)</a></td><td>日次と月次の突合（05の合計と一致）</td></tr>
+      <tr><td>14</td><td><a href="data/14_勤務データ_2026-06_月中改定検証.tsv">勤務データ 2026-06</a></td><td>月中改定の日割り・時給改定の検証</td></tr>
+      <tr><td>15</td><td><a href="data/15_移行前後_突合テンプレート.tsv">移行前後 突合テンプレート</a></td><td>移行検証（No-Go判定に直結）の記入シート</td></tr>
     </table>
   </section>
 

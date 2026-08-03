@@ -28,7 +28,7 @@
 | `index.html` | トップ（ナビ） |
 | `spec.html` / `spec.md` | 仕様書（実装計画書） |
 | `verification-plan.html` / `verification-plan.md` | 検証プラン（画面別テストケース） |
-| `data/01〜09` | 検証の前提入力データ（店舗/従業員マスタ・履歴・実績・取込CSV） |
+| `data/01〜15` | 検証の前提入力データ（店舗/従業員マスタ・履歴・実績・取込CSV・勤務データ・突合シート） |
 | `mock/` | モック画面5枚＋共有テーマ（Metronic）assets |
 
 ## モック画面
