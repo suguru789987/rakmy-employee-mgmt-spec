@@ -16,12 +16,11 @@
 |---|---|---|
 | **仕様書（PdM版）** | https://suguru789987.github.io/rakmy-employee-mgmt-spec/pdm-spec.html | `20260803_01_従業員管理_仕様書_PdM版.md` |
 | **受入条件表**（39条件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/acceptance.html | `20260803_02_従業員管理_受入条件表.tsv` |
-| **検証プラン（操作系・準備11＋検証82件）** | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan-ops.html | `20260803_03a_従業員管理_検証プラン_操作系.tsv` |
-| **検証プラン（計算系・準備7＋検証18件）** | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan-calc.html | `20260803_03b_従業員管理_検証プラン_計算系.tsv` |
+| **検証プラン**（準備16行＋検証100件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
 
 仕様書は **概要 → シンプルな画面遷移 → ケース別の遷移フロー → フロー詳細** の順で構成し、経営判断に必要な内容（課題・価値仮説・KPI・スコープ／Non-goal・判断待ち6件・リスク登録簿・Go/No-Go基準・縮退時の最小スコープ）も統合しています。
 
-> ⚠️ **判断1（日割り基準）・5（ヘルプ人件費の帰属）・6（交通費の計上先）が未確定です。** 確定するまで計算系の検証は期待値が作れず開始できません（8/7 第1回ジャッジが期限）。詳細は仕様書 第5部。
+> ⚠️ **判断1（日割り基準）・5（ヘルプ人件費の帰属）・6（交通費の計上先）が未確定です。** 確定するまで計算の検証は期待値が作れず開始できません（8/7 第1回ジャッジが期限）。詳細は仕様書 第5部。
 
 ## 構成
 | パス | 内容 |

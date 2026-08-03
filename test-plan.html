@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>検証プラン（従業員管理機能）</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#24292f}
+.topbar{background:#0969da;color:#fff;padding:12px 24px;font-weight:700;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.topbar a{color:#fff;text-decoration:none;font-weight:400;font-size:14px;opacity:.9}
+.topbar a:hover{opacity:1;text-decoration:underline}
+.wrap{max-width:1500px;margin:20px auto;padding:0 16px}
+.head{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;margin-bottom:14px}
+.head h1{font-size:18px;margin:0 0 6px}
+.head p{margin:4px 0;font-size:13px;color:#57606a;line-height:1.7}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.tools input{padding:7px 10px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;min-width:220px}
+.tools button{padding:7px 12px;border:1px solid #d0d7de;background:#fff;border-radius:6px;font-size:13px;cursor:pointer}
+.tools button.on{background:#0969da;color:#fff;border-color:#0969da}
+.tools .cnt{font-size:12px;color:#57606a;margin-left:auto}
+.tools a.dl{font-size:12px;color:#0969da;text-decoration:none;border:1px solid #d0d7de;padding:6px 10px;border-radius:6px;background:#fff}
+.box{background:#fff;border:1px solid #d0d7de;border-radius:8px;overflow:auto;max-height:76vh}
+table{border-collapse:separate;border-spacing:0;font-size:12.5px;white-space:pre-wrap}
+th,td{border-bottom:1px solid #eaeef2;border-right:1px solid #eaeef2;padding:8px 10px;vertical-align:top;text-align:left;line-height:1.65}
+thead th{position:sticky;top:0;background:#f6f8fa;font-weight:600;z-index:2;border-bottom:2px solid #d0d7de;white-space:nowrap}
+tbody tr:hover{background:#f6f8fa}
+td:nth-child(2){white-space:nowrap;font-weight:600}
+tr.prep{background:#fffbe6}
+tr.prep:hover{background:#fff6cc}
+tr.gate td{background:#ffe9e9}
+.b-操作{color:#0969da}.b-計算{color:#bf3989}.b-共通{color:#57606a}
+.must{color:#cf222e;font-weight:700}
+@media(max-width:720px){.wrap{padding:0 8px}table{font-size:11.5px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  🧪 検証プラン（従業員管理機能）
+  <a href="index.html">← トップ</a>
+  <a href="pdm-spec.html">仕様書（PdM版）</a>
+  <a href="acceptance.html">受入条件表</a>
+  <a href="mock/employees.html">モックを見る</a>
+</div>
+<div class="wrap">
+  <div class="head">
+    <h1>検証プラン（準備16行 ＋ 検証100件）</h1>
+    <p><strong>上から順に実行します。</strong> 最初の「準備」16行で前提データと初期設定値を作り、以降の検証行はその準備行IDを参照します（例：<code>前提＝S-05 S-08</code>）。操作の検証と計算の検証は<strong>前提が共通なので1本にまとめています</strong>（区分列で切り替え可）。</p>
+    <p>⚠️ <strong>S-02（算式の確定）と S-03（サンプルデータの再作成）はゲート</strong>です。ここが終わるまで計算の検証（C-）は期待値が作れません。／ スクリーンショットは <code>ID.png</code>（例 <code>T-D04.png</code>）で保存してください。</p>
+    <div class="tools">
+      <button class="f on" data-k="">すべて</button>
+      <button class="f" data-k="準備">準備のみ</button>
+      <button class="f" data-k="操作">操作の検証</button>
+      <button class="f" data-k="計算">計算の検証</button>
+      <button class="f" data-k="Must">Mustのみ</button>
+      <button class="f" data-k="【異常】">異常系のみ</button>
+      <input id="q" type="search" placeholder="絞り込み（例: 締め / AC-16 / エクスポート）">
+      <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
+      <span class="cnt" id="cnt"></span>
+    </div>
+  </div>
+  <div class="box"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
+</div>
+<script>
+var FILE='20260803_03_従業員管理_検証プラン.tsv';
+document.getElementById('dl').href=encodeURI(FILE);
+var rows=[], quick='';
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function cell(v,j){
+  var h=esc(v);
+  if(j===2) return '<span class="b-'+v+'">'+h+'</span>';
+  if(j===3 && v==='Must') return '<span class="must">Must</span>';
+  return h;
+}
+function render(){
+  var q=document.getElementById('q').value.toLowerCase(), out='', n=0;
+  for(var i=1;i<rows.length;i++){
+    var r=rows[i], line=r.join(' ');
+    if(quick && line.indexOf(quick)<0) continue;
+    if(q && line.toLowerCase().indexOf(q)<0) continue;
+    n++;
+    var cls = r[0]==='準備' ? (r[5].indexOf('【ゲート】')===0?'prep gate':'prep') : '';
+    out+='<tr class="'+cls+'">';
+    for(var j=0;j<r.length;j++) out+='<td>'+cell(r[j],j)+'</td>';
+    out+='</tr>';
+  }
+  document.getElementById('tb').innerHTML=out;
+  document.getElementById('cnt').textContent=n+' 件 / 全 '+(rows.length-1)+' 件';
+}
+fetch(encodeURI(FILE)).then(function(r){return r.text();}).then(function(t){
+  rows=t.replace(/\r/g,'').replace(/\n+$/,'').split('\n').map(function(l){return l.split('\t');});
+  document.getElementById('th').innerHTML='<tr>'+rows[0].map(function(h){return '<th>'+esc(h)+'</th>';}).join('')+'</tr>';
+  render();
+}).catch(function(e){document.getElementById('tb').innerHTML='<tr><td>'+FILE+' を読み込めませんでした: '+e+'</td></tr>';});
+document.getElementById('q').addEventListener('input', render);
+Array.prototype.forEach.call(document.querySelectorAll('button.f'), function(b){
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('button.f'), function(x){x.classList.remove('on');});
+    b.classList.add('on'); quick=b.dataset.k; render();
+  });
+});
+</script>
+</body>
+</html>
