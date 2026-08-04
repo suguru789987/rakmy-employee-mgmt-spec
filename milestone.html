@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>設計MVP 実装マイルストーン確認シート</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#24292f}
+.topbar{background:#8250df;color:#fff;padding:12px 24px;font-weight:700;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.topbar a{color:#fff;text-decoration:none;font-weight:400;font-size:14px;opacity:.9}
+.topbar a:hover{opacity:1;text-decoration:underline}
+.wrap{max-width:1400px;margin:20px auto;padding:0 16px}
+.intro{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;margin-bottom:14px;font-size:13px;line-height:1.85;color:#57606a}
+.intro h1{font-size:18px;margin:0 0 8px;color:#24292f}
+.verdict{position:sticky;top:0;z-index:30;background:#fff;border:2px solid #d0d7de;border-radius:8px;padding:14px 20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.verdict.go{border-color:#1f883d;background:#f0fff4}.verdict.cond{border-color:#bf8700;background:#fffbef}.verdict.nogo{border-color:#cf222e;background:#fff5f5}
+.verdict .big{font-size:20px;font-weight:700}
+.verdict .sub{font-size:13px;color:#57606a;margin-top:6px;line-height:1.8}
+.bars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px}
+.bar{border:1px solid #d0d7de;border-radius:8px;padding:10px 12px;background:#fff}
+.bar .t{font-size:12.5px;font-weight:700;display:flex;justify-content:space-between}
+.bar .g{height:8px;background:#eaeef2;border-radius:4px;margin-top:8px;overflow:hidden}
+.bar .g i{display:block;height:100%;background:#1f883d;width:0;transition:.2s}
+.bar.ng .g i{background:#cf222e}
+.bar .n{font-size:11.5px;color:#57606a;margin-top:5px}
+.ms{background:#fff;border:1px solid #d0d7de;border-radius:8px;margin-bottom:14px;overflow:hidden}
+.ms>h2{margin:0;padding:12px 18px;font-size:15px;background:#f6f8fa;border-bottom:1px solid #d0d7de;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ms>h2 .goal{font-size:12.5px;font-weight:400;color:#57606a}
+.ms>h2 .st{margin-left:auto;font-size:12px;padding:3px 10px;border-radius:999px;background:#eaeef2;color:#57606a}
+.ms>h2 .st.ok{background:#1f883d;color:#fff}
+.ms table{width:100%;border-collapse:collapse;font-size:12.5px}
+.ms th,.ms td{border-bottom:1px solid #eaeef2;padding:8px 10px;text-align:left;vertical-align:top;line-height:1.7}
+.ms th{background:#fafbfc;font-weight:600;white-space:nowrap;font-size:12px;color:#57606a}
+.ms tr.l0 td:nth-child(2){color:#cf222e;font-weight:700}
+.ms tr.done{background:#f6fff8}
+.ms td.chk{width:120px;white-space:nowrap}
+.ms td.chk label{cursor:pointer;user-select:none}
+.ms td.id{white-space:nowrap;font-weight:600}
+.ms td.impl{color:#24292f;background:#fafbfc}
+.tag{font-size:11px;padding:1px 7px;border-radius:4px;margin-left:4px;white-space:nowrap}
+.tag.stop{background:#cf222e;color:#fff}.tag.no{background:#d1242f;color:#fff;opacity:.85}.tag.cond{background:#bf8700;color:#fff}.tag.na{background:#8c959f;color:#fff}
+.tools{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tools button{padding:7px 12px;border:1px solid #d0d7de;background:#fff;border-radius:6px;font-size:13px;cursor:pointer}
+@media(max-width:720px){.wrap{padding:0 8px}.ms td.impl{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  🎯 設計MVP 実装マイルストーン確認シート
+  <a href="index.html">← トップ</a>
+  <a href="acceptance.html">受入条件表</a>
+  <a href="test-plan.html">検証プラン</a>
+  <a href="pdm-spec.html">仕様書</a>
+</div>
+<div class="wrap">
+  <div class="intro">
+    <h1>使い方</h1>
+    実装が終わった条件にチェックを入れると、<strong>今の実装で設計MVPをクリアできているか</strong>が上部に出ます。判定は受入条件表の「不合格のときリリースは」に基づきます（★中止・不可＝落とせない／条件付きGo可＝手作業で代替可／影響なし＝次リリース）。<br>
+    <strong>マイルストーンは順番に意味があります。</strong>M1（データ基盤）は後から作れません — 適用日付と履歴が無い期間のデータは、あとから遡って作れないためです。M2以降は後から足せます。<br>
+    チェックはこのブラウザに保存されます（他の人には共有されません）。共有する場合は受入条件表の「判定」列に記入してください。
+  </div>
+  <div class="verdict" id="verdict">
+    <div class="big" id="vbig">読み込み中…</div>
+    <div class="sub" id="vsub"></div>
+    <div class="bars" id="bars"></div>
+  </div>
+  <div class="tools">
+    <button id="allon">すべてチェック</button>
+    <button id="alloff">すべて解除</button>
+    <button id="m1on">M1だけチェック（縮退A相当）</button>
+  </div>
+  <div id="out"></div>
+</div>
+<script>
+var FILE='20260803_02_従業員管理_受入条件表.tsv';
+var GOALS={
+ '実装M1 データ基盤':'ここまでで「過去が動かない」構造ができる（縮退Aの最小スコープ）。後から遡って作れないため最優先',
+ '実装M2 計算エンジン':'ここまでで「金額が算式どおりに出る」。判断1・5・6の確定内容を実装する',
+ '実装M3 締め':'ここまでで「月次を確定して給与計算・会計へ渡せる」',
+ '実装M4 画面・入出力':'ここまでで「顧客とCSが自分で運用できる」。未達は手作業で代替できるものが多い',
+ '実装M5 移行':'ここまでで「既存顧客に出せる」。移行が壊れると全部が無意味になる',
+ '（次リリース）':'無くても業務は回る。MVPの判定には使わない'
+};
+var rows=[], key='mvp-check-v1';
+function saved(){ try{return JSON.parse(localStorage.getItem(key)||'{}');}catch(e){return {};} }
+function save(o){ try{localStorage.setItem(key,JSON.stringify(o));}catch(e){} }
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function sev(t){ if(t.indexOf('★')===0) return 'stop'; if(t.indexOf('条件付きGo可')===0) return 'cond'; if(t.indexOf('影響なし')===0) return 'na'; return 'no'; }
+function label(s){ return {stop:'★中止',no:'不可',cond:'条件付きGo可',na:'影響なし'}[s]; }
+function build(){
+  var H=rows[0], idx={}; H.forEach(function(h,i){idx[h]=i;});
+  var groups={}, order=[];
+  for(var i=1;i<rows.length;i++){
+    var r=rows[i], m=r[idx['実装マイルストーン']];
+    if(!groups[m]){groups[m]=[];order.push(m);}
+    groups[m].push(r);
+  }
+  var st=saved(), html='';
+  order.forEach(function(m){
+    html+='<div class="ms" data-ms="'+esc(m)+'"><h2>'+esc(m)+' <span class="goal">'+esc(GOALS[m]||'')+'</span><span class="st" id="st-'+esc(m)+'"></span></h2>'
+        +'<table><thead><tr><th>実装できたか</th><th>条件</th><th>設計ポイント</th><th>満たすべき状態</th><th>合格基準</th><th>実装の目安</th><th>未達なら</th></tr></thead><tbody>';
+    groups[m].forEach(function(r){
+      var id=r[idx['条件ID']], s=sev(r[idx['不合格のときリリースは']]), lv=r[idx['判定レベル']];
+      html+='<tr class="'+(lv.indexOf('L0')===0?'l0':'')+(st[id]?' done':'')+'" data-id="'+id+'" data-sev="'+s+'" data-ms="'+esc(m)+'">'
+         +'<td class="chk"><label><input type="checkbox" data-id="'+id+'"'+(st[id]?' checked':'')+'> 実装済み</label></td>'
+         +'<td class="id">'+esc(id)+'</td><td>'+esc(r[idx['設計ポイント']])+'</td><td>'+esc(r[idx['満たすべき状態']])+'</td>'
+         +'<td>'+esc(r[idx['合格基準（定量）']])+'</td><td class="impl">'+esc(r[idx['実装の目安（どこまでできていれば合格か）']])+'</td>'
+         +'<td><span class="tag '+s+'">'+label(s)+'</span></td></tr>';
+    });
+    html+='</tbody></table></div>';
+  });
+  document.getElementById('out').innerHTML=html;
+  Array.prototype.forEach.call(document.querySelectorAll('input[type=checkbox]'), function(c){
+    c.addEventListener('change', function(){
+      var o=saved(); if(c.checked) o[c.dataset.id]=1; else delete o[c.dataset.id];
+      save(o); c.closest('tr').classList.toggle('done', c.checked); judge();
+    });
+  });
+  judge();
+}
+function judge(){
+  var st=saved(), trs=Array.prototype.slice.call(document.querySelectorAll('tr[data-id]'));
+  var must=trs.filter(function(t){return t.dataset.sev==='stop'||t.dataset.sev==='no';});
+  var stop=trs.filter(function(t){return t.dataset.sev==='stop';});
+  var cond=trs.filter(function(t){return t.dataset.sev==='cond';});
+  var doneStop=stop.filter(function(t){return st[t.dataset.id];}).length;
+  var doneMust=must.filter(function(t){return st[t.dataset.id];}).length;
+  var doneCond=cond.filter(function(t){return st[t.dataset.id];}).length;
+  var v=document.getElementById('verdict'), big=document.getElementById('vbig'), sub=document.getElementById('vsub');
+  v.className='verdict';
+  if(doneStop<stop.length){
+    v.classList.add('nogo');
+    big.textContent='✗ リリースできません（No-Go）';
+    sub.innerHTML='<strong>L0が未達です（'+doneStop+'/'+stop.length+'）。</strong>この4件は1件でも欠けるとリリースしません。'
+      +'未達: '+stop.filter(function(t){return !st[t.dataset.id];}).map(function(t){return t.dataset.id;}).join('・');
+  } else if(doneMust<must.length){
+    v.classList.add('nogo');
+    big.textContent='△ 設計MVP未達（'+doneMust+'/'+must.length+'）';
+    sub.innerHTML='L0（4件）は満たしていますが、<strong>「不可」の条件が'+(must.length-doneMust)+'件残っています</strong>。手作業で代替できないため、ここが埋まるまではリリースできません。<br>未達: '
+      +must.filter(function(t){return !st[t.dataset.id];}).map(function(t){return t.dataset.id;}).join('・');
+  } else if(doneCond<cond.length){
+    v.classList.add('cond');
+    big.textContent='◯ 条件付きGo（設計MVPクリア）';
+    sub.innerHTML='<strong>落とせない条件はすべて満たしています。</strong>残りは手作業で代替できる'+(cond.length-doneCond)+'件（'
+      +cond.filter(function(t){return !st[t.dataset.id];}).map(function(t){return t.dataset.id;}).join('・')+'）。CS運用で補い、次リリースで解消します。';
+  } else {
+    v.classList.add('go');
+    big.textContent='◎ Go（設計MVP完全クリア）';
+    sub.innerHTML='L0・L1のすべてを満たしています。次リリース向けのL2（6件）を残すのみです。';
+  }
+  var bars='', groups={};
+  document.querySelectorAll('tr[data-id]').forEach(function(t){
+    var m=t.dataset.ms; groups[m]=groups[m]||{t:0,d:0,must:0,dmust:0};
+    groups[m].t++; if(st[t.dataset.id]) groups[m].d++;
+    if(t.dataset.sev==='stop'||t.dataset.sev==='no'){ groups[m].must++; if(st[t.dataset.id]) groups[m].dmust++; }
+  });
+  Object.keys(groups).forEach(function(m){
+    var g=groups[m], pct=Math.round(g.d/g.t*100), ok=(g.must>0 && g.dmust===g.must);
+    bars+='<div class="bar'+(ok?'':' ng')+'"><div class="t"><span>'+esc(m.replace('実装',''))+'</span><span>'+g.d+'/'+g.t+'</span></div>'
+        +'<div class="g"><i style="width:'+pct+'%"></i></div>'
+        +'<div class="n">落とせない条件 '+g.dmust+'/'+g.must+(ok?' ✅ クリア':'')+'</div></div>';
+    var el=document.getElementById('st-'+m); if(el) { el.textContent = g.must===0 ? '対象外' : (ok?'クリア':'未達 '+(g.must-g.dmust)+'件'); el.className='st'+(ok?' ok':''); }
+  });
+  document.getElementById('bars').innerHTML=bars;
+}
+document.getElementById('allon').addEventListener('click',function(){var o={};document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=true;o[c.dataset.id]=1;c.closest('tr').classList.add('done');});save(o);judge();});
+document.getElementById('alloff').addEventListener('click',function(){save({});document.querySelectorAll('input[type=checkbox]').forEach(function(c){c.checked=false;c.closest('tr').classList.remove('done');});judge();});
+document.getElementById('m1on').addEventListener('click',function(){var o={};document.querySelectorAll('tr[data-id]').forEach(function(t){var on=t.dataset.ms.indexOf('M1')>=0;var c=t.querySelector('input');c.checked=on;t.classList.toggle('done',on);if(on)o[t.dataset.id]=1;});save(o);judge();});
+fetch(encodeURI(FILE)).then(function(r){return r.text();}).then(function(t){
+  rows=t.replace(/\r/g,'').replace(/\n+$/,'').split('\n').map(function(l){return l.split('\t');});
+  build();
+}).catch(function(e){document.getElementById('out').textContent=FILE+' を読み込めませんでした: '+e;});
+</script>
+</body>
+</html>
