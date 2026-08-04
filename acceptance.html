@@ -11,24 +11,37 @@ body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"H
 .topbar a{color:#fff;text-decoration:none;font-weight:400;font-size:14px;opacity:.9}
 .topbar a:hover{opacity:1;text-decoration:underline}
 .wrap{max-width:1600px;margin:20px auto;padding:0 16px}
-.head{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;margin-bottom:14px}
-.head h1{font-size:18px;margin:0 0 6px}
-.head p{margin:4px 0;font-size:13px;color:#57606a;line-height:1.7}
-.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.tools input{padding:7px 10px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;min-width:240px}
-.tools .cnt{font-size:12px;color:#57606a}
+.howto{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:18px 22px;margin-bottom:14px}
+.howto h1{font-size:18px;margin:0 0 10px}
+.howto p{margin:6px 0;font-size:13px;color:#57606a;line-height:1.8}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0 6px}
+.step{border:1px solid #d0d7de;border-radius:8px;padding:12px 14px;font-size:13px;line-height:1.75}
+.step b{display:block;font-size:13px;margin-bottom:4px}
+.step.l0{border-left:4px solid #cf222e;background:#fff5f5}
+.step.l1{border-left:4px solid #0969da;background:#f5faff}
+.step.l2{border-left:4px solid #8c959f;background:#fafbfc}
+.cols{font-size:12.5px;color:#57606a;line-height:1.9;margin-top:10px;border-top:1px dashed #d0d7de;padding-top:10px}
+.cols code{background:#eef1f4;padding:1px 6px;border-radius:4px}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0 10px}
+.tools button{padding:7px 12px;border:1px solid #d0d7de;background:#fff;border-radius:6px;font-size:13px;cursor:pointer}
+.tools button.on{background:#24292f;color:#fff;border-color:#24292f}
+.tools button.l0.on{background:#cf222e;border-color:#cf222e}
+.tools input{padding:7px 10px;border:1px solid #d0d7de;border-radius:6px;font-size:13px;min-width:220px}
+.tools .cnt{font-size:12px;color:#57606a;margin-left:auto}
 .tools a.dl{font-size:12px;color:#0969da;text-decoration:none;border:1px solid #d0d7de;padding:6px 10px;border-radius:6px;background:#fff}
-.box{background:#fff;border:1px solid #d0d7de;border-radius:8px;overflow:auto;max-height:78vh}
+.box{background:#fff;border:1px solid #d0d7de;border-radius:8px;overflow:auto;max-height:74vh}
 table{border-collapse:separate;border-spacing:0;font-size:12.5px;white-space:pre-wrap}
-th,td{border-bottom:1px solid #eaeef2;border-right:1px solid #eaeef2;padding:8px 10px;vertical-align:top;text-align:left;line-height:1.6}
+th,td{border-bottom:1px solid #eaeef2;border-right:1px solid #eaeef2;padding:8px 10px;vertical-align:top;text-align:left;line-height:1.7}
 thead th{position:sticky;top:0;background:#f6f8fa;font-weight:600;z-index:2;border-bottom:2px solid #d0d7de;white-space:nowrap}
 tbody tr:hover{background:#f6f8fa}
-td:first-child,th:first-child{position:sticky;left:0;background:#fff;font-weight:600;z-index:1;white-space:nowrap}
-thead th:first-child{z-index:3;background:#f6f8fa}
-tbody tr:hover td:first-child{background:#f6f8fa}
-td.id{white-space:nowrap;font-weight:600}
-.mark-must{color:#cf222e;font-weight:700}
-.mark-star{background:#fff8c5}
+td:nth-child(2){white-space:nowrap;font-weight:600}
+tr.l0 td:first-child{color:#cf222e;font-weight:700;white-space:nowrap}
+tr.l0{background:#fff5f5}
+tr.l0:hover{background:#ffecec}
+tr.l1 td:first-child{color:#0969da;white-space:nowrap}
+tr.l2{color:#57606a;background:#fafbfc}
+tr.l2 td:first-child{white-space:nowrap}
+td.impl{background:#f6f8fa}
 @media(max-width:720px){.wrap{padding:0 8px}table{font-size:11.5px}}
 </style>
 </head>
@@ -37,53 +50,75 @@ td.id{white-space:nowrap;font-weight:600}
   ✅ 受入条件表（従業員管理機能）
   <a href="index.html">← トップ</a>
   <a href="pdm-spec.html">仕様書（PdM版）</a>
-  <a href="acceptance.html">受入条件表</a>
   <a href="test-plan.html">検証プラン</a>
+  <a href="copy.html">コピペ用</a>
 </div>
 <div class="wrap">
-  <div class="head">
-    <h1>受入条件表（従業員管理機能）</h1>
-    <p>46条件（必須40・次段階6）。ストーリー・フローとの紐付け／定量の合格基準／MoSCoW優先度／不合格時の影響／対応する検証IDまで記載。<strong>★印は判断1・5・6（算式）が未確定のため、確定するまで判定できない条件</strong>です。</p>
-    <div class="tools">
-      <input id="q" type="search" placeholder="絞り込み（例: 締め / Must / 異常 / AC-16）">
-      <span class="cnt" id="cnt"></span>
-      <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
+  <div class="howto">
+    <h1>この表の見方</h1>
+    <p><strong>この表は「リリースしてよいか」を判断するための表です。</strong>どう操作してどう見えるかの手順は<a href="test-plan.html">検証プラン</a>に、なぜそう決めたかは<a href="pdm-spec.html">仕様書</a>にあります。</p>
+    <div class="steps">
+      <div class="step l0"><b>① まず L0 を見る（4件）</b>ここが1件でも不合格なら<strong>リリースしません</strong>。過去が動く・締めても動く・店舗別が全社と合わない、のいずれかが起きている状態です。</div>
+      <div class="step l1"><b>② 次に L1 を見る（36件）</b><strong>MVPとして業務が回る最低ライン</strong>です。「不合格のときリリースは」列に<strong>不可</strong>とあるものは落とせません。<strong>条件付きGo可</strong>は手作業で代替してリリースできます。</div>
+      <div class="step l2"><b>③ L2 は次リリース（6件）</b>あると良いが、無くても業務は回ります。<strong>判断材料には使いません</strong>。</div>
     </div>
+    <div class="cols">
+      <strong>列の使い分け</strong><br>
+      <code>設計ポイント</code> 何を守るための条件か（原則①②③・移行・データ保全・入出力・画面）。設計レビューはこの単位で見ます<br>
+      <code>確認する画面 / 操作</code> どこで何をすると起きるか<br>
+      <code>満たすべき状態</code> 実装が満たすべき振る舞い（仕様の契約）<br>
+      <code>合格基準</code> 判定に使う定量値。「0件」「0円」なら曖昧さなく判定できます<br>
+      <code>実装の目安</code> <strong>エンジニア向け。どこまで実装されていれば合格か</strong>（実装手段の指定ではなく、満たすべき条件）<br>
+      <code>不合格のときリリースは</code> ★中止 ／ 不可 ／ 条件付きGo可 ／ 影響なし<br>
+      <code>検証ID</code> <a href="test-plan.html">検証プラン</a>の該当ケース。実際の操作手順はそちら
+    </div>
+  </div>
+  <div class="tools">
+    <button class="f on" data-k="">すべて</button>
+    <button class="f l0" data-k="L0">L0 リリース不可（4）</button>
+    <button class="f" data-k="L1">L1 MVP必須（36）</button>
+    <button class="f" data-k="L2">L2 次段階（6）</button>
+    <button class="f" data-k="不可">落とせない条件</button>
+    <button class="f" data-k="原則">設計原則①②③</button>
+    <button class="f" data-k="データ保全">データ保全</button>
+    <input id="q" type="search" placeholder="絞り込み（例: 締め / 交通費 / 取込）">
+    <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
+    <span class="cnt" id="cnt"></span>
   </div>
   <div class="box"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
 </div>
 <script>
-var FILE = '20260803_02_従業員管理_受入条件表.tsv';
-document.getElementById('dl').href = encodeURI(FILE);
-var rows = [];
+var FILE='20260803_02_従業員管理_受入条件表.tsv';
+document.getElementById('dl').href=encodeURI(FILE);
+var rows=[], quick='';
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function deco(s){
-  var h = esc(s);
-  if(h === 'Must') return '<span class="mark-must">Must</span>';
-  return h;
-}
-function render(filter){
-  var tb = document.getElementById('tb'), out = '', n = 0;
+function render(){
+  var q=document.getElementById('q').value.toLowerCase(), out='', n=0;
   for(var i=1;i<rows.length;i++){
-    var r = rows[i];
-    if(filter && r.join(' ').toLowerCase().indexOf(filter) < 0) continue;
+    var r=rows[i], line=r.join(' ');
+    if(quick && line.indexOf(quick)<0) continue;
+    if(q && line.toLowerCase().indexOf(q)<0) continue;
     n++;
-    var star = r.join(' ').indexOf('★') >= 0 ? ' class="mark-star"' : '';
-    out += '<tr' + star + '>';
-    for(var j=0;j<r.length;j++){ out += (j===0?'<td class="id">':'<td>') + deco(r[j]) + '</td>'; }
-    out += '</tr>';
+    var cls = r[0].indexOf('L0')===0?'l0':(r[0].indexOf('L2')===0?'l2':'l1');
+    out+='<tr class="'+cls+'">';
+    for(var j=0;j<r.length;j++) out+='<td'+(j===7?' class="impl"':'')+'>'+esc(r[j])+'</td>';
+    out+='</tr>';
   }
-  tb.innerHTML = out;
-  document.getElementById('cnt').textContent = n + ' 件 / 全 ' + (rows.length-1) + ' 件';
+  document.getElementById('tb').innerHTML=out;
+  document.getElementById('cnt').textContent=n+' 件 / 全 '+(rows.length-1)+' 件';
 }
 fetch(encodeURI(FILE)).then(function(r){return r.text();}).then(function(t){
-  rows = t.replace(/\r/g,'').replace(/\n+$/,'').split('\n').map(function(l){return l.split('\t');});
-  document.getElementById('th').innerHTML = '<tr>' + rows[0].map(function(h){return '<th>'+esc(h)+'</th>';}).join('') + '</tr>';
-  render('');
-}).catch(function(e){
-  document.getElementById('tb').innerHTML = '<tr><td>' + FILE + ' を読み込めませんでした: ' + e + '</td></tr>';
+  rows=t.replace(/\r/g,'').replace(/\n+$/,'').split('\n').map(function(l){return l.split('\t');});
+  document.getElementById('th').innerHTML='<tr>'+rows[0].map(function(h){return '<th>'+esc(h)+'</th>';}).join('')+'</tr>';
+  render();
+}).catch(function(e){document.getElementById('tb').innerHTML='<tr><td>'+FILE+' を読み込めませんでした: '+e+'</td></tr>';});
+document.getElementById('q').addEventListener('input', render);
+Array.prototype.forEach.call(document.querySelectorAll('button.f'), function(b){
+  b.addEventListener('click', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('button.f'), function(x){x.classList.remove('on');});
+    b.classList.add('on'); quick=b.dataset.k; render();
+  });
 });
-document.getElementById('q').addEventListener('input', function(e){ render(e.target.value.toLowerCase()); });
 </script>
 </body>
 </html>
