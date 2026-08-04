@@ -17,6 +17,14 @@ body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"H
 .verdict.go{border-color:#1f883d;background:#f0fff4}.verdict.cond{border-color:#bf8700;background:#fffbef}.verdict.nogo{border-color:#cf222e;background:#fff5f5}
 .verdict .big{font-size:19px;font-weight:700}
 .verdict .sub{font-size:13px;color:#57606a;margin-top:6px;line-height:1.8}
+.rule{border:1px solid #d0d7de;border-radius:8px;background:#fafbfc;padding:10px 14px;margin:10px 0;font-size:12.5px;line-height:1.8}
+.rule b{display:block;color:#24292f;margin-bottom:6px}
+.rule u{text-decoration:underline}
+.fl{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:6px 0 10px}
+.fl span{border:1px solid #d0d7de;border-radius:8px;padding:7px 11px;font-size:12px;font-weight:600;background:#fff}
+.fl span small{display:block;font-weight:400;color:#57606a;font-size:11.5px;margin-top:2px}
+.fl span.me{border-color:#0969da;background:#f5faff;color:#0969da}
+.fl i{align-self:center;font-style:normal;color:#8c959f}
 .tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .tools button{padding:7px 12px;border:1px solid #d0d7de;background:#fff;border-radius:6px;font-size:13px;cursor:pointer}
 .tools button.on{background:#24292f;color:#fff;border-color:#24292f}
@@ -48,6 +56,10 @@ select.ok{background:#dafbe1}select.ng{background:#ffebe9}
   <div class="intro">
     <h1>使い方</h1>
     <strong>検証の結果をここに記入します。</strong>「何を満たせば合格か」は<a href="acceptance.html">定義表</a>、実際の操作手順は<a href="test-plan.html">検証プラン</a>にあります。<br>
+    <div class="rule"><b>記入の流れ（2表は独立して使えます）</b>
+      <div class="fl"><span>① 検証プラン<small>ケース単位で操作し、実測値と合否を記録</small></span><i>→</i><span class="me">② この確認表<small>条件単位に集約して合否を記入</small></span><i>→</i><span>③ リリース判断<small>上部に自動で表示</small></span></div>
+      <b>集約のルール：条件の合否は「検証ID」欄のケースが<u>すべて合格</u>なら合格</b>です。1つでも不合格なら条件は不合格。検証プランを実施していなくても、画面と操作の欄を見ればこの表だけで確認できます。
+    </div>
     各行で <strong>合格／不合格／未実装</strong> を選び、実測値や気づきを所見に書いてください。上部に<strong>リリース判断</strong>が自動で出ます。<br>
     記入内容はこのブラウザに保存されます。共有するときは「TSVで書き出す」でファイルにしてください。
   </div>
