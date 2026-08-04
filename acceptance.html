@@ -94,6 +94,7 @@ td.impl{background:#f6f8fa}
       <code>確認する画面 / 操作 / 判定</code> は<a href="acceptance-check.html">確認表</a>にあります（この表には含みません）<br>
       <code>満たすべき状態</code> 実装が満たすべき振る舞い（仕様の契約）<br>
       <code>合格基準</code> 判定に使う定量値。「0件」「0円」なら曖昧さなく判定できます<br>
+      <code>確認方法</code> <strong>操作で確認</strong>（35件）＝画面を操作すれば判定できる／<strong>操作＋実装レビュー</strong>（12件）＝<strong>画面を操作しても実装の是非を判別できない</strong>ため、実装物のレビュー（R-01〜R-05）で裏を取ります<br>
       <code>実装の目安</code> <strong>エンジニア向け。どこまで実装されていれば合格か</strong>（実装手段の指定ではなく、満たすべき条件）<br>
       <code>不合格のときリリースは</code> ★中止 ／ 不可 ／ 条件付きGo可 ／ 影響なし<br>
       <code>検証ID</code> <a href="test-plan.html">検証プラン</a>の該当ケース。実際の操作手順はそちら
@@ -109,6 +110,7 @@ td.impl{background:#f6f8fa}
     <button class="f" data-k="V2">V2 実態を表す</button>
     <button class="f" data-k="V3">V3 自分で運用</button>
     <button class="f" data-k="データ保全">データ保全</button>
+    <button class="f" data-k="実装レビュー">実装レビューが必要</button>
     <input id="q" type="search" placeholder="絞り込み（例: 締め / 交通費 / 取込）">
     <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
     <span class="cnt" id="cnt"></span>

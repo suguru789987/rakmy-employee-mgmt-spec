@@ -47,12 +47,13 @@ tr.gate td{background:#ffe9e9}
   <div class="head">
     <h1>検証プラン（準備11行 ＋ 検証49件）</h1>
     <p><strong>上から順に実行します。</strong> 最初の「準備」11行で前提データと初期設定値を作り、以降の検証行はその準備行IDを参照します（例：<code>前提＝S-05 S-08</code>）。操作の検証と計算の検証は<strong>前提が共通なので1本にまとめています</strong>（区分列で切り替え可）。</p>
-    <p><strong>2日間（8/12〜13）で回せる最小構成です。</strong>関連する確認をまとめて1件にし、全10画面・全46受入条件をカバーしています。／ ⚠️ <strong>S-02（算式の確定）と S-03（サンプルデータの再作成）はゲート</strong>で、ここが終わるまで計算の検証（C-）は期待値が作れません。／ スクリーンショットは <code>ID.png</code>（例 <code>T-D04.png</code>）で保存してください。</p>
+    <p><strong>2日間（8/12〜13）で回せる最小構成です。</strong>関連する確認をまとめて1件にし、全10画面・全46受入条件をカバーしています。／ ⚠️ <strong>S-02（算式の確定）と S-03（サンプルデータの再作成）はゲート</strong>で、ここが終わるまで計算の検証（C-）は期待値が作れません。／ スクリーンショットは <code>ID.png</code>（例 <code>T-D04.png</code>）で保存してください。／ <strong>R-01〜R-05 は画面操作ではなく実装物のレビュー</strong>です（スキーマ・API・コードを提示してもらい確認）。</p>
     <div class="tools">
       <button class="f on" data-k="">すべて</button>
       <button class="f" data-k="準備">準備のみ</button>
       <button class="f" data-k="操作">操作の検証</button>
       <button class="f" data-k="計算">計算の検証</button>
+      <button class="f" data-k="レビュー">実装レビュー</button>
       <button class="f" data-k="【異常】">異常系のみ</button>
       <input id="q" type="search" placeholder="絞り込み（例: 締め / AC-16 / エクスポート）">
       <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>

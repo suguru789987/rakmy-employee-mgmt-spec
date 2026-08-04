@@ -58,7 +58,8 @@ select.ok{background:#dafbe1}select.ng{background:#ffebe9}
     <strong>検証の結果をここに記入します。</strong>「何を満たせば合格か」は<a href="acceptance.html">定義表</a>、実際の操作手順は<a href="test-plan.html">検証プラン</a>にあります。<br>
     <div class="rule"><b>記入の流れ（2表は独立して使えます）</b>
       <div class="fl"><span>① 検証プラン<small>ケース単位で操作し、実測値と合否を記録</small></span><i>→</i><span class="me">② この確認表<small>条件単位に集約して合否を記入</small></span><i>→</i><span>③ リリース判断<small>上部に自動で表示</small></span></div>
-      <b>集約のルール：条件の合否は「検証ID」欄のケースが<u>すべて合格</u>なら合格</b>です。1つでも不合格なら条件は不合格。検証プランを実施していなくても、画面と操作の欄を見ればこの表だけで確認できます。
+      <b>集約のルール：条件の合否は「検証ID」欄のケースが<u>すべて合格</u>なら合格</b>です。1つでも不合格なら条件は不合格。検証プランを実施していなくても、画面と操作の欄を見ればこの表だけで確認できます。<br>
+      <b style="margin-top:6px">確認方法が「操作＋実装レビュー」の12条件は、画面操作だけでは判定できません。</b>実装物のレビュー（R-01〜R-05）を経て判定してください。例：AC-43は画面側だけで必須チェックしていても操作では合格に見えますが、APIを直接呼ぶと不正な登録ができてしまいます。
     </div>
     各行で <strong>合格／不合格／未実装</strong> を選び、実測値や気づきを所見に書いてください。上部に<strong>リリース判断</strong>が自動で出ます。<br>
     記入内容はこのブラウザに保存されます。共有するときは「TSVで書き出す」でファイルにしてください。
@@ -72,6 +73,7 @@ select.ok{background:#dafbe1}select.ng{background:#ffebe9}
     <button class="f" data-k="M3">M3 締め</button>
     <button class="f" data-k="M4">M4 画面・入出力</button>
     <button class="f" data-k="M5">M5 移行</button>
+    <button class="f" data-k="実装レビュー">実装レビュー要</button>
     <input id="q" type="search" placeholder="絞り込み">
     <input id="who" placeholder="確認者名（一括入力）" style="width:150px">
     <button id="export">TSVで書き出す</button>
