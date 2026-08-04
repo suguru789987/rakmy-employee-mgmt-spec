@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>受入条件表（従業員管理機能）</title>
+<title>受入条件 定義表（従業員管理機能）</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:#24292f}
@@ -46,7 +46,7 @@ table{border-collapse:separate;border-spacing:0;font-size:12.5px;white-space:pre
 th,td{border-bottom:1px solid #eaeef2;border-right:1px solid #eaeef2;padding:8px 10px;vertical-align:top;text-align:left;line-height:1.7}
 thead th{position:sticky;top:0;background:#f6f8fa;font-weight:600;z-index:2;border-bottom:2px solid #d0d7de;white-space:nowrap}
 tbody tr:hover{background:#f6f8fa}
-td:nth-child(2){white-space:nowrap;font-weight:600}
+td:nth-child(5){white-space:nowrap;font-weight:600}
 tr.l0 td:first-child{color:#cf222e;font-weight:700;white-space:nowrap}
 tr.l0{background:#fff5f5}
 tr.l0:hover{background:#ffecec}
@@ -59,16 +59,19 @@ td.impl{background:#f6f8fa}
 </head>
 <body>
 <div class="topbar">
-  ✅ 受入条件表（従業員管理機能）
+  📘 受入条件 定義表（従業員管理機能）
   <a href="index.html">← トップ</a>
   <a href="pdm-spec.html">仕様書（PdM版）</a>
+  <a href="acceptance-check.html">確認表（記入用）</a>
+  <a href="milestone.html">実装マイルストーン</a>
   <a href="test-plan.html">検証プラン</a>
   <a href="copy.html">コピペ用</a>
 </div>
 <div class="wrap">
   <div class="howto">
     <h1>この表の見方</h1>
-    <p><strong>この表は「リリースしてよいか」を判断するための表です。</strong>どう操作してどう見えるかの手順は<a href="test-plan.html">検証プラン</a>に、なぜそう決めたかは<a href="pdm-spec.html">仕様書</a>にあります。</p>
+    <p><strong>この表は「何を満たせば合格か」を定義する表です。</strong>読むための表で、記入はしません。<br>
+ 判定を記入するのは<a href="acceptance-check.html"><strong>確認表（記入用）</strong></a>、実際の操作手順は<a href="test-plan.html">検証プラン</a>、なぜそう決めたかは<a href="pdm-spec.html">仕様書</a>です。</p>
     <div class="steps">
       <div class="step l0"><b>① まず L0 を見る（4件）</b>ここが1件でも不合格なら<strong>リリースしません</strong>。過去が動く・締めても動く・店舗別が全社と合わない、のいずれかが起きている状態です。</div>
       <div class="step l1"><b>② 次に L1 を見る（36件）</b><strong>MVPとして業務が回る最低ライン</strong>です。「不合格のときリリースは」列に<strong>不可</strong>とあるものは落とせません。<strong>条件付きGo可</strong>は手作業で代替してリリースできます。</div>
@@ -88,7 +91,7 @@ td.impl{background:#f6f8fa}
     <div class="cols">
       <strong>列の使い分け</strong><br>
       <code>価値MVP / 解く課題 / 守る設計</code> <strong>この条件は何のためにあるか</strong>。設計レビューと価値の確認はこの3列で行います<br>
-      <code>確認する画面 / 操作</code> どこで何をすると起きるか<br>
+      <code>確認する画面 / 操作 / 判定</code> は<a href="acceptance-check.html">確認表</a>にあります（この表には含みません）<br>
       <code>満たすべき状態</code> 実装が満たすべき振る舞い（仕様の契約）<br>
       <code>合格基準</code> 判定に使う定量値。「0件」「0円」なら曖昧さなく判定できます<br>
       <code>実装の目安</code> <strong>エンジニア向け。どこまで実装されていれば合格か</strong>（実装手段の指定ではなく、満たすべき条件）<br>
@@ -126,7 +129,7 @@ function render(){
     n++;
     var cls = r[0].indexOf('L0')===0?'l0':(r[0].indexOf('L2')===0?'l2':'l1');
     out+='<tr class="'+cls+'">';
-    for(var j=0;j<r.length;j++) out+='<td'+(j===7?' class="impl"':'')+'>'+esc(r[j])+'</td>';
+    for(var j=0;j<r.length;j++) out+='<td'+(j===8?' class="impl"':'')+'>'+esc(r[j])+'</td>';
     out+='</tr>';
   }
   document.getElementById('tb').innerHTML=out;
