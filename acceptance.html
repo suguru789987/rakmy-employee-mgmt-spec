@@ -20,6 +20,18 @@ body{margin:0;background:#f6f8fa;font-family:-apple-system,BlinkMacSystemFont,"H
 .step.l0{border-left:4px solid #cf222e;background:#fff5f5}
 .step.l1{border-left:4px solid #0969da;background:#f5faff}
 .step.l2{border-left:4px solid #8c959f;background:#fafbfc}
+.chain{border-top:1px dashed #d0d7de;margin-top:12px;padding-top:12px;font-size:13px;line-height:1.85}
+.chain b{display:block;margin-bottom:8px}
+.flow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:8px 0 10px}
+.flow span{border:1px solid #d0d7de;border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:600;background:#fafbfc}
+.flow span small{display:block;font-weight:400;color:#57606a;font-size:11.5px;margin-top:2px}
+.flow span.me{border-color:#1f883d;background:#f0fff4;color:#1a7f37}
+.flow i{align-self:center;font-style:normal;color:#8c959f}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin:10px 0}
+.v{border:1px solid #d0d7de;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.7}
+.v b{font-size:13px}
+.v small{display:block;color:#57606a;margin-top:4px;font-size:11.5px}
+.v.v1{border-left:4px solid #cf222e}.v.v2{border-left:4px solid #bf8700}.v.v3{border-left:4px solid #0969da}
 .cols{font-size:12.5px;color:#57606a;line-height:1.9;margin-top:10px;border-top:1px dashed #d0d7de;padding-top:10px}
 .cols code{background:#eef1f4;padding:1px 6px;border-radius:4px}
 .tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0 10px}
@@ -62,9 +74,20 @@ td.impl{background:#f6f8fa}
       <div class="step l1"><b>② 次に L1 を見る（36件）</b><strong>MVPとして業務が回る最低ライン</strong>です。「不合格のときリリースは」列に<strong>不可</strong>とあるものは落とせません。<strong>条件付きGo可</strong>は手作業で代替してリリースできます。</div>
       <div class="step l2"><b>③ L2 は次リリース（6件）</b>あると良いが、無くても業務は回ります。<strong>判断材料には使いません</strong>。</div>
     </div>
+    <div class="chain">
+      <b>この表が担っている役割</b>
+      <div class="flow"><span>仕様書<small>設計意図・価値を決める</small></span><i>→</i><span class="me">受入条件表<small>判定できる形に分解する（この表）</small></span><i>→</i><span>検証プラン<small>実際の操作で確かめる</small></span></div>
+      <p>各行は「<strong>どの課題を解くために</strong>（解く課題）／<strong>どの価値を成立させ</strong>（価値MVP）／<strong>どの設計を守るか</strong>（守る設計）」を持っています。仕様書を読まなくても、条件の目的がこの表だけで分かります。</p>
+      <div class="vs">
+        <div class="v v1"><b>V1 数字が動かない（15件）</b>過去の月も確定した月も、あとから金額が変わらない。<small>P1 過去が動く／P4 確定できない</small></div>
+        <div class="v v2"><b>V2 数字が実態を表す（11件）</b>金額が算式どおりで、店舗別が実際の働き方と一致する。<small>P2 月中改定／P3 店舗別がずれる</small></div>
+        <div class="v v3"><b>V3 自分で運用できる（21件）</b>導入・説明・外部提出を開発に依頼せず回せる。<small>K2 問い合わせ／K3 導入／K4 依頼</small></div>
+      </div>
+      <p><strong>V1〜V3のいずれかが欠けると、機能があっても価値は出ません。</strong>V1が欠ければ数字が信用されずExcelに戻り、V2が欠ければ店舗別PLが使えず、V3が欠ければ導入と運用が開発待ちになります。</p>
+    </div>
     <div class="cols">
       <strong>列の使い分け</strong><br>
-      <code>設計ポイント</code> 何を守るための条件か（原則①②③・移行・データ保全・入出力・画面）。設計レビューはこの単位で見ます<br>
+      <code>価値MVP / 解く課題 / 守る設計</code> <strong>この条件は何のためにあるか</strong>。設計レビューと価値の確認はこの3列で行います<br>
       <code>確認する画面 / 操作</code> どこで何をすると起きるか<br>
       <code>満たすべき状態</code> 実装が満たすべき振る舞い（仕様の契約）<br>
       <code>合格基準</code> 判定に使う定量値。「0件」「0円」なら曖昧さなく判定できます<br>
@@ -79,7 +102,9 @@ td.impl{background:#f6f8fa}
     <button class="f" data-k="L1">L1 MVP必須（36）</button>
     <button class="f" data-k="L2">L2 次段階（6）</button>
     <button class="f" data-k="不可">落とせない条件</button>
-    <button class="f" data-k="原則">設計原則①②③</button>
+    <button class="f" data-k="V1">V1 数字が動かない</button>
+    <button class="f" data-k="V2">V2 実態を表す</button>
+    <button class="f" data-k="V3">V3 自分で運用</button>
     <button class="f" data-k="データ保全">データ保全</button>
     <input id="q" type="search" placeholder="絞り込み（例: 締め / 交通費 / 取込）">
     <a class="dl" id="dl" href="#" download>TSVをダウンロード</a>
