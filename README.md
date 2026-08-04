@@ -16,7 +16,7 @@
 |---|---|---|
 | **仕様書（PdM版）** | https://suguru789987.github.io/rakmy-employee-mgmt-spec/pdm-spec.html | `20260803_01_従業員管理_仕様書_PdM版.md` |
 | **受入条件表**（39条件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/acceptance.html | `20260803_02_従業員管理_受入条件表.tsv` |
-| **検証プラン**（準備9行＋検証45件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
+| **検証プラン**（準備11行＋検証49件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
 | **ヘルプページ ドラフト**（掲載前・要判断確定） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/help-draft.html | `20260803_ヘルプページ_従業員管理_ドラフト.md` |
 
 仕様書は **概要 → シンプルな画面遷移 → ケース別の遷移フロー → フロー詳細** の順で構成し、経営判断に必要な内容（課題・価値仮説・KPI・スコープ／Non-goal・判断待ち6件・リスク登録簿・Go/No-Go基準・縮退時の最小スコープ）も統合しています。
