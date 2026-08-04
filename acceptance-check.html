@@ -75,6 +75,8 @@ select.ok{background:#dafbe1}select.ng{background:#ffebe9}
     <button class="f" data-k="M4">M4 画面・入出力</button>
     <button class="f" data-k="M5">M5 移行</button>
     <button class="f" data-k="実装レビュー">実装レビュー要</button>
+    <button class="f" data-k="★中止">★中止</button>
+    <button class="f" data-k="不可">落とせない</button>
     <input id="q" type="search" placeholder="絞り込み">
     <input id="who" placeholder="確認者名（一括入力）" style="width:150px">
     <button id="export">TSVで書き出す</button>
@@ -92,15 +94,16 @@ function save(o){try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}}
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function render(){
   var q=document.getElementById('q').value.toLowerCase(), s=st(), out='', n=0;
+  var H=rows[0], iJ=H.indexOf('判定（合格/不合格/未実装）');
   for(var i=1;i<rows.length;i++){
     var r=rows[i], line=r.join(' ');
     if(quick && line.indexOf(quick)<0) continue;
     if(q && line.toLowerCase().indexOf(q)<0) continue;
     n++;
     var id=r[0], v=s[id]||{}, cls=(r[1].indexOf('L0')===0?'l0 ':'')+(v.j==='合格'?'ok':(v.j==='不合格'?'ng':''));
-    out+='<tr class="'+cls+'"><td class="id">'+esc(id)+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td>'
-       +'<td>'+esc(r[3])+'</td><td>'+esc(r[4])+'</td><td>'+esc(r[5])+'</td><td>'+esc(r[6])+'</td>'
-       +'<td><select data-id="'+id+'" data-f="j" class="'+(v.j==='合格'?'ok':(v.j==='不合格'?'ng':''))+'">'
+    out+='<tr class="'+cls+'">';
+    for(var j=0;j<iJ;j++) out+='<td'+(j===0?' class="id"':'')+'>'+esc(r[j])+'</td>';
+    out+='<td><select data-id="'+id+'" data-f="j" class="'+(v.j==='合格'?'ok':(v.j==='不合格'?'ng':''))+'">'
        +['','合格','不合格','未実装'].map(function(o){return '<option'+(v.j===o?' selected':'')+'>'+o+'</option>';}).join('')
        +'</select></td>'
        +'<td><input class="memo" data-id="'+id+'" data-f="m" value="'+esc(v.m||'')+'" placeholder="実測値・所見"></td>'
@@ -136,7 +139,8 @@ function judge(){
 }
 document.getElementById('export').addEventListener('click', function(){
   var s=st(), out=[rows[0].join('\t')];
-  for(var i=1;i<rows.length;i++){ var r=rows[i].slice(), v=s[r[0]]||{}; r[7]=v.j||''; r[8]=v.m||''; r[9]=v.d||''; r[10]=v.w||''; out.push(r.join('\t')); }
+  var iJ=rows[0].indexOf('判定（合格/不合格/未実装）');
+  for(var i=1;i<rows.length;i++){ var r=rows[i].slice(), v=s[r[0]]||{}; r[iJ]=v.j||''; r[iJ+1]=v.m||''; r[iJ+2]=v.d||''; r[iJ+3]=v.w||''; out.push(r.join('\t')); }
   var b=new Blob(['﻿'+out.join('\n')],{type:'text/tab-separated-values'}), a=document.createElement('a');
   a.href=URL.createObjectURL(b); a.download='受入条件_確認表_記入済み.tsv'; a.click();
 });
