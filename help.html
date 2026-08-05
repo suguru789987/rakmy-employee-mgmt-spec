@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ヘルプページ ドラフト（従業員管理）</title>
+<title>ヘルプページ（従業員管理）</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown-light.min.css">
 <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
 <style>
@@ -19,16 +19,22 @@ body{margin:0;background:#f6f8fa}
 </head>
 <body>
 <div class="topbar">
-  📗 ヘルプページ ドラフト（従業員管理）
+  📗 ヘルプページ（従業員管理）
   <a href="index.html">← トップ</a>
   <a href="pdm-spec.html">仕様書（PdM版）</a>
   <a href="acceptance.html">受入条件 定義表</a>
   <a href="test-plan.html">検証プラン</a>
   <a href="mock/employees.html">モックを見る</a>
 </div>
+<div style="max-width:1000px;margin:18px auto 0;padding:14px 18px;background:#fff5f5;border:1px solid #ffc9c9;border-left:4px solid #cf222e;border-radius:8px;font-size:13px;line-height:1.8;color:#24292f">
+  <b>掲載前の注意（社内向け・このページのみ表示）</b><br>
+  ・判断7（深夜残業の割増率1.5）・判断8（みなし超過1.25・未達は減額なし）は<b>暫定適用</b>です。確定前に公開すると、金額の計算方法を確定として案内することになります。<br>
+  ・実績データ取込・前回差分表示・締めは<b>サーバ実装中</b>です。実装状況を確認してから公開してください。<br>
+  ・撮影が必要なスクリーンショットと掲載可否は <code>20260805_従業員管理_05_ヘルプページ.xlsx</code> の「掲載前チェック」シートを参照。
+</div>
 <article id="content" class="markdown-body">読み込み中…</article>
 <script>
-var f = '20260803_ヘルプページ_従業員管理_ドラフト.md';
+var f = '20260805_ヘルプページ_従業員管理_マニュアル版.md';
 fetch(encodeURI(f)).then(function(r){return r.text();}).then(function(t){
   document.getElementById('content').innerHTML = marked.parse(t);
 }).catch(function(e){

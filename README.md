@@ -19,7 +19,7 @@
 | **受入条件 定義表**（47条件・L0/L1/L2） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/acceptance.html | `20260803_02_従業員管理_受入条件表.tsv` |
 | **受入条件 確認表**（記入用） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/acceptance-check.html | `20260803_02b_従業員管理_受入条件_確認表.tsv` |
 | **検証プラン**（準備11行＋検証49件） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/test-plan.html | `20260803_03_従業員管理_検証プラン.tsv` |
-| **ヘルプページ ドラフト**（掲載前・要判断確定） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/help-draft.html | `20260803_ヘルプページ_従業員管理_ドラフト.md` |
+| **ヘルプページ**（サービスマニュアル形式・掲載は判断7/8の確定後） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/help.html | `20260805_ヘルプページ_従業員管理_マニュアル版.md` |
 | **実装マイルストーン確認シート**（設計MVPのクリア判定） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/milestone.html | — |
 | **コピペ用ページ**（4資料を書式つきでコピー） | https://suguru789987.github.io/rakmy-employee-mgmt-spec/copy.html | — |
 
