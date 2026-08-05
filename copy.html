@@ -36,6 +36,8 @@ table.tsv tr.prep{background:#fffbe6}
 .toast.show{opacity:1}
 @media(max-width:720px){.wrap{padding:0 8px}.sec{padding:8px 14px 16px}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>.mermaid{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px;margin:16px 0;overflow-x:auto;text-align:center}</style>
 </head>
 <body>
 <div class="topbar">
@@ -123,6 +125,14 @@ function renderMd(text){
        + '<div class="markdown-body" id="sec'+i+'">'+marked.parse(b)+'</div></div>';
   });
   document.getElementById('out').innerHTML=out;
+  Array.prototype.forEach.call(document.querySelectorAll('pre > code.language-mermaid'), function(c){
+    var d=document.createElement('div'); d.className='mermaid'; d.textContent=c.textContent;
+    c.parentNode.replaceWith(d);
+  });
+  if(window.mermaid){
+    mermaid.initialize({startOnLoad:false, theme:'neutral', flowchart:{htmlLabels:true, curve:'basis'}});
+    mermaid.run({querySelector:'.mermaid'});
+  }
   Array.prototype.forEach.call(document.querySelectorAll('.sec .copy'), function(b){
     b.addEventListener('click', function(){
       var i=b.dataset.i;

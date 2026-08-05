@@ -16,6 +16,8 @@ body{margin:0;background:#f6f8fa}
 .markdown-body table{display:block;overflow-x:auto;max-width:100%}
 @media(max-width:720px){.markdown-body{padding:18px;margin:12px}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>.mermaid{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px;margin:16px 0;overflow-x:auto;text-align:center}</style>
 </head>
 <body>
 <div class="topbar">
@@ -32,6 +34,17 @@ body{margin:0;background:#f6f8fa}
 var f = '20260803_04_受入条件表と確認表の使い方.md';
 fetch(encodeURI(f)).then(function(r){return r.text();}).then(function(t){
   document.getElementById('content').innerHTML = marked.parse(t);
+  (function(){
+    var el = document.getElementById('content') || document.body;
+    el.querySelectorAll('pre > code.language-mermaid').forEach(function(c){
+      var d = document.createElement('div'); d.className='mermaid'; d.textContent=c.textContent;
+      c.parentNode.replaceWith(d);
+    });
+    if (window.mermaid) {
+      mermaid.initialize({startOnLoad:false, theme:'neutral', flowchart:{htmlLabels:true, curve:'basis'}});
+      mermaid.run({querySelector:'.mermaid'});
+    }
+  })();
 }).catch(function(e){
   document.getElementById('content').textContent = f + ' を読み込めませんでした: ' + e;
 });
