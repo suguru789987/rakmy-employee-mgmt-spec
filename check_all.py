@@ -386,6 +386,12 @@ def c8_counts():
         lab = k.split()[0]
         check('8 件数表記', f'使い方が {lab}={v}件 と書いている', f'{v}件' in how, k)
 
+    if os.path.exists('README.md'):
+        rd = open('README.md', encoding='utf-8').read()
+        old = re.findall(r'(\d+)条件', rd)
+        bad = [x for x in old if int(x) != len(ac)]
+        check('8 件数表記', f'READMEが {len(ac)}条件 と書いている', not bad, f'古い記載 {bad}')
+
 
 # ============================================================ 9. 体裁
 def c9_layout():

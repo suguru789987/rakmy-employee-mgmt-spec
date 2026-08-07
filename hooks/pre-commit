@@ -1,0 +1,31 @@
+#!/bin/sh
+# 資料の食い違いを commit 前に止める。
+# 導入:  cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# 迂回:  git commit --no-verify   （検査が通らないまま記録したいときだけ）
+
+ROOT=$(git rev-parse --show-toplevel)
+cd "$ROOT" || exit 1
+
+# 資料に触れていないコミット（スクリプトや設定だけ）は検査しない
+if ! git diff --cached --name-only | grep -qE '\.(tsv|csv|md|xlsx|html)$'; then
+    exit 0
+fi
+
+echo "資料の整合性を検査しています（check_all.py）…"
+python3 check_all.py > /tmp/check_all_result.txt 2>&1
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+    echo ""
+    tail -20 /tmp/check_all_result.txt
+    echo ""
+    echo "──────────────────────────────────────────────"
+    echo " 食い違いがあります。直してから commit してください。"
+    echo " 全文: python3 check_all.py"
+    echo " どうしても記録したいとき: git commit --no-verify"
+    echo "──────────────────────────────────────────────"
+    exit 1
+fi
+
+tail -3 /tmp/check_all_result.txt
+exit 0
