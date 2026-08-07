@@ -405,9 +405,115 @@ def c9_layout():
         check('9 体裁', f'{os.path.basename(path)} で文字が潰れていない', not bad, f'{bad}箇所')
 
 
+# ============================================================ 10. ID・連番
+def c10_ids():
+    ac, tp, chk = T(F_AC), T(F_PLAN), T(F_CHK)
+
+    n = [int(a['条件ID'].split('-')[1]) for a in ac]
+    dup = [k for k, v in collections.Counter(n).items() if v > 1]
+    check('10 ID・連番', '受入条件IDに重複が無い', not dup, f'重複 {dup}')
+    gap = sorted(set(range(min(n), max(n) + 1)) - set(n))
+    check('10 ID・連番', f'受入条件IDが連番（AC-{min(n)}〜AC-{max(n)}・{len(n)}件）', not gap, f'欠番 {gap}')
+
+    ids = [r['検証ID'] for r in tp]
+    dup = [k for k, v in collections.Counter(ids).items() if v > 1]
+    check('10 ID・連番', '検証IDに重複が無い', not dup, f'重複 {dup}')
+
+    dupc = [k for k, v in collections.Counter(a['条件ID'] for a in chk).items() if v > 1]
+    check('10 ID・連番', '確認表の条件IDに重複が無い', not dupc, f'重複 {dupc}')
+
+    # 検証IDの欠番は「統合で空いた番号」。参照が壊れるので詰めない。件数だけ記録する
+    miss = {}
+    for pre in ['S', 'C', 'R', 'T-L', 'T-R', 'T-D', 'T-H', 'T-A', 'T-S', 'T-I', 'T-E', 'T-N', 'T-Z']:
+        g = sorted(int(x.rsplit('-', 1)[1]) for x in ids if x.startswith(pre + '-') and x.rsplit('-', 1)[1].isdigit())
+        if g:
+            gp = sorted(set(range(min(g), max(g) + 1)) - set(g))
+            if gp:
+                miss[pre] = gp
+    check('10 ID・連番', '検証IDの欠番が使い方に説明されている',
+          ('欠番' in open(F_HOW, encoding='utf-8').read()) or not miss,
+          f'欠番あり {miss}（統合で空いた番号。詰めると参照が壊れる）')
+
+    dn = sorted(int(os.path.basename(f)[:2]) for f in glob.glob('data/*'))
+    gap = sorted(set(range(min(dn), max(dn) + 1)) - set(dn))
+    dup = [k for k, v in collections.Counter(dn).items() if v > 1]
+    check('10 ID・連番', f'データセットが連番（{min(dn):02d}〜{max(dn):02d}）', not gap and not dup, f'欠番{gap} 重複{dup}')
+
+    bad = [(r['検証ID'], x) for r in tp for x in re.findall(r'\bS-\d+\b', r['初期設定（前提データ）']) if x not in set(ids)]
+    check('10 ID・連番', '前提に書いた準備IDが実在', not bad, bad[:5])
+
+    bad = [(r['検証ID'], r['スクショファイル名']) for r in tp
+           if r['スクショファイル名'] and r['スクショファイル名'] != r['検証ID'] + '.png']
+    check('10 ID・連番', 'スクショ名が「検証ID.png」', not bad, bad[:5])
+
+    bad = [f"data/{x}" for r in tp for x in re.findall(r'data/(\d{2})', r['操作・前提条件'] + r['使用する検証データ'])
+           if not glob.glob(f'data/{x}_*')]
+    check('10 ID・連番', '本文が参照するdataファイルが実在', not bad, sorted(set(bad))[:5])
+
+
+# ============================================================ 11. 資料間の言い回し
+def c11_wording():
+    spec = open(F_SPEC, encoding='utf-8').read()
+    help_ = open(F_HELP, encoding='utf-8').read()
+    tp = T(F_PLAN)
+    plan_txt = '\n'.join(r['計算根拠'] + r['期待値'] for r in tp)
+
+    FORMULA = [
+        ('基礎時給', ['単位給与額 ÷ 所定労働時間', '単位給与額÷所定労働時間']),
+        ('実績給与', ['概算給与 ＋ 深夜残業代 ＋ みなし超過残業代', '概算給与＋深夜残業代＋みなし超過残業代']),
+        ('ヘルプ人件費', ['実績給与 × ヘルプ時間 ÷ 総労働時間', '実績給与×ヘルプ時間÷総労働時間']),
+        ('総支給額', ['実績給与 ＋ 交通費', '実績給与＋交通費']),
+    ]
+    for name, pats in FORMULA:
+        ok_s = any(p in spec for p in pats)
+        ok_h = any(p in help_ for p in pats)
+        check('11 言い回し', f'{name}の算式が仕様書とヘルプで一致', ok_s and ok_h, f'仕様書{ok_s} ヘルプ{ok_h}')
+
+    check('11 言い回し', '深夜割増1.5が3資料で一致',
+          '1.5' in spec and '1.5' in help_ and '1.5' in plan_txt)
+
+    # 暫定の判断がヘルプの掲載前チェックに残っているか
+    note = help_.split('-->')[0]
+    check('11 言い回し', 'ヘルプの掲載前チェックに判断7・8の暫定が明記',
+          '判断7' in note and '判断8' in note, note[:60])
+    check('11 言い回し', '検証プランにも判断7が暫定と書かれている', '判断7（暫定）' in plan_txt)
+
+    # 対象月
+    check('11 言い回し', '検証の対象月が2026-05で揃っている',
+          sum(1 for r in tp if '2026-05' in r['操作・前提条件']) >= 5)
+
+
+# ============================================================ 12. 派生ファイル
+def c12_derived():
+    md = open(F_HELP, encoding='utf-8').read()
+    body = re.sub(r'<!--[\s\S]*?-->\n*', '', md, count=1)
+    heads = [h.strip() for h in re.findall(r'^#{2,3} (.+)$', body, re.M)]
+
+    ws = openpyxl.load_workbook(X_HELP).active
+    cells = [str(ws.cell(r, 1).value or '') for r in range(1, ws.max_row + 1)]
+    miss = [h for h in heads if h not in cells]
+    check('12 派生ファイル', 'ヘルプExcelが最新のmdと同じ見出しを持つ', not miss, f'欠落 {miss[:5]}')
+
+    html = open('20260805_従業員管理_05_ヘルプページ.html', encoding='utf-8').read()
+    m = re.search(r'<script type="text/plain" id="src">([\s\S]*?)</script>', html)
+    embedded = m.group(1) if m else ''
+    miss = [h for h in heads if h not in embedded]
+    check('12 派生ファイル', 'ヘルプHTMLが最新のmdを埋め込んでいる', bool(m) and not miss, f'欠落 {miss[:5]}')
+
+    # ビューアが参照するファイルの実在
+    bad = []
+    for f in glob.glob('*.html'):
+        h = open(f, encoding='utf-8').read()
+        for ref in set(re.findall(r"var f = '([^']+)'", h)) | set(re.findall(r"fetch\(encodeURI\('([^']+)'\)", h)):
+            if not os.path.exists(ref):
+                bad.append(f'{f} → {ref}')
+    check('12 派生ファイル', 'ビューアHTMLの参照先が実在', not bad, bad[:5])
+
+
 # ============================================================
 def main():
-    for fn in [c1_files, c2_acceptance, c3_plan, c4_links, c5_order, c6_data, c7_help, c8_counts, c9_layout]:
+    for fn in [c1_files, c2_acceptance, c3_plan, c4_links, c5_order, c6_data, c7_help, c8_counts, c9_layout,
+               c10_ids, c11_wording, c12_derived]:
         try:
             fn()
         except Exception as e:
