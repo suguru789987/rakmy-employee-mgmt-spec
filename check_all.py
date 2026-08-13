@@ -72,7 +72,9 @@ def c1_files():
     check('1 ファイル', '必要な資料が揃っている', not miss, f'欠落: {miss}' if miss else f'{len(need)}件')
 
     files = sorted(glob.glob('data/*'))
-    check('1 ファイル', 'データセットが19ファイル', len(files) == 19, f'{len(files)}ファイル')
+    nums = sorted(int(os.path.basename(f)[:2]) for f in files)
+    check('1 ファイル', f'データセットが{len(files)}ファイルで連番',
+          nums == list(range(1, len(files) + 1)), f'{len(files)}ファイル / 欠番{sorted(set(range(1,len(files)+1))-set(nums))}')
 
     nobom = []
     for p in glob.glob('*.tsv') + glob.glob('data/*'):
@@ -243,6 +245,8 @@ def c5_order():
     # 削除対象がマスタのみの従業員か
     used = collections.defaultdict(set)
     for f in glob.glob('data/*'):
+        if os.path.basename(f).startswith(('07_', '08_', '19_', '20_')):
+            continue
         for r in D(f):
             for k in ('従業員コード', 'スタッフコード'):
                 if r.get(k):
@@ -261,13 +265,22 @@ def c6_data():
     m = D('data/05_月次給与実績.tsv')
 
     # 参照整合
+    ext = {r['外部ID'] for r in D('data/20_外部ID対応表.tsv')}
     bad = []
     for f in glob.glob('data/*'):
+        if os.path.basename(f).startswith(('07_', '08_', '19_', '20_')):
+            continue          # 取込CSVは外部ID体系。対応表で解決する
         for i, r in enumerate(D(f), 2):
             c = r.get('従業員コード') or r.get('スタッフコード')
             if c and c not in emp and not re.match(r'EMP-(013|014|015|099)$', c):
                 bad.append(f'{os.path.basename(f)}:{i}:{c}')
     check('6 データ', '従業員コードがマスタに実在', not bad, bad[:5])
+
+    codes = {r['従業員コード'] for r in D('data/20_外部ID対応表.tsv')}
+    bad = sorted(codes - set(emp))
+    check('6 データ', '外部ID対応表の従業員コードがマスタに実在', not bad, bad[:5])
+    noid = [r['従業員コード'] for r in D('data/02_従業員マスタ.tsv') if not r.get('従業員ID')]
+    check('6 データ', '全従業員に従業員IDが付番されている', not noid, noid[:5])
 
     # 日次→月次
     agg = collections.defaultdict(lambda: {'h': 0.0, 'help': 0.0, 'n': 0.0})
