@@ -198,6 +198,10 @@
                         </div>
                       </div>
           <div class="tab-pane fade" id="daily_tab" role="tabpanel">
+  <div class="alert alert-light-primary d-flex align-items-center py-3 px-4 mb-4 d-none" id="daily_estimated_note">
+    <i class="ki-duotone ki-information-2 fs-2 text-primary me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+    <span class="fs-8">概算モードの日次は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。どの日に出勤するかは確定していないため、1日ごとの正確な額ではありません。</span>
+  </div>
                         <div class="table-responsive">
                           <table id="daily_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
                             <thead>
@@ -328,13 +332,18 @@
   }
   document.getElementById('payroll_mode').addEventListener('change', function () { applyMode(this.value); });
   applyMode(document.getElementById('payroll_mode').value);
-  // 日次タブでは給与計算モードを隠す（日別に概算モードは無い）
+  // 日次タブでも給与計算モードを使う（判断21）。概算の日次は営業日でならした額のため注記を出す
+  function syncDailyNote() {
+    var daily = document.querySelector('.nav-link.active').getAttribute('href') === '#daily_tab';
+    var estimated = document.getElementById('payroll_mode').value !== 'actual';
+    var note = document.getElementById('daily_estimated_note');
+    if (note) note.classList.toggle('d-none', !(daily && estimated));
+  }
   document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (el) {
-    el.addEventListener('shown.bs.tab', function (e) {
-      var daily = e.target.getAttribute('href') === '#daily_tab';
-      document.getElementById('payroll_mode_wrap').style.display = daily ? 'none' : '';
-    });
+    el.addEventListener('shown.bs.tab', syncDailyNote);
   });
+  document.getElementById('payroll_mode').addEventListener('change', syncDailyNote);
+  syncDailyNote();
   document.getElementById('payroll_csv_export').addEventListener('click', function () {
     var tab = document.querySelector('.nav-link.active').textContent.trim();
     var mode = document.getElementById('payroll_mode').value === 'actual' ? '実績' : '概算';

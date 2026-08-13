@@ -423,6 +423,34 @@ def c8_counts():
         bad = [x for x in old if int(x) != len(ac)]
         check('8 件数表記', f'READMEが {len(ac)}条件 と書いている', not bad, f'古い記載 {bad}')
 
+    # --- リリース判断・使い方に書いた件数（受入条件表を足せば必ず動く数字）---
+    n_l0 = lv['L0 リリース不可']
+    n_l1 = lv['L1 MVP必須']
+    n_stop = sum(1 for a in ac
+                 if a['判定レベル'].startswith('L1') and '不可' in a['不合格のときリリースは'])
+    check('8 件数表記', f'仕様書のGo条件が L0（{n_l0}件）', f'L0（{n_l0}件）' in spec,
+          re.search(r'L0（\d+件）', spec).group(0) if re.search(r'L0（\d+件）', spec) else '記載なし')
+    check('8 件数表記', f'仕様書のGo条件が L1（{n_l1}件）', f'L1（{n_l1}件）' in spec,
+          re.search(r'L1（\d+件）', spec).group(0) if re.search(r'L1（\d+件）', spec) else '記載なし')
+    check('8 件数表記', f'仕様書のGo条件が 不可{n_stop}件', f'{n_stop}件が全合格' in spec,
+          re.search(r'\d+件が全合格', spec).group(0) if re.search(r'\d+件が全合格', spec) else '記載なし')
+    check('8 件数表記', f'使い方のNo-Go条件が L0（{n_l0}件）', f'L0（{n_l0}件）' in how,
+          re.search(r'L0（\d+件）', how).group(0) if re.search(r'L0（\d+件）', how) else '記載なし')
+
+    n_rv = sum(1 for a in ac if a['確認方法'] == '操作＋実装レビュー')
+    check('8 件数表記', f'使い方が 操作＋実装レビューの{n_rv}条件 と書いている',
+          f'実装レビュー」の{n_rv}条件' in how,
+          re.search(r'実装レビュー」の(\d+)条件', how).group(0) if re.search(r'実装レビュー」の\d+条件', how) else '記載なし')
+
+    # --- 判断の件数（判断記録を足せば必ず動く数字）---
+    if os.path.exists('JUDGMENT_LOG.md'):
+        jl = open('JUDGMENT_LOG.md', encoding='utf-8').read()
+        n_fix = jl.count('✅ **確定**')
+        n_open = jl.count('❌ 未確定')
+        check('8 件数表記', f'仕様書のR6が 判断{n_fix + n_open}件（確定{n_fix}・未確定{n_open}）',
+              f'判断{n_fix + n_open}件（確定{n_fix}・未確定{n_open}）' in spec,
+              re.search(r'判断\d+件[^が]*が代替', spec).group(0)[:40] if re.search(r'判断\d+件', spec) else '記載なし')
+
 
 # ============================================================ 9. 体裁
 def c9_layout():
