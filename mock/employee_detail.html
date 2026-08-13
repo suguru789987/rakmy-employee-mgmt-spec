@@ -839,10 +839,10 @@
             <!--end::Input group-->
             <!--begin::Input group-->
             <div class="row d-flex">
-              <div class="col-md-4 fv-row">
+              <div class="col-md-4 fv-row" id="expected_work_days_group">
                           <label class="fs-6 fw-semibold mb-2">想定労働日数</label>
                           <div class="input-group">
-                            <input type="number" class="form-control form-control-solid" name="expected_work_days" value="20" placeholder="日数を入力" />
+                            <input type="number" class="form-control form-control-solid" name="expected_work_days" value="21" placeholder="日数を入力" />
                             <span class="input-group-text">日/月</span>
                           </div>
                           <div class="form-text">月給の方は入力を推奨。未入力の場合は所属店舗の休業日設定から求めた営業日数を使います（店舗の営業日数のため実勤務日数と差が出ます）</div>
@@ -1151,7 +1151,17 @@
           placeholder: 'ヘルプ先店舗を選択してください'
         });
       });
-    </script>
+    
+			// 想定労働日数は月給者だけの項目（判断20）。時給のときは欄ごと隠す
+			(function(){
+				function toggleExpectedWorkDays(){
+					var v = $('#salary_type_select').val();
+					$('#expected_work_days_group').toggle(v !== 'hourly');
+				}
+				$('#salary_type_select').on('change', toggleExpectedWorkDays);
+				toggleExpectedWorkDays();
+			})();
+</script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
   </body>

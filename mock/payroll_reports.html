@@ -374,7 +374,7 @@
 <td><div class="badge badge-light-primary fw-bold">パート</div></td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,250円</td>
-<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end" data-column-mode="actual">—</td>
 <td class="text-end">18日</td>
 <td class="text-end" data-column-mode="actual">60時間</td>
 <td class="text-end" data-column-mode="actual">72時間</td>
@@ -400,7 +400,7 @@
 <td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,100円</td>
-<td class="text-end" data-column-mode="actual">18日</td>
+<td class="text-end" data-column-mode="actual">—</td>
 <td class="text-end">20日</td>
 <td class="text-end" data-column-mode="actual">80時間</td>
 <td class="text-end" data-column-mode="actual">95時間</td>
@@ -452,7 +452,7 @@
 <td><div class="badge badge-light-primary fw-bold">パート</div></td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,200円</td>
-<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end" data-column-mode="actual">—</td>
 <td class="text-end">15日</td>
 <td class="text-end" data-column-mode="actual">60時間</td>
 <td class="text-end" data-column-mode="actual">60時間</td>
@@ -478,7 +478,7 @@
 <td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,150円</td>
-<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end" data-column-mode="actual">—</td>
 <td class="text-end">16日</td>
 <td class="text-end" data-column-mode="actual">60時間</td>
 <td class="text-end" data-column-mode="actual">64時間</td>
@@ -530,7 +530,7 @@
 <td><div class="badge badge-light-primary fw-bold">パート</div></td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,300円</td>
-<td class="text-end" data-column-mode="actual">10日</td>
+<td class="text-end" data-column-mode="actual">—</td>
 <td class="text-end">12日</td>
 <td class="text-end" data-column-mode="actual">40時間</td>
 <td class="text-end" data-column-mode="actual">48時間</td>
@@ -1338,6 +1338,8 @@
 					// Set values BEFORE initializing Select2
 					$('#modal_employment_type').val(currentEmployeeData.employmentType || 'regular');
 					$('#modal_salary_type').val(currentEmployeeData.salaryType || 'monthly');
+					// 想定労働日数は月給者だけの項目（判断20）
+					$('#modal_expected_work_days_field').toggle((currentEmployeeData.salaryType || 'monthly') !== 'hourly');
 					$('#modal_transport_type').val(currentEmployeeData.transportType || 'monthly');
 
 					// Initialize Select2
@@ -1576,7 +1578,12 @@
 					});
 				});
 			});
-		</script>
+		
+				// 給与単位を変えたときも追随させる（判断20）
+				$(document).on('change', '#modal_salary_type', function(){
+					$('#modal_expected_work_days_field').toggle(this.value !== 'hourly');
+				});
+</script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

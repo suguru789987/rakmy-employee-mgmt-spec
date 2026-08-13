@@ -314,7 +314,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group - 想定労働日数-->
-                    <div class="flex-column mb-4 col-lg-3">
+                    <div class="flex-column mb-4 col-lg-3" id="expected_work_days_group">
                       <label class="col-form-label text-gray-600 fw-bold fs-8">想定労働日数</label>
                       <div class="input-group">
                         <input type="number" class="form-control form-control-solid" name="expected_work_days" placeholder="日数を入力" />
@@ -556,7 +556,17 @@
           });
         }, 1500);
       });
-    </script>
+    
+			// 想定労働日数は月給者だけの項目（判断20）。時給のときは欄ごと隠す
+			(function(){
+				function toggleExpectedWorkDays(){
+					var v = $('#salary_type_select').val();
+					$('#expected_work_days_group').toggle(v !== 'hourly');
+				}
+				$('#salary_type_select').on('change', toggleExpectedWorkDays);
+				toggleExpectedWorkDays();
+			})();
+</script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
   </body>
