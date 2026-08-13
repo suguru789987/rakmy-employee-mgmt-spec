@@ -615,6 +615,50 @@ def c12_derived():
     check('12 派生ファイル', f'投入手順が検証プランの準備{len(prep)}行と一致',
           [g for g in got if g] == prep, f'Excel {[g for g in got if g][:3]} / TSV {prep[:3]}')
 
+    # ---- モックの表のマークアップ ----
+    # thead が入れ子だと最初の行が空になり、DataTables が
+    # 「Incorrect column count」で初期化に失敗する。初期化が止まると同じ
+    # $(document).ready 内の後続処理（給与計算モードの切替など）も動かない。
+    nest, mismatch = [], []
+    for f in sorted(glob.glob('mock/*.html')):
+        h = open(f, encoding='utf-8').read()
+        for m in re.finditer(r'<thead>[\s\S]*?</thead>', h):
+            if '<thead>' in m.group(0)[7:]:
+                nest.append(os.path.basename(f))
+        for m in re.finditer(r'<table[^>]*id="([^"]+)"[\s\S]*?</table>', h):
+            seg = m.group(0)
+            if '</thead>' not in seg:
+                continue
+            nth = len(re.findall(r'<th[\s>]', seg[:seg.index('</thead>')]))
+            ntd = {len(re.findall(r'<td[\s>]', r))
+                   for r in re.findall(r'<tr[^>]*>[\s\S]*?</tr>', seg[seg.index('</thead>'):])
+                   if '<td' in r}
+            if nth and ntd and {nth} != ntd:
+                mismatch.append(f'{os.path.basename(f)}#{m.group(1)} th={nth} td={sorted(ntd)}')
+    check('7 ヘルプ', 'モックの thead が入れ子になっていない', not nest, sorted(set(nest)))
+    check('7 ヘルプ', 'モックの表で見出しとデータの列数が一致', not mismatch, mismatch[:4])
+
+    # 給与実績の3画面で、概算モードに残す列がそろっている（判断22）
+    KEEP = {'名前', '従業員ページ', '従業員設定', '従業員コード', '年月', '日時', '雇用区分',
+            '所属店舗', '給与単位', '単位給与額', '想定労働日数', '想定労働時間',
+            '想定勤務時間', 'みなし労働時間', 'みなし残業時間', '想定給与'}
+    bad = []
+    for f in ['mock/payroll_reports.html', 'mock/employee_detail.html',
+              'mock/employee_payroll_detail.html']:
+        h = open(f, encoding='utf-8').read()
+        for tab in ['monthly_tab', 'daily_tab']:
+            j = h.find(f'id="{tab}"')
+            if j < 0:
+                continue
+            seg = h[j:h.index('</thead>', j)]
+            for tag, name in re.findall(r'(<th(?![a-z])[^>]*>)(?:<[^>]+>)*([^<]+)', seg):
+                nm = name.strip()
+                if not nm:
+                    continue
+                if (nm not in KEEP) != ('actual' in tag):
+                    bad.append(f'{os.path.basename(f)}/{tab}/{nm}')
+    check('7 ヘルプ', '概算モードで残す列が3画面6タブで同じ（判断22）', not bad, bad[:6])
+
     # ビューアが参照するファイルの実在
     bad = []
     for f in glob.glob('*.html'):
