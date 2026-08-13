@@ -1170,39 +1170,7 @@
 				// ツールチップ（判断22・24の補足文）
 				$('[data-bs-toggle="tooltip"]').tooltip();
 
-				// Save employee setting button handler
-								});
 
-				// Number input formatting for modal
-				$('#employee_setting_modal .number-input').each(function() {
-					var input = this;
-					var previousValue = '';
-					$(input).on('input', function(e) {
-						var rawValue = this.value.replace(/[^\d]/g, '');
-						if (!rawValue) {
-							this.value = '';
-							previousValue = '';
-							return;
-						}
-						try {
-							var formattedValue = Number(rawValue).toLocaleString();
-							this.value = formattedValue;
-							previousValue = formattedValue;
-						} catch (err) {
-							this.value = previousValue;
-						}
-					});
-					$(input).on('focus', function() {
-						var rawValue = this.value.replace(/,/g, '');
-						this.value = rawValue;
-					});
-					$(input).on('blur', function() {
-						if (this.value) {
-							var rawValue = this.value.replace(/,/g, '');
-							this.value = Number(rawValue).toLocaleString();
-						}
-					});
-				});
 			});
 		
 

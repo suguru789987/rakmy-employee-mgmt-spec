@@ -10,7 +10,7 @@
   仕様書 / 受入条件表（定義・確認表）/ 検証プラン / 検証データセット / ヘルプページ / 使い方
   それぞれの TSV・Excel・Markdown と、デスクトップの配布物
 """
-import csv, re, os, glob, math, collections, sys
+import csv, re, os, glob, math, collections, sys, shutil
 
 try:
     import openpyxl
@@ -718,6 +718,30 @@ def c12_derived():
             if nth and ntd and {nth} != ntd:
                 mismatch.append(f'{os.path.basename(f)}#{m.group(1)} th={nth} td={sorted(ntd)}')
     check('7 ヘルプ', 'モックの thead が入れ子になっていない', not nest, sorted(set(nest)))
+
+    # インラインJavaScriptに構文エラーが無いか。1つでもあるとその <script> の
+    # 処理が丸ごと動かない（DataTablesの初期化失敗と同じ壊れ方）。
+    import subprocess
+    import tempfile
+    bad = []
+    if shutil.which('node'):
+        for f in sorted(glob.glob('mock/*.html')):
+            h = open(f, encoding='utf-8').read()
+            for i, blk in enumerate(re.findall(r'<script(?![^>]*src=)[^>]*>([\s\S]*?)</script>', h)):
+                if not blk.strip():
+                    continue
+                with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False,
+                                                 encoding='utf-8') as tf:
+                    tf.write(blk)
+                    tmp = tf.name
+                r = subprocess.run(['node', '--check', tmp], capture_output=True, text=True)
+                os.unlink(tmp)
+                if r.returncode:
+                    msg = [x for x in r.stderr.split('\n') if 'Error' in x]
+                    bad.append(f'{os.path.basename(f)} #{i}: {msg[0][:60] if msg else "構文エラー"}')
+        check('7 ヘルプ', 'モックのJavaScriptに構文エラーが無い', not bad, bad[:5])
+    else:
+        check('7 ヘルプ', 'モックのJavaScriptに構文エラーが無い', True, 'node が無いため未実施')
     check('7 ヘルプ', 'モックの表で見出しとデータの列数が一致', not mismatch, mismatch[:4])
 
     # 給与実績の3画面で、概算モードに残す列がそろっている（判断22）
