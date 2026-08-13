@@ -317,10 +317,10 @@
                     <div class="flex-column mb-4 col-lg-3" id="expected_work_days_group">
                       <label class="col-form-label text-gray-600 fw-bold fs-8">想定労働日数</label>
                       <div class="input-group">
-                        <input type="number" class="form-control form-control-solid" name="expected_work_days" id="expected_work_days_input"  placeholder="20（既定）" />
+                        <input type="number" class="form-control form-control-solid" name="expected_work_days" id="expected_work_days_input"  placeholder="未入力可" />
                         <span class="input-group-text">日/月</span>
                       </div>
-                      <div class="form-text fs-9">未入力でも計算されます。薄字の日数（月給は所属店舗の営業日数、時給は 所定労働時間÷8時間 の切り上げ）が使われます。週3日勤務など既定値と違う方だけ入力してください</div>
+                      <div class="form-text fs-9">時給の方は入力をおすすめします。1日の想定勤務時間（所定労働時間 ÷ 想定労働日数）が決まり、日別の想定給与が出ます。未入力だと月別は出ますが日別は「—」になります。月給の方は未入力なら所属店舗の営業日数を使います</div>
                     </div>
                     <!--end::Input group - 想定労働日数-->
                     <!--begin::Input group - 所定労働時間-->
@@ -559,14 +559,10 @@
     
 			// 想定労働日数の既定値を薄字で出す（判断24）。保存はしない
 			(function () {
-				function defaultWorkDays() {
-					var hourly = $('#salary_type_select').val() === 'hourly';
-					var hours = parseFloat($('#working_hours_input, #modal_working_hours, [name="working_hours"]').first().val()) || 0;
-					var business = 20;   // 所属店舗の休業日設定から求めた営業日数
-					return hourly && hours ? Math.min(business, Math.ceil(hours / 8)) : business;
-				}
 				function sync() {
-					$('#expected_work_days_input').attr('placeholder', defaultWorkDays() + '（既定）');
+					// 判断26：月給は営業日数が既定。時給に既定値は置かない（未入力なら日別を出さない）
+					var hourly = $('#salary_type_select').val() === 'hourly';
+					$('#expected_work_days_input').attr('placeholder', hourly ? '未入力可（日別は「—」）' : '20（既定＝営業日数）');
 				}
 				$('#salary_type_select, #working_hours_input, [name="working_hours"]').on('change keyup', sync);
 				sync();

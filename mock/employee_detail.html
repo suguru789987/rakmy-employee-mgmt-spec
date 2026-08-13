@@ -670,8 +670,8 @@
 <td><span class="badge badge-dark">月給</span></td>
 <td class="text-end">350,000円</td>
 <td data-column-mode="actual" class="text-end">8時間</td>
-<td class="text-end">16,591円</td>
-<td data-column-mode="actual" class="text-end">20,966円</td>
+<td class="text-end">18,250円</td>
+<td data-column-mode="actual" class="text-end">22,625円</td>
 <td data-column-mode="actual" class="text-end text-danger">+4,375円</td>
 <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
 <td data-column-mode="actual" class="text-end">6時間</td>
@@ -687,8 +687,8 @@
 <td><span class="badge badge-dark">月給</span></td>
 <td class="text-end">350,000円</td>
 <td data-column-mode="actual" class="text-end">9時間</td>
-<td class="text-end">16,591円</td>
-<td data-column-mode="actual" class="text-end">19,325円</td>
+<td class="text-end">18,250円</td>
+<td data-column-mode="actual" class="text-end">20,984円</td>
 <td data-column-mode="actual" class="text-end text-danger">+2,734円</td>
 <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
 <td data-column-mode="actual" class="text-end">9時間</td>
@@ -704,8 +704,8 @@
 <td><span class="badge badge-dark">月給</span></td>
 <td class="text-end">350,000円</td>
 <td data-column-mode="actual" class="text-end">8時間</td>
-<td class="text-end">16,591円</td>
-<td data-column-mode="actual" class="text-end">25,341円</td>
+<td class="text-end">18,250円</td>
+<td data-column-mode="actual" class="text-end">27,000円</td>
 <td data-column-mode="actual" class="text-end text-danger">+8,750円</td>
 <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
 <td data-column-mode="actual" class="text-end">4時間</td>
@@ -721,8 +721,8 @@
 <td><span class="badge badge-dark">月給</span></td>
 <td class="text-end">350,000円</td>
 <td data-column-mode="actual" class="text-end">8時間</td>
-<td class="text-end">16,591円</td>
-<td data-column-mode="actual" class="text-end">16,591円</td>
+<td class="text-end">18,250円</td>
+<td data-column-mode="actual" class="text-end">18,250円</td>
 <td data-column-mode="actual" class="text-end">0円</td>
 <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
 <td data-column-mode="actual" class="text-end">8時間</td>
@@ -738,8 +738,8 @@
 <td><span class="badge badge-dark">月給</span></td>
 <td class="text-end">350,000円</td>
 <td data-column-mode="actual" class="text-end">10時間</td>
-<td class="text-end">16,591円</td>
-<td data-column-mode="actual" class="text-end">26,435円</td>
+<td class="text-end">18,250円</td>
+<td data-column-mode="actual" class="text-end">28,094円</td>
 <td data-column-mode="actual" class="text-end text-danger">+9,844円</td>
 <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
 <td data-column-mode="actual" class="text-end">8時間</td>
@@ -874,10 +874,10 @@
               <div class="col-md-4 fv-row" id="expected_work_days_group">
                           <label class="fs-6 fw-semibold mb-2">想定労働日数</label>
                           <div class="input-group">
-                            <input type="number" class="form-control form-control-solid" name="expected_work_days" id="expected_work_days_input"  placeholder="20（既定）" />
+                            <input type="number" class="form-control form-control-solid" name="expected_work_days" id="expected_work_days_input"  placeholder="未入力可" />
                             <span class="input-group-text">日/月</span>
                           </div>
-                          <div class="form-text">未入力でも計算されます。薄字の日数（月給は所属店舗の営業日数、時給は 所定労働時間÷8時間 の切り上げ）が使われます。週3日勤務など既定値と違う方だけ入力してください</div>
+                          <div class="form-text">時給の方は入力をおすすめします。1日の想定勤務時間（所定労働時間 ÷ 想定労働日数）が決まり、日別の想定給与が出ます。未入力だと月別は出ますが日別は「—」になります。月給の方は未入力なら所属店舗の営業日数を使います</div>
                         </div>
                         <div class="d-flex flex-column col-6">
                 <label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">所定労働時間</label>
@@ -1170,14 +1170,10 @@
     
 			// 想定労働日数の既定値を薄字で出す（判断24）。保存はしない
 			(function () {
-				function defaultWorkDays() {
-					var hourly = $('#salary_type_select').val() === 'hourly';
-					var hours = parseFloat($('#working_hours_input, #modal_working_hours, [name="working_hours"]').first().val()) || 0;
-					var business = 20;   // 所属店舗の休業日設定から求めた営業日数
-					return hourly && hours ? Math.min(business, Math.ceil(hours / 8)) : business;
-				}
 				function sync() {
-					$('#expected_work_days_input').attr('placeholder', defaultWorkDays() + '（既定）');
+					// 判断26：月給は営業日数が既定。時給に既定値は置かない（未入力なら日別を出さない）
+					var hourly = $('#salary_type_select').val() === 'hourly';
+					$('#expected_work_days_input').attr('placeholder', hourly ? '未入力可（日別は「—」）' : '20（既定＝営業日数）');
 				}
 				$('#salary_type_select, #working_hours_input, [name="working_hours"]').on('change keyup', sync);
 				sync();
