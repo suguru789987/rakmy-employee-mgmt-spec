@@ -382,11 +382,13 @@
                     <!--begin::Card title-->
                     <div class="card-title mt-2 mt-lg-4">
                       <h3 class="fw-bolder me-2 fs-5">設定変更履歴</h3>
+<span class="text-muted fs-8">直近3件を表示しています。黄色は前の設定から変わった項目です</span>
                     </div>
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
-                      <button type="button" class="btn btn-sm btn-primary" id="setting_history_csv_export">
+                      <a href="employee_payroll_histories.html?employee=EMP-001" class="btn btn-sm btn-light-primary me-2" id="setting_history_view_all"><i class="ki-outline ki-eye fs-5 me-1"></i>すべての履歴</a>
+<button type="button" class="btn btn-sm btn-primary" id="setting_history_csv_export">
                         <i class="ki-outline ki-file-down fs-5 me-1"></i>CSVエクスポート
                       </button>
                     </div>
@@ -398,39 +400,39 @@
                     <div class="table-responsive">
                       <table id="setting_history_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
                         <thead>
+<thead>
                           <tr class="fw-bold fs-8 text-gray-500 text-nowrap">
                             <th class="min-w-100px pt-5">変更反映日時</th>
-                            <th class="min-w-75px pt-5">雇用区分</th>
-                            <th class="min-w-50px pt-5">給与単位</th>
-                            <th class="min-w-75px pt-5 text-end">単位給与額</th>
-                            <th class="min-w-50px pt-5">交通費単位</th>
-                            <th class="min-w-75px pt-5 text-end">単位交通費</th>
-                            <th class="min-w-75px pt-5 text-end">所定労働時間</th>
-                            <th class="min-w-75px pt-5 text-end">みなし残業時間</th>
-                            <th class="min-w-175px pt-5">所属店舗</th>
-                            <th class="min-w-175px pt-5">ヘルプ先店舗</th>
-                            <th class="min-w-50px pt-5">ステータス</th>
-                            <th class="min-w-100px pt-5">編集日時</th>
-                            <th class="min-w-100px pt-5">変更ソース</th>
-                            <th class="min-w-75px pt-5 text-center">操作</th>
-                          </tr>
-                        </thead>
+<th class="min-w-50px pt-5">ステータス</th>
+<th class="min-w-75px pt-5">雇用区分</th>
+<th class="min-w-50px pt-5">給与単位</th>
+<th class="min-w-75px pt-5 text-end">単位給与額</th>
+<th class="min-w-50px pt-5">交通費単位</th>
+<th class="min-w-75px pt-5 text-end">単位交通費</th>
+<th class="min-w-75px pt-5 text-end">所定労働時間</th>
+<th class="min-w-75px pt-5 text-end">みなし残業時間</th>
+<th class="min-w-175px pt-5">所属店舗</th>
+<th class="min-w-175px pt-5">ヘルプ先店舗</th>
+<th class="min-w-100px pt-5">編集日時</th>
+<th class="min-w-100px pt-5">変更ソース</th>
+<th class="min-w-75px pt-5 text-center">操作</th>
+</thead>
                         <tbody class="text-gray-600 fw-bold">
-                          <tr>
-                            <td>2024/12/01 00:00</td>
-                            <td><span class="badge badge-light-primary">正社員</span></td>
-                            <td><span class="badge badge-dark">月給</span></td>
-                            <td class="text-end">¥350,000</td>
-                            <td><span class="badge badge-light">月額</span></td>
-                            <td class="text-end">¥15,000</td>
-                            <td class="text-end">160時間</td>
-                            <td class="text-end">30時間</td>
-                            <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
-                            <td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
-                            <td><span class="badge badge-light-primary">適用中</span></td>
-                            <td>2024/11/28 14:30</td>
-                            <td><span class="badge badge-light">ユーザー操作</span></td>
-                            <td class="text-center">
+<tr style="box-shadow:inset 3px 0 0 #50CD89;">
+<td>2025/01/01 00:00</td>
+<td><span class="badge badge-secondary">予約中</span></td>
+<td><span class="badge badge-light-primary">正社員</span></td>
+<td><span class="badge badge-dark">月給</span></td>
+<td class="text-end" data-changed="1" style="background:#FFF8E1;">¥380,000</td>
+<td><span class="badge badge-light">月額</span></td>
+<td class="text-end" data-changed="1" style="background:#FFF8E1;">¥18,000</td>
+<td class="text-end">160時間</td>
+<td class="text-end">30時間</td>
+<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+<td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
+<td>2024/12/15 09:00</td>
+<td><span class="badge badge-light">ユーザー操作</span></td>
+<td class="text-center">
                               <div class="d-flex justify-content-center gap-1">
                                 <button type="button" class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_setting" title="編集">
                                   <i class="ki-outline ki-pencil fs-5"></i>
@@ -440,22 +442,22 @@
                                 </button>
                               </div>
                             </td>
-                          </tr>
-                          <tr>
-                            <td>2024/10/01 00:00</td>
-                            <td><span class="badge badge-light-primary">正社員</span></td>
-                            <td><span class="badge badge-dark">月給</span></td>
-                            <td class="text-end">¥320,000</td>
-                            <td><span class="badge badge-light">月額</span></td>
-                            <td class="text-end">¥12,000</td>
-                            <td class="text-end">160時間</td>
-                            <td class="text-end">20時間</td>
-                            <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
-                            <td><span class="badge badge-light">ラクミーフレッシュ青山店</span></td>
-                            <td><span class="badge badge-light-danger">過去</span></td>
-                            <td>2024/09/25 10:15</td>
-                            <td><span class="badge badge-light">King of Time</span></td>
-                            <td class="text-center">
+</tr>
+<tr>
+<td>2024/12/01 00:00</td>
+<td><span class="badge badge-light-primary">適用中</span></td>
+<td><span class="badge badge-light-primary">正社員</span></td>
+<td><span class="badge badge-dark">月給</span></td>
+<td class="text-end" data-changed="1" style="background:#FFF8E1;">¥350,000</td>
+<td><span class="badge badge-light">月額</span></td>
+<td class="text-end" data-changed="1" style="background:#FFF8E1;">¥15,000</td>
+<td class="text-end">160時間</td>
+<td class="text-end" data-changed="1" style="background:#FFF8E1;">30時間</td>
+<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+<td data-changed="1" style="background:#FFF8E1;"><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
+<td>2024/11/28 14:30</td>
+<td><span class="badge badge-light">ユーザー操作</span></td>
+<td class="text-center">
                               <div class="d-flex justify-content-center gap-1">
                                 <button type="button" class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_setting" title="編集">
                                   <i class="ki-outline ki-pencil fs-5"></i>
@@ -465,22 +467,22 @@
                                 </button>
                               </div>
                             </td>
-                          </tr>
-                          <tr>
-                            <td>2025/01/01 00:00</td>
-                            <td><span class="badge badge-light-primary">正社員</span></td>
-                            <td><span class="badge badge-dark">月給</span></td>
-                            <td class="text-end">¥380,000</td>
-                            <td><span class="badge badge-light">月額</span></td>
-                            <td class="text-end">¥18,000</td>
-                            <td class="text-end">160時間</td>
-                            <td class="text-end">30時間</td>
-                            <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
-                            <td><div class="d-flex flex-wrap gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
-                            <td><span class="badge badge-secondary">予約中</span></td>
-                            <td>2024/12/15 09:00</td>
-                            <td><span class="badge badge-light">ユーザー操作</span></td>
-                            <td class="text-center">
+</tr>
+<tr>
+<td>2024/10/01 00:00</td>
+<td><span class="badge badge-light-danger">過去</span></td>
+<td><span class="badge badge-light-primary">正社員</span></td>
+<td><span class="badge badge-dark">月給</span></td>
+<td class="text-end">¥320,000</td>
+<td><span class="badge badge-light">月額</span></td>
+<td class="text-end">¥12,000</td>
+<td class="text-end">160時間</td>
+<td class="text-end">20時間</td>
+<td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+<td><span class="badge badge-light">ラクミーフレッシュ青山店</span></td>
+<td>2024/09/25 10:15</td>
+<td><span class="badge badge-light">King of Time</span></td>
+<td class="text-center">
                               <div class="d-flex justify-content-center gap-1">
                                 <button type="button" class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_setting" title="編集">
                                   <i class="ki-outline ki-pencil fs-5"></i>
@@ -490,8 +492,8 @@
                                 </button>
                               </div>
                             </td>
-                          </tr>
-                        </tbody>
+</tr>
+</tbody>
                       </table>
                     </div>
                   </div>

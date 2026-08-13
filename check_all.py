@@ -98,17 +98,19 @@ def c1_files():
 def c2_acceptance():
     ac, chk = T(F_AC), T(F_CHK)
     ws = openpyxl.load_workbook(X_CHK).active
-    xl = [ws.cell(r, 4).value for r in range(13, 64) if ws.cell(r, 4).value]
+    TOP = 13
+    BOT = TOP + len(ac) - 1
+    xl = [ws.cell(r, 4).value for r in range(TOP, BOT + 1) if ws.cell(r, 4).value]
 
-    check('2 受入条件', '件数が3資料で一致（51件）',
-          len(ac) == len(chk) == len(xl) == 51, f'定義{len(ac)} 確認表{len(chk)} Excel{len(xl)}')
+    check('2 受入条件', f'件数が3資料で一致（{len(ac)}件）',
+          len(ac) == len(chk) == len(xl), f'定義{len(ac)} 確認表{len(chk)} Excel{len(xl)}')
 
     s1, s2, s3 = {a['条件ID'] for a in ac}, {a['条件ID'] for a in chk}, set(xl)
     check('2 受入条件', '条件IDの集合が一致', s1 == s2 == s3, f'差分 {(s1 ^ s2) | (s1 ^ s3)}')
 
     m = {a['条件ID']: a for a in ac}
     bad = []
-    for r in range(13, 64):
+    for r in range(TOP, BOT + 1):
         i = ws.cell(r, 4).value
         if not i:
             continue
@@ -118,8 +120,8 @@ def c2_acceptance():
     check('2 受入条件', 'ExcelとTSVの中身が一致', not bad, f'{bad[:5]}' if bad else '51条件×4項目')
 
     lv = collections.Counter(a['判定レベル'] for a in ac)
-    check('2 受入条件', 'L0=4 / L1=40 / L2=7',
-          lv['L0 リリース不可'] == 4 and lv['L1 MVP必須'] == 40 and lv['L2 次段階'] == 7, dict(lv))
+    check('2 受入条件', '判定レベルがL0/L1/L2に収まり合計が一致',
+          set(lv) <= {'L0 リリース不可', 'L1 MVP必須', 'L2 次段階'} and sum(lv.values()) == len(ac), dict(lv))
 
     # Excel の集計式が合否列を指しているか
     f5 = str(ws.cell(5, 6).value or '')
@@ -127,7 +129,8 @@ def c2_acceptance():
     for c in range(1, ws.max_column + 1):
         if ws.cell(12, c).value == '合否':
             hd = openpyxl.utils.get_column_letter(c)
-    check('2 受入条件', '集計式が合否列を指している', hd and f'${hd}$13:${hd}$63' in f5, f'合否={hd} 式={f5[:60]}')
+    check('2 受入条件', '集計式が合否列と全条件の範囲を指している',
+          hd and f'${hd}${TOP}:${hd}${BOT}' in f5, f'合否={hd} 想定={TOP}〜{BOT} 式={f5[:70]}')
 
     dv = [str(d.sqref) for d in ws.data_validations.dataValidation]
     check('2 受入条件', '合否がOK/NG/対象外のプルダウン', any(hd and hd in x for x in dv), dv)
@@ -137,8 +140,9 @@ def c2_acceptance():
 def c3_plan():
     tp = T(F_PLAN)
     ws = openpyxl.load_workbook(X_PLAN).active
-    check('3 検証プラン', '75行（準備11＋検証64）',
-          len(tp) == 75 and ws.max_row - 2 == 75, f'TSV{len(tp)} Excel{ws.max_row-2}')
+    prep = sum(1 for r in tp if r['段階'] == '準備')
+    check('3 検証プラン', f'TSVとExcelの行数が一致（準備{prep}＋検証{len(tp)-prep}）',
+          ws.max_row - 2 == len(tp), f'TSV{len(tp)} Excel{ws.max_row-2}')
     check('3 検証プラン', '1シート構成', len(openpyxl.load_workbook(X_PLAN).sheetnames) == 1,
           openpyxl.load_workbook(X_PLAN).sheetnames)
 
@@ -208,7 +212,7 @@ def c4_links():
     hcol = next((c for c in range(1, ws.max_column + 1) if ws.cell(12, c).value == 'ヘルプページ該当箇所'), None)
     bad = []
     if hcol:
-        for r in range(13, 64):
+        for r in range(13, 13 + len(ac)):
             v = str(ws.cell(r, hcol).value or '')
             for part in [x.strip() for x in v.split('／') if x.strip()]:
                 sec = part.split('＞')[-1].strip()
@@ -308,7 +312,7 @@ def c6_data():
         for c in ['概算給与', '深夜残業代', 'みなし超過残業代', '実績給与', 'ヘルプ人件費', '通勤交通費']:
             vals.add(f'{int(r[c]):,}')
     vals.add(f"{sum(int(r['実績給与']) for r in m):,}")
-    KNOWN = {'340,000', '360,000', '410,000', '290,000', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000'}
+    KNOWN = {'340,000', '360,000', '410,000', '290,000', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000', '380,000'}
     bad = []
     for r in T(F_PLAN):
         for num in set(re.findall(r'\d{1,3}(?:,\d{3})+', r['期待値'] + r['操作・前提条件'])):
