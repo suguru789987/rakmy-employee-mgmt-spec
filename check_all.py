@@ -334,6 +334,34 @@ def c6_data():
                 bad.append(f'{k}:深夜残業代')
     check('6 データ', '確定した算式で全行を再現できる（交通費込み）', not bad, bad[:5])
 
+    # 想定労働日数の既定値（判断24）。入力があれば既定値と一致していなくてよい
+    bad = []
+    for e in emp.values():
+        if not e['想定労働日数']:
+            continue
+        if e['給与単位'] == '時給':
+            want = math.ceil(int(e['所定労働時間']) / 8)
+            if int(e['想定労働日数']) > 20:
+                bad.append(f"{e['従業員コード']}:営業日数20を超える")
+        else:
+            want = None
+        if want is not None and int(e['想定労働日数']) != want:
+            bad.append(f"{e['従業員コード']}:想定労働日数{e['想定労働日数']}≠既定{want}（上書きなら意図を備考へ）")
+    check('6 データ', '時給者の想定労働日数が 所定労働時間÷8 の切り上げ（判断24）', not bad, bad[:5])
+
+    # 概算給与＝基本給の想定＋所属店舗の交通費（判断23）
+    bad = []
+    for r in m:
+        e = emp[r['従業員コード']]
+        days_ = int(r['想定労働日数'])
+        base = int(e['単位給与額']) if e['給与単位'] == '月給' else int(e['単位給与額']) * int(e['所定労働時間'])
+        fare = int(e['単位交通費']) if e['交通費単位'] == '月額' else int(e['単位交通費']) * days_
+        if int(r['概算給与']) != base + fare:
+            bad.append(f"{r['従業員コード']}:概算給与({r['概算給与']}≠{base + fare})")
+        if int(r['給与実績差分']) != int(r['実績給与']) - int(r['概算給与']):
+            bad.append(f"{r['従業員コード']}:給与実績差分")
+    check('6 データ', '概算給与＝基本給の想定＋所属店舗の交通費（判断23）', not bad, bad[:5])
+
     # 検証プランの金額が data/05 と矛盾しないか
     vals = set()
     for r in m:

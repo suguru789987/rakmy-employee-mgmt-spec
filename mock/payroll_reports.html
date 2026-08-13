@@ -1027,10 +1027,10 @@
 							<div class="d-flex flex-column col-6" id="modal_expected_work_days_field">
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">想定労働日数</label>
 								<div class="input-group">
-									<input type="number" class="form-control form-control-solid fs-6" id="modal_expected_work_days" name="expected_work_days" value="21">
+									<input type="number" class="form-control form-control-solid fs-6" id="modal_expected_work_days" name="expected_work_days" placeholder="20（既定）">
 									<span class="input-group-text border-0 bg-gray-100">日/月</span>
 								</div>
-								<div class="form-text fs-8">入力を推奨します。日給・日次の想定給与の計算と、日額交通費の月次換算に使います。未入力の場合は所属店舗の休業日設定から求めた営業日数を使います</div>
+								<div class="form-text fs-8">未入力でも計算されます。薄字の日数（月給は所属店舗の営業日数、時給は 所定労働時間÷8時間 の切り上げ）が使われます。週3日勤務など既定値と違う方だけ入力してください</div>
 							</div>
 							<div class="d-flex flex-column col-6">
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所定労働時間</label>
@@ -1334,6 +1334,14 @@
 					// Set values BEFORE initializing Select2
 					$('#modal_employment_type').val(currentEmployeeData.employmentType || 'regular');
 					$('#modal_salary_type').val(currentEmployeeData.salaryType || 'monthly');
+					// 想定労働日数の既定値を薄字で出す（判断24）
+					(function () {
+						var hourly = (currentEmployeeData.salaryType || 'monthly') === 'hourly';
+						var hours = parseFloat(currentEmployeeData.workingHours) || 0;
+						var business = 20;
+						var d = hourly && hours ? Math.min(business, Math.ceil(hours / 8)) : business;
+						$('#modal_expected_work_days').val('').attr('placeholder', d + '（既定）');
+					})();
 					$('#modal_transport_type').val(currentEmployeeData.transportType || 'monthly');
 
 					// Initialize Select2
