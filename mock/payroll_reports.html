@@ -1022,6 +1022,22 @@
 							</div>
 						</div>
 						<!--end::Input group-->
+						<!--begin::Input group - 適用日付（判断32）-->
+						<div class="row mb-6">
+							<div class="d-flex flex-column col-6">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">適用日付</label>
+								<div class="input-group">
+									<span class="input-group-text border-0 bg-gray-100"><i class="ki-outline ki-calendar fs-4"></i></span>
+									<input type="text" class="form-control form-control-solid fs-6" id="modal_apply_date" name="apply_date" value="2026/06/26" autocomplete="off" placeholder="YYYY/MM/DD">
+								</div>
+								<div class="form-text fs-8">未来日＝予約／当日・過去＝即時反映。締め済み期間の日付は警告が出て反映されません</div>
+							</div>
+						</div>
+						<div class="alert alert-light-warning d-flex align-items-center py-3 px-4 mb-6 d-none" id="modal_shime_warning">
+							<i class="ki-duotone ki-information-2 fs-2 text-warning me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+							<span class="fs-8">締め済み期間の日付です。この日付では反映されません。締め済み期間の翌日以降に直すか、締めを解除してください。</span>
+						</div>
+						<!--end::Input group - 適用日付-->
 						<!--begin::Input group - 所定労働時間 & みなし残業時間-->
 						<div class="row d-none" id="modal_regular_employee_fields">
 							<div class="d-flex flex-column col-6" id="modal_expected_work_days_field">
@@ -1580,6 +1596,21 @@
 				});
 			});
 		
+
+				// 適用日付（判断32）。従業員詳細と同じ規則で、締め済み期間なら警告を出す
+				(function () {
+					var SHIME_END = '2026-05-31';   // 締め済み期間の末日
+					function toDate(v) { return new Date((v || '').replace(/\//g, '-')); }
+					function sync() {
+						var d = toDate($('#modal_apply_date').val());
+						$('#modal_shime_warning').toggleClass('d-none', !(d && d <= new Date(SHIME_END)));
+					}
+					$(document).on('change keyup', '#modal_apply_date', sync);
+					$('#employee_setting_modal').on('shown.bs.modal', sync);
+					if (window.flatpickr) {
+						flatpickr('#modal_apply_date', { dateFormat: 'Y/m/d', locale: 'ja', onChange: sync });
+					}
+				})();
 </script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
