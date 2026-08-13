@@ -562,8 +562,58 @@ def c12_derived():
     html = open('20260805_従業員管理_05_ヘルプページ.html', encoding='utf-8').read()
     m = re.search(r'<script type="text/plain" id="src">([\s\S]*?)</script>', html)
     embedded = m.group(1) if m else ''
-    miss = [h for h in heads if h not in embedded]
-    check('12 派生ファイル', 'ヘルプHTMLが最新のmdを埋め込んでいる', bool(m) and not miss, f'欠落 {miss[:5]}')
+    # 見出しだけでなく本文まるごとを比べる。見出しが変わらないまま本文が古くなる
+    # ことが実際に起きたため（2026-08-13）。
+    check('12 派生ファイル', 'ヘルプHTMLの埋め込みがmdと一字一句同じ',
+          bool(m) and embedded.strip() == body.strip(),
+          f'md {len(body.strip())}文字 ／ HTML {len(embedded.strip())}文字'
+          if m else 'src が無い')
+
+    # ヘルプExcelも本文まるごとで比べる（見出し一致だけでは古さを検出できない）
+    flat = '\n'.join(str(ws.cell(r, c).value or '')
+                     for r in range(1, ws.max_row + 1)
+                     for c in range(1, 4))
+    plain = [re.sub(r'\*\*(.+?)\*\*', r'\1', l).strip()
+             for l in body.split('\n')
+             if l.strip() and not l.startswith('|') and not l.startswith('#')]
+    miss = [l for l in plain if l.lstrip('> ') not in flat]
+    check('12 派生ファイル', 'ヘルプExcelの本文がmdと一致', not miss,
+          f'{len(plain) - len(miss)}/{len(plain)}行 欠落例 {miss[:2]}')
+
+    # 撮影の点数が md の 📸 と一致するか（本文とExcelで数が食い違っていた）
+    shots = re.findall(r'📸 \*\*(.+?)\*\*｜', body)
+    wbh = openpyxl.load_workbook(X_HELP)
+    ok = ('撮影一覧' in wbh.sheetnames
+          and f'（{len(shots)}点）' in str(wbh['撮影一覧'].cell(1, 1).value or ''))
+    check('12 派生ファイル', f'撮影一覧が {len(shots)}点', ok,
+          str(wbh['撮影一覧'].cell(1, 1).value or '')[:40] if '撮影一覧' in wbh.sheetnames else 'シートが無い')
+
+    # ---- 検証データセットExcel（data/ と検証プランの写し）----
+    X_DATA = '20260805_従業員管理_04_検証データセット.xlsx'
+    wbd = openpyxl.load_workbook(X_DATA)
+    files = sorted(f for f in os.listdir('data') if f.endswith(('.tsv', '.csv')))
+    miss = [f for f in files if os.path.splitext(f)[0] not in wbd.sheetnames]
+    check('12 派生ファイル', f'検証データセットExcelに data/ の{len(files)}件が揃う',
+          not miss, f'シートが無い: {miss}')
+    bad = []
+    for f in files:
+        nm = os.path.splitext(f)[0]
+        if nm not in wbd.sheetnames:
+            continue
+        d = '\t' if f.endswith('.tsv') else ','
+        with open(os.path.join('data', f), encoding='utf-8-sig', newline='') as fh:
+            rows = list(csv.reader(fh, delimiter=d))
+        wsd = wbd[nm]
+        hdr = [str(c.value) for c in wsd[3] if c.value is not None]
+        if hdr != rows[0] or wsd.max_row - 3 != len(rows) - 1:
+            bad.append(nm)
+    check('12 派生ファイル', '検証データセットExcelの列・行数が data/ と一致',
+          not bad, f'ずれ: {bad}')
+    prep = [r['検証ID'] for r in T(F_PLAN) if r['段階'] == '準備']
+    got = [str(wbd['01_投入手順'].cell(r, 1).value or '')
+           for r in range(4, wbd['01_投入手順'].max_row + 1)]
+    check('12 派生ファイル', f'投入手順が検証プランの準備{len(prep)}行と一致',
+          [g for g in got if g] == prep, f'Excel {[g for g in got if g][:3]} / TSV {prep[:3]}')
 
     # ビューアが参照するファイルの実在
     bad = []
