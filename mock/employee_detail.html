@@ -213,6 +213,16 @@
                       <!--end::Col-->
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group - 在籍状態（判断31）-->
+                    <div class="flex-column mb-4 col-lg-3">
+                      <label class="col-form-label text-gray-600 fw-bold fs-8 required">在籍状態</label>
+                      <select name="employment_status" id="employment_status_select" class="form-select form-select-solid">
+                        <option value="active" selected>在籍</option>
+                        <option value="retired">退職</option>
+                      </select>
+                      <div class="form-text fs-9">退職にすると従業員一覧から外れます。過去の実績と設定変更履歴はそのまま残ります</div>
+                    </div>
+                    <!--end::Input group - 在籍状態-->
                     <!--begin::Input group - 雇用区分-->
                     <div class="flex-column mb-4 col-lg-3">
                       <!--begin::Label-->

@@ -252,10 +252,28 @@ def c5_order():
                 if r.get(k):
                     used[r[k]].add(os.path.basename(f)[:2])
     safe = {e for e, s in used.items() if s == {'02'}}
+    # 「削除できないこと」を確かめるケースは対象外（判断31）
     dels = [(r['検証ID'], re.findall(r'EMP-\d+', r['操作・前提条件']))
-            for r in tp if '削除' in r['操作・前提条件'] and r['段階'] != '準備' and r['検証ID'].startswith(('T-L', 'T-D'))]
+            for r in tp
+            if '削除' in r['操作・前提条件'] and r['段階'] != '準備'
+            and r['検証ID'].startswith(('T-L', 'T-D'))
+            and '削除できない' not in r['期待値'] and '削除成功=0件' not in r['期待値']]
     bad = [(i, e) for i, es in dels for e in es if e not in safe]
     check('5 実行順', '削除対象がマスタのみの従業員', not bad, f'安全={sorted(safe)} 指定={dels}')
+
+    # 実績がある従業員を削除するケースは、削除できないことの確認でなければならない（判断31）
+    bad = []
+    for r in tp:
+        # 環境の初期化（C-000）は機能の検証ではないので対象外
+        if '削除' not in r['操作・前提条件'] or r['段階'] == '準備' \
+                or not r['検証ID'].startswith(('T-L', 'T-D')):
+            continue
+        for e in re.findall(r'EMP-\d+', r['操作・前提条件']):
+            if e in safe:
+                continue
+            if '削除できない' not in r['期待値'] and '削除成功=0件' not in r['期待値']:
+                bad.append(f"{r['検証ID']}:{e}")
+    check('5 実行順', '実績がある従業員の削除は「できないこと」の確認になっている', not bad, bad[:5])
 
 
 # ============================================================ 6. データセット
