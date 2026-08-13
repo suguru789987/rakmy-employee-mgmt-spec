@@ -93,7 +93,7 @@
                 <option value="2025-03">2025年03月</option>
               </select>
             </div>
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2" id="payroll_mode_wrap">
               <label class="fs-8 text-gray-600 nowrap">給与計算モード</label>
               <select class="form-select form-select-sm w-auto" id="payroll_mode">
                 <option value="estimate">概算モード</option>
@@ -306,12 +306,16 @@
   </div>
 </div>
 <!--end::Content-->
+  <script src="assets/plugins/global/plugins.bundle.js"></script>
+  <script src="assets/js/scripts.bundle.js"></script>
+  <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+  <script src="assets/js/select2.js"></script>
 <script>
   // 日次タブでは給与計算モードを隠す（日別に概算モードは無い）
   document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (el) {
     el.addEventListener('shown.bs.tab', function (e) {
       var daily = e.target.getAttribute('href') === '#daily_tab';
-      document.getElementById('payroll_mode').closest('div').style.display = daily ? 'none' : '';
+      document.getElementById('payroll_mode_wrap').style.display = daily ? 'none' : '';
     });
   });
   document.getElementById('payroll_csv_export').addEventListener('click', function () {
