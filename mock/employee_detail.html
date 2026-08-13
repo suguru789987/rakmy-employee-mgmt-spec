@@ -457,11 +457,8 @@
 <td><span class="badge badge-light">ユーザー操作</span></td>
 <td class="text-center">
                               <div class="d-flex justify-content-center gap-1">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_setting" title="編集">
-                                  <i class="ki-outline ki-pencil fs-5"></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-delete-setting" title="削除">
-                                  <i class="ki-outline ki-trash fs-5"></i>
+                                <button type="button" class="btn btn-icon btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal_view_setting" title="表示">
+                                  <i class="ki-outline ki-eye fs-5"></i>
                                 </button>
                               </div>
                             </td>
@@ -482,11 +479,8 @@
 <td><span class="badge badge-light">King of Time</span></td>
 <td class="text-center">
                               <div class="d-flex justify-content-center gap-1">
-                                <button type="button" class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_edit_setting" title="編集">
-                                  <i class="ki-outline ki-pencil fs-5"></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-sm btn-light-danger btn-delete-setting" title="削除">
-                                  <i class="ki-outline ki-trash fs-5"></i>
+                                <button type="button" class="btn btn-icon btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#modal_view_setting" title="表示">
+                                  <i class="ki-outline ki-eye fs-5"></i>
                                 </button>
                               </div>
                             </td>
@@ -1181,6 +1175,40 @@
 </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
-  </body>
+  
+<!--begin::設定内容の表示（読み取り専用・判断29）-->
+<div class="modal fade" tabindex="-1" id="modal_view_setting">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title fs-5">設定内容</h3>
+        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"><i class="ki-outline ki-cross fs-2"></i></div>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-light-primary d-flex align-items-center py-3 px-4 mb-4">
+          <i class="ki-duotone ki-information-2 fs-2 text-primary me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+          <span class="fs-8">すでに適用された設定のため、編集・削除はできません。直す場合は新しい適用日付で登録してください。</span>
+        </div>
+        <div class="row g-4 fs-7">
+          <div class="col-6"><div class="text-gray-600 fs-8">変更反映日時</div><div class="fw-bold">2024/12/01 00:00</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">ステータス</div><div class="fw-bold">適用中</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">雇用区分</div><div class="fw-bold">正社員</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">給与単位</div><div class="fw-bold">月給</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">単位給与額</div><div class="fw-bold">350,000円</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">交通費単位・単位交通費</div><div class="fw-bold">月額 15,000円</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">所定労働時間</div><div class="fw-bold">160時間</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">みなし残業時間</div><div class="fw-bold">30時間</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">所属店舗</div><div class="fw-bold">ラクミーフレッシュ渋谷店</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">ヘルプ先店舗</div><div class="fw-bold">ラクミーフレッシュ青山店／ラクミーフレッシュ新宿店</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">編集日時</div><div class="fw-bold">2024/11/28 14:30</div></div>
+          <div class="col-6"><div class="text-gray-600 fs-8">変更ソース</div><div class="fw-bold">ユーザー操作</div></div>
+        </div>
+      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">閉じる</button></div>
+    </div>
+  </div>
+</div>
+<!--end::設定内容の表示-->
+</body>
   <!--end::Body-->
 </html>
