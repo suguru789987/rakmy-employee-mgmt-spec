@@ -729,6 +729,33 @@ def c12_derived():
                         bad.append(f'{tag} 差分{d_} ≠ {p_}-{e_}')
     check('7 ヘルプ', '給与実績の表で行と列がそろっている', not bad, bad[:6])
 
+    # 判断27：時給者の日次には想定給与・給与実績差分を出さない
+    bad = []
+    for f in ['mock/payroll_reports.html', 'mock/employee_detail.html',
+              'mock/employee_payroll_detail.html']:
+        h = open(f, encoding='utf-8').read()
+        j = h.find('id="daily_tab"')
+        if j < 0:
+            continue
+        seg = h[j:h.index('</table>', j)]
+        hd = seg.index('</thead>')
+        names = [re.sub(r'<[^>]+>', '', mm.group(1)).strip()
+                 for mm in re.finditer(r'(?s)<th(?![a-z])[^>]*>(.*?)</th>', seg[:hd])]
+        if '給与単位' not in names:
+            continue
+        iu = names.index('給与単位')
+        for rn, r in enumerate(re.findall(r'<tr[^>]*>[\s\S]*?</tr>', seg[hd:]), 1):
+            cells = re.findall(r'<td[^>]*>[\s\S]*?</td>', r)
+            if len(cells) != len(names) or '時給' not in re.sub(r'<[^>]+>', '', cells[iu]):
+                continue
+            for col in ['想定勤務時間', '想定給与', '給与実績差分']:
+                if col not in names:
+                    continue
+                v = re.sub(r'<[^>]+>', '', cells[names.index(col)]).strip()
+                if v not in ('—', '-', ''):
+                    bad.append(f'{os.path.basename(f)}/{rn}行/{col}={v}')
+    check('7 ヘルプ', '時給者の日次に想定給与を出していない（判断27）', not bad, bad[:6])
+
     # トップページ（index.html）の件数と画面一覧
     idx = open('index.html', encoding='utf-8').read()
     ac = T(F_AC)

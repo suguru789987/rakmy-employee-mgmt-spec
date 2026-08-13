@@ -196,7 +196,7 @@
 														<option value="estimated">概算</option>
 														<option value="actual" selected>実績</option>
 													</select>
-													<span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。実績モードの想定給与列とは別の数字になります">
+													<span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。時給の方は所定労働時間どおり働く前提が入ります。店舗・全社の合計として見てください">
 														<i class="ki-duotone ki-information-2 text-gray-400 fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 													</span>
 												</div>
@@ -557,7 +557,7 @@
 											<div class="tab-pane fade" id="daily_tab" role="tabpanel">
 										<div class="alert alert-light-primary d-flex align-items-center py-3 px-4 mb-4 d-none" id="daily_estimated_note">
 											<i class="ki-duotone ki-information-2 fs-2 text-primary me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-											<span class="fs-8">概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。誰がどの日に出勤するかは確定していないため、1日ごとの正確な額ではありません。</span>
+											<span class="fs-8">概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。誰がどの日に出勤するかは確定していないため、1日ごとの正確な額ではありません。時給の方は「所定労働時間どおり働けば」という前提が入るため、そのぶん精度が落ちます。店舗・全社の合計として見てください。</span>
 										</div>
 												<!--begin::Table wrapper-->
 												<div class="table-responsive">
@@ -679,14 +679,14 @@
 <td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,250円</td>
-<td class="text-end">4時間</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual" class="text-end">0時間</td>
 <td class="text-end">-</td>
 <td data-column-mode="actual" class="text-end">-</td>
-<td class="text-end">5,533円</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">5,533円</td>
-<td data-column-mode="actual" class="text-end">0円</td>
+<td data-column-mode="actual" class="text-end">—</td>
 <td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual">-</td>
@@ -699,14 +699,14 @@
 <td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,100円</td>
-<td class="text-end">4時間</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">5時間</td>
 <td data-column-mode="actual" class="text-end text-danger fw-bold">+1時間</td>
 <td class="text-end">-</td>
 <td data-column-mode="actual" class="text-end">-</td>
-<td class="text-end">4,900円</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">8,200円</td>
-<td data-column-mode="actual" class="text-end fw-bold text-danger">+3,300円</td>
+<td data-column-mode="actual" class="text-end fw-bold">—</td>
 <td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
 <td data-column-mode="actual" class="text-end">3時間</td>
 <td data-column-mode="actual"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></td>
@@ -739,14 +739,14 @@
 <td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,200円</td>
-<td class="text-end">4時間</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual" class="text-end">0時間</td>
 <td class="text-end">-</td>
 <td data-column-mode="actual" class="text-end">-</td>
-<td class="text-end">5,800円</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">5,800円</td>
-<td data-column-mode="actual" class="text-end">0円</td>
+<td data-column-mode="actual" class="text-end">—</td>
 <td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual">-</td>
@@ -759,14 +759,14 @@
 <td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,150円</td>
-<td class="text-end">5時間</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">6時間</td>
 <td data-column-mode="actual" class="text-end text-danger fw-bold">+1時間</td>
 <td class="text-end">-</td>
 <td data-column-mode="actual" class="text-end">-</td>
-<td class="text-end">6,500円</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">9,950円</td>
-<td data-column-mode="actual" class="text-end fw-bold text-danger">+3,450円</td>
+<td data-column-mode="actual" class="text-end fw-bold">—</td>
 <td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
@@ -799,14 +799,14 @@
 <td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
 <td><div class="badge badge-light-gray fw-bold">時給</div></td>
 <td class="text-end fw-bold">1,300円</td>
-<td class="text-end">4時間</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual" class="text-end">0時間</td>
 <td class="text-end">-</td>
 <td data-column-mode="actual" class="text-end">-</td>
-<td class="text-end">6,300円</td>
+<td class="text-end">—</td>
 <td data-column-mode="actual" class="text-end">6,300円</td>
-<td data-column-mode="actual" class="text-end">0円</td>
+<td data-column-mode="actual" class="text-end">—</td>
 <td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
 <td data-column-mode="actual" class="text-end">4時間</td>
 <td data-column-mode="actual">-</td>
