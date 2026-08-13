@@ -319,11 +319,13 @@ def c6_data():
         base = int(e['単位給与額']) / float(e['所定労働時間']) if e['給与単位'] == '月給' else float(e['単位給与額'])
         shop_fare = int(e['単位交通費']) if e['交通費単位'] == '月額' else int(e['単位交通費']) * days[k]['work']
         help_fare = sum(helpfare[k].get(s, 0) * n for s, n in days[k]['help'].items())
-        want = int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代']) + shop_fare + help_fare
+        # 判断23：所属店舗の交通費は概算給与に含まれる
+        want = int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代']) + help_fare
         if int(r['実績給与']) != want:
             bad.append(f"{k}:実績給与({r['実績給与']}≠{want})")
         if float(r['総労働時間']) > 0:
-            pay = int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代'])
+            # 按分の基礎は交通費を除いた給与部分（判断14・23）
+            pay = int(r['概算給与']) - shop_fare + int(r['深夜残業代']) + int(r['みなし超過残業代'])
             hp = round(pay * float(r['ヘルプ時間']) / float(r['総労働時間'])) + help_fare
             if abs(int(r['ヘルプ人件費']) - hp) > 2:
                 bad.append(f"{k}:ヘルプ人件費({r['ヘルプ人件費']}≠{hp})")
@@ -526,8 +528,9 @@ def c11_wording():
     FORMULA = [
         ('基礎時給', ['単位給与額 ÷ 所定労働時間', '単位給与額÷所定労働時間']),
         ('実績給与', ['概算給与 ＋ 深夜残業代 ＋ みなし超過残業代', '概算給与＋深夜残業代＋みなし超過残業代']),
+        ('想定給与に所属店舗の交通費を含む', ['所属店舗の交通費', '＋ 所属店舗の交通費']),
         ('ヘルプ人件費', ['給与部分 × ヘルプ時間 ÷ 総労働時間', '給与部分×ヘルプ時間÷総労働時間']),
-        ('実績給与に交通費を含む', ['みなし超過残業代 ＋ 所属店舗の交通費', 'みなし超過残業代 ＋ **所属店舗の交通費']),
+        ('実績給与にヘルプ先の交通費を含む', ['みなし超過残業代 ＋ ヘルプ先の交通費', 'みなし超過残業代 ＋ **ヘルプ先の交通費']),
     ]
     for name, pats in FORMULA:
         ok_s = any(p in spec for p in pats)
@@ -658,6 +661,67 @@ def c12_derived():
                 if (nm not in KEEP) != ('actual' in tag):
                     bad.append(f'{os.path.basename(f)}/{tab}/{nm}')
     check('7 ヘルプ', '概算モードで残す列が3画面6タブで同じ（判断22）', not bad, bad[:6])
+
+    # 行ごとに、見出しとセルがそろっているか。列を足したときに値だけ別の位置に
+    # 入る事故が実際に起きた（金額の列に「時間」が出た）。
+    def money(x):
+        m = re.search(r'([+\-]?[\d,]+)円', re.sub(r'<[^>]+>', '', x))
+        return int(m.group(1).replace(',', '')) if m else None
+
+    bad = []
+    for f in ['mock/payroll_reports.html', 'mock/employee_detail.html',
+              'mock/employee_payroll_detail.html']:
+        h = open(f, encoding='utf-8').read()
+        for tab in ['monthly_tab', 'daily_tab']:
+            j = h.find(f'id="{tab}"')
+            if j < 0:
+                continue
+            seg = h[j:h.index('</table>', j)]
+            hd = seg.index('</thead>')
+            hs = [('actual' in m.group(1), re.sub(r'<[^>]+>', '', m.group(2)).strip())
+                  for m in re.finditer(r'(?s)(<th(?![a-z])[^>]*>)(.*?)</th>', seg[:hd])]
+            names = [n for _, n in hs]
+            for rn, r in enumerate(re.findall(r'<tr[^>]*>[\s\S]*?</tr>', seg[hd:]), 1):
+                cells = re.findall(r'<td[^>]*>[\s\S]*?</td>', r)
+                tag = f'{os.path.basename(f)}/{tab}/{rn}行'
+                if len(cells) != len(hs):
+                    bad.append(f'{tag} td={len(cells)} th={len(hs)}')
+                    continue
+                for (a, nm), c in zip(hs, cells):
+                    v = re.sub(r'<[^>]+>', '', c)
+                    if a != ('actual' in c):
+                        bad.append(f'{tag} 「{nm}」の印')
+                    if ('給与' in nm or '人件費' in nm or '残業代' in nm) and ('時間' in v or '日' in v):
+                        bad.append(f'{tag} 金額の列「{nm}」に {v.strip()[:8]}')
+                    if ('時間' in nm or '日数' in nm) and '円' in v:
+                        bad.append(f'{tag} 時間の列「{nm}」に {v.strip()[:8]}')
+                if {'想定給与', '給与', '給与実績差分'} <= set(names):
+                    e_, p_, d_ = (money(cells[names.index(k)])
+                                  for k in ['想定給与', '給与', '給与実績差分'])
+                    if None not in (e_, p_, d_) and p_ - e_ != d_:
+                        bad.append(f'{tag} 差分{d_} ≠ {p_}-{e_}')
+    check('7 ヘルプ', '給与実績の表で行と列がそろっている', not bad, bad[:6])
+
+    # トップページ（index.html）の件数と画面一覧
+    idx = open('index.html', encoding='utf-8').read()
+    ac = T(F_AC)
+    tp = T(F_PLAN)
+    lv = collections.Counter(a['判定レベル'] for a in ac)
+    n_l0, n_l1 = lv['L0 リリース不可'], lv['L1 MVP必須']
+    prep = sum(1 for r in tp if r['段階'] == '準備')
+    jl = open('JUDGMENT_LOG.md', encoding='utf-8').read()
+    n_data = len(os.listdir('data'))
+    for want, label in [(f'L0（{n_l0}件）', 'L0'), (f'L1（{n_l1}件）', 'L1'),
+                        (f'L2（{lv["L2 次段階"]}件）', 'L2'),
+                        (f'準備{prep}＋{len(tp) - prep}件', '検証プランのタグ'),
+                        (f'未確定{jl.count("❌ 未確定")}件', '未確定の判断'),
+                        (f'検証用・{n_data}ファイル', 'データセット')]:
+        check('8 件数表記', f'index.htmlが {want}', want in idx, label)
+    mocks = {os.path.basename(x) for x in glob.glob('mock/*.html')}
+    linked = set(re.findall(r'href="mock/([^"?#]+\.html)"', idx))
+    part = {'sidebar_company.html', 'header_company.html', 'index.html'}
+    check('8 件数表記', 'index.htmlが全モック画面へリンクしている',
+          not (mocks - linked - part), sorted(mocks - linked - part))
 
     # ビューアが参照するファイルの実在
     bad = []

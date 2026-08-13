@@ -53,7 +53,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       <a class="card" href="pdm-spec.html">
         <div class="ic">📘</div>
         <h2>仕様書（PdM版） <span class="tag b">SPEC</span></h2>
-        <p>全8部。9フローのケース別遷移／設計判断の理由／未確定6件／リスク登録簿／Go・No-Go基準。</p>
+        <p>全8部。9フローのケース別遷移／設計判断の理由／未確定3件／リスク登録簿／Go・No-Go基準。</p>
       </a>
       <a class="card" href="acceptance-check.html">
         <div class="ic">✅</div>
@@ -73,7 +73,7 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       <a class="card" href="acceptance.html">
         <div class="ic">📘</div>
         <h2>受入条件 定義表 <span class="tag g">AC</span></h2>
-        <p><strong>リリース判断の表。</strong>L0（4件）＝1件でも不合格なら中止／L1（36件）＝MVPの最低ライン／L2（6件）＝次リリース。実装の目安つき。</p>
+        <p><strong>リリース判断の表。</strong>L0（5件）＝1件でも不合格なら中止／L1（46件）＝MVPの最低ライン／L2（9件）＝次リリース。実装の目安つき。</p>
       </a>
       <a class="card" href="copy.html">
         <div class="ic">📋</div>
@@ -87,8 +87,8 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       </a>
       <a class="card" href="test-plan.html">
         <div class="ic">🧪</div>
-        <h2>検証プラン <span class="tag g">準備11＋49件</span></h2>
-        <p>2日間で回せる最小構成。準備11行＋検証49件で全10画面・全46受入条件をカバー。</p>
+        <h2>検証プラン <span class="tag g">準備11＋70件</span></h2>
+        <p>2日間で回せる最小構成。準備11行＋検証70件で全12画面・全60受入条件をカバー。</p>
       </a>
     </div>
   </section>
@@ -117,18 +117,21 @@ footer{color:var(--mut);font-size:12px;text-align:center;padding:30px}
       <p><a href="mock/employees.html">① 従業員一覧</a> <code>/employees</code></p>
       <p><a href="mock/employee_register.html">② 従業員登録</a> <code>/employee_register</code></p>
       <p><a href="mock/employee_detail.html">③ 従業員詳細</a> <code>/employee_detail</code></p>
-      <p><a href="mock/employee_payroll_detail.html">③ 給与実績一覧</a> <code>/employee_detail</code></p>
-      <p><a href="mock/payroll_reports.html">④ 給与実績一覧</a> <code>/payroll_reports</code></p>
-      <p><a href="mock/employee_payroll_import.html">⑥ 従業員設定インポート</a> <code>/employee_payroll_import</code></p>
-      <p><a href="mock/column_mapping_templates.html">⑦ 列マッピングテンプレート</a> <code>/column_mapping_templates</code></p>
-      <p><a href="mock/employee_payroll_histories.html">⑤ 設定変更履歴一覧</a> <code>/employee_payroll_histories</code> <span class="tag g">新規</span></p>
+      <p><a href="mock/employee_payroll_detail.html">④ 従業員別 給与実績</a> <code>/employee_payroll_detail</code> <span class="tag g">新規</span></p>
+      <p><a href="mock/payroll_reports.html">⑤ 給与実績一覧</a> <code>/payroll_reports</code></p>
+      <p><a href="mock/employee_payroll_histories.html">⑥ 設定変更履歴一覧</a> <code>/employee_payroll_histories</code> <span class="tag g">新規</span></p>
+      <p><a href="mock/employee_payroll_import.html">⑦ 設定インポート</a> <code>/employee_payroll_import</code></p>
+      <p><a href="mock/column_mapping_templates.html">⑧ 列マッピングテンプレート</a> <code>/column_mapping_templates</code></p>
+      <p><a href="mock/employee_export.html">⑨ 設定・実績エクスポート</a> <code>/employee_export</code></p>
+      <p><a href="mock/settings_data_import.html">⑩ 設定取込データ</a> <code>/settings_data_import</code></p>
+      <p><a href="mock/actual_data_import.html">⑪ 実績取込データ</a> <code>/actual_data_import</code></p>
     </div>
-    <p class="note">⑤ <code>employee_payroll_histories.html</code>（設定変更履歴一覧）は eemgt2 に未実装だったため、本仕様モックで<strong>新規作成</strong>（仕様完成・サイドバー導線追加）。<br>
+    <p class="note">⑥ <code>employee_payroll_histories.html</code>（設定変更履歴一覧）は eemgt2 に未実装だったため、本仕様モックで<strong>新規作成</strong>（仕様完成・サイドバー導線追加）。<br>
     また仕様改訂として、<strong>「更新予約」ボタンを廃止し「適用日付（カレンダー）」に統合</strong>（新規登録＝適用日付フィールド追加／詳細＝保存時に適用日付で即時/予約を判定）。これらは eemgt2 への提案差分です。</p>
   </section>
 
   <section>
-    <h3>前提入力データ（検証用・15ファイル）</h3>
+    <h3>前提入力データ（検証用・20ファイル）</h3>
     <table>
       <tr><th>#</th><th>ファイル</th><th>用途</th></tr>
       <tr><td>01</td><td><a href="data/01_店舗マスタ.tsv">店舗マスタ</a></td><td>所属/ヘルプ先店舗の選択肢（5店）</td></tr>
