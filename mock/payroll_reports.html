@@ -196,6 +196,9 @@
 														<option value="estimated">概算</option>
 														<option value="actual" selected>実績</option>
 													</select>
+													<span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。実績モードの想定給与列とは別の数字になります">
+														<i class="ki-duotone ki-information-2 text-gray-400 fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+													</span>
 												</div>
 												<div class="d-flex align-items-center gap-3">
 													<label class="fs-8 text-gray-600 nowrap">所属店舗</label>
@@ -554,6 +557,10 @@
 
 											<!--begin::Daily Tab-->
 											<div class="tab-pane fade" id="daily_tab" role="tabpanel">
+										<div class="alert alert-light-primary d-flex align-items-center py-3 px-4 mb-4 d-none" id="daily_estimated_note">
+											<i class="ki-duotone ki-information-2 fs-2 text-primary me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+											<span class="fs-8">概算モードの日別は、月の見込み額を当月の営業日でならした額です（月次の概算給与 ÷ 営業日数）。誰がどの日に出勤するかは確定していないため、1日ごとの正確な額ではありません。</span>
+										</div>
 												<!--begin::Table wrapper-->
 												<div class="table-responsive">
 													<table id="daily_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
@@ -1013,14 +1020,7 @@
 						<div class="row d-flex mb-6" id="modal_help_transport_section" style="display: none;">
 							<div class="d-flex flex-column col-12">
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">ヘルプ先交通費</label>
-								<div class="col-md-6 fv-row mb-4">
-                      <label class="fs-8 fw-semibold mb-2 text-gray-600">想定労働日数</label>
-                      <div class="input-group input-group-sm">
-                        <input type="number" class="form-control form-control-solid" name="expected_work_days" value="20" />
-                        <span class="input-group-text">日/月</span>
-                      </div>
-                    </div>
-                    <div id="modal_help_transport_list">
+<div id="modal_help_transport_list">
 									<!-- Dynamically populated by JavaScript -->
 								</div>
 							</div>
@@ -1028,6 +1028,14 @@
 						<!--end::Input group-->
 						<!--begin::Input group - 所定労働時間 & みなし残業時間-->
 						<div class="row d-none" id="modal_regular_employee_fields">
+							<div class="d-flex flex-column col-6" id="modal_expected_work_days_field">
+								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">想定労働日数</label>
+								<div class="input-group">
+									<input type="number" class="form-control form-control-solid fs-6" id="modal_expected_work_days" name="expected_work_days" value="21">
+									<span class="input-group-text border-0 bg-gray-100">日/月</span>
+								</div>
+								<div class="form-text fs-8">月給の方は入力を推奨。未入力の場合は所属店舗の休業日設定から求めた営業日数を使います（店舗の営業日数のため実勤務日数と差が出ます）</div>
+							</div>
 							<div class="d-flex flex-column col-6">
 								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所定労働時間</label>
 								<div class="input-group">
@@ -1199,6 +1207,8 @@
 
 				$('#daily_payroll_mode').on('change', function() {
 					togglePayrollMode(this.value);
+					// 概算モードの日別は営業日でならした額のため注記を出す（判断21）
+					$('#daily_estimated_note').toggleClass('d-none', this.value !== 'estimated');
 				});
 
 				// Initialize on page load
