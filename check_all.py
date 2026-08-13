@@ -379,14 +379,43 @@ def c6_data():
             bad.append(f"{r['従業員コード']}:給与実績差分")
     check('6 データ', '概算給与＝基本給の想定＋所属店舗の交通費（判断23）', not bad, bad[:5])
 
+    # 受入条件・検証プランに書いた「EMP-xxx=金額」が data/05 と一致するか。
+    # 算式を変えたあと、期待値の数字だけ古いまま残る事故が実際に起きた（判断23）。
+    # 従業員ごとに、その人のデータに存在する数字かを見る。算式が併記されていれば
+    # 導出値なので対象外（例：月中改定の 350,727＝320,000×8/22＋…＋交通費）
+    known = collections.defaultdict(set)
+    for r in D('data/02_従業員マスタ.tsv'):
+        for v in r.values():
+            if v.isdigit():
+                known[r['従業員コード']].add(int(v))
+    for r in m:
+        for v in r.values():
+            if str(v).lstrip('-').isdigit():
+                known[r['従業員コード']].add(int(v))
+    total = sum(int(r['実績給与']) for r in m)
+    bad = []
+    for src, col, rows_ in [('受入条件', '合格基準（定量）', T(F_AC)),
+                            ('確認表', '合格基準（定量）', T(F_CHK)),
+                            ('検証プラン', '期待値', T(F_PLAN))]:
+        for r in rows_:
+            txt = r.get(col, '')
+            for code, val in re.findall(r'(EMP-\d+)[＝=]([\d,]{5,})', txt):
+                v = int(val.replace(',', ''))
+                if code in known and v not in known[code] and not re.search(r'[×÷＋]', txt):
+                    bad.append(f"{src} {r.get('条件ID') or r.get('検証ID')} {code}={val}")
+    check('6 データ', '受入条件・検証プランの金額が検証データと一致', not bad, bad[:6])
+    check('6 データ', f'全社合計{total:,}円の記載が最新',
+          f'{total:,}円' in '\n'.join(r.get('合格基準（定量）', '') for r in T(F_AC)),
+          f'{total:,}円')
+
     # 検証プランの金額が data/05 と矛盾しないか
     vals = set()
     for r in m:
         for c in ['概算給与', '深夜残業代', 'みなし超過残業代', '実績給与', 'ヘルプ人件費']:
             vals.add(f'{int(r[c]):,}')
     vals.add(f"{sum(int(r['実績給与']) for r in m):,}")
-    KNOWN = {'357,600', '371,886', '334,286', '340,000', '360,000', '410,000', '290,000', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000', '380,000',
-             '280,000', '300,000', '144,000', '312,768', '332,388', '129,000', '1,561,312'}
+    KNOWN = {'357,600', '371,886', '334,286', '340,000', '360,000', '410,000', '290,000', '350,727', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000', '380,000',
+             '280,000', '300,000', '153,000', '156,000', '312,768', '332,388', '129,000', '1,561,312'}
     bad = []
     for r in T(F_PLAN):
         for num in set(re.findall(r'\d{1,3}(?:,\d{3})+', r['期待値'] + r['操作・前提条件'])):
