@@ -2,7 +2,7 @@
 <html lang="ja">
 	<!--begin::Head-->
 	<head><base href="">
-		<title>ラクミー 経営管理システム - 従業員設定履歴</title>
+		<title>ラクミー 経営管理システム - 設定変更履歴一覧</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="noindex">
@@ -35,12 +35,12 @@
 								<div class="d-flex flex-stack mobile-flex-column gap-4 mb-5">
 									<!--begin::Page title-->
 									<div class="page-title d-flex align-items-center flex-wrap mb-sm-0">
-										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center my-1">従業員設定履歴</h1>
+										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center my-1">設定変更履歴一覧</h1>
 										<span class="h-20px border-gray-300 border-start ms-5 me-4"></span>
 										<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-8 my-1">
 											<li class="breadcrumb-item text-muted"><a href="index.html" class="text-muted text-hover-primary">ホーム</a></li>
 											<li class="breadcrumb-item"><span class="bullet bg-gray-300 w-5px h-1px"></span></li>
-											<li class="breadcrumb-item text-dark">従業員設定履歴</li>
+											<li class="breadcrumb-item text-dark">設定変更履歴一覧</li>
 										</ul>
 									</div>
 									<!--end::Page title-->
@@ -334,8 +334,8 @@
 
 			// CSVエクスポート（モック）
 			$("#history_csv_export").on("click", function(){
-				if(window.Swal){ Swal.fire({ icon:"success", title:"エクスポートしました", text:"従業員設定履歴をCSVエクスポートしました", confirmButtonText:"OK" }); }
-				else { alert("従業員設定履歴をCSVエクスポートしました"); }
+				if(window.Swal){ Swal.fire({ icon:"success", title:"エクスポートしました", text:"設定変更履歴一覧をCSVエクスポートしました", confirmButtonText:"OK" }); }
+				else { alert("設定変更履歴一覧をCSVエクスポートしました"); }
 			});
 		</script>
 		<!--end::Javascript-->

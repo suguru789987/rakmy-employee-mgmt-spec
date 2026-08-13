@@ -35,7 +35,7 @@ cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 一方で、**判断そのものが変わったとき**（例：判断7の深夜割増が1.5から変わる）は、資料が三者とも同じ値で揃っていれば検査は通ってしまいます。値を直すのは人の仕事です。仕様そのものの誤りや、モックと実装のずれも同じです。
 
 ## 出所
-- `rakmy/rakmy_new_design2022` ブランチ `feature/eemgt2`（人件費実績・従業員詳細を強化した最新版）の
+- `rakmy/rakmy_new_design2022` ブランチ `feature/eemgt2`（給与実績一覧・従業員詳細を強化した最新版）の
   `docs/features/employeemgt/employee_management_system_specification_designmock.md` と
   従業員管理モックHTML（`employees.html` 他）を、**公開用に再構成**したもの。
   ※モック画面は eemgt2 の最新版を反映済み（payroll_reports 大幅更新ほか）。
@@ -72,9 +72,9 @@ cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 | 従業員一覧 | `mock/employees.html` | `/employees` |
 | 従業員登録 | `mock/employee_register.html` | `/employee_register` |
 | 従業員詳細 | `mock/employee_detail.html` | `/employee_detail` |
-| 人件費実績 | `mock/payroll_reports.html` | `/payroll_reports` |
+| 給与実績一覧 | `mock/payroll_reports.html` | `/payroll_reports` |
 | 従業員設定インポート | `mock/employee_payroll_import.html` | `/employee_payroll_import` |
-| 従業員設定履歴 | `mock/employee_payroll_histories.html` | `/employee_payroll_histories` |
+| 設定変更履歴一覧 | `mock/employee_payroll_histories.html` | `/employee_payroll_histories` |
 
 ## ガバナンス
 - 本リポは**デザインモック**。実テーブル名・実列名・顧客PIIを含まない。
