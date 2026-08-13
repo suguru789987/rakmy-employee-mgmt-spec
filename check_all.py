@@ -766,15 +766,21 @@ def c12_derived():
     bad = []
     for f in glob.glob('mock/*.html'):
         h = open(f, encoding='utf-8').read()
-        for m in re.finditer(r'<a [^>]*href="([a-z_]+\.html)"[^>]*>([\s\S]{0,200}?)</a>', h):
+        # データ行のリンク（従業員名など）は画面名と一致しなくてよい。btn クラスの導線だけ見る
+        for m in re.finditer(r'<a [^>]*class="[^"]*\bbtn\b[^"]*"[^>]*>[\s\S]{0,200}?</a>', h):
+            a = m.group(0)
+            hm = re.search(r'href="([a-z_]+\.html)(?:\?[^"]*)?"', a)
+            if not hm:
+                continue
+            m = type('M', (), {'group': staticmethod(lambda i, _a=a, _h=hm: _h.group(1) if i == 1 else re.sub(r'<[^>]+>', '', _a))})()
             tgt, label = m.group(1), re.sub(r'<[^>]+>', '', m.group(2)).strip()
             want = titles.get(tgt)
             if not want or not label or len(label) > 20:
                 continue
-            if label != want and want in label + 'へ':
+            if label in ('キャンセル', '戻る', '閉じる'):   # 動作の名前。遷移先の画面名にはしない
+                continue
+            if label != want:
                 bad.append(f'{os.path.basename(f)} → {tgt}: 「{label}」（画面名は「{want}」）')
-            elif label.endswith('へ') and label[:-1] == want:
-                bad.append(f'{os.path.basename(f)} → {tgt}: 「{label}」')
     check('7 ヘルプ', 'リンクのラベルが遷移先の画面名と一致（判断4）', not bad, bad[:6])
 
     # トップページ（index.html）の件数と画面一覧

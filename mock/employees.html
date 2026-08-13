@@ -84,7 +84,7 @@
 													<span class="path1"></span>
 													<span class="path2"></span>
 												</i>
-												CSVインポート
+												設定インポート
 											</a>
 										</div>
 										<div class="w-auto flex-md-grow-0 flex-grow-1">
@@ -130,9 +130,21 @@
 											<input type="text" class="form-control form-control-sm w-100 w-md-200px ps-11" placeholder="従業員名で検索" id="employee_search">
 										</div>
 									</div>
-									<a href="employee_register.html" class="btn btn-sm btn-primary w-auto flex-shrink-0 nowrap d-inline-flex align-items-center" id="employee_register_btn">
-										<i class="ki-duotone ki-plus fs-4 me-1"></i>従業員登録
-									</a>
+									<div class="d-flex flex-column align-items-end gap-2 flex-shrink-0">
+										<a href="employee_register.html" class="btn btn-sm btn-primary w-auto nowrap d-inline-flex align-items-center" id="employee_register_btn">
+											<i class="ki-duotone ki-plus fs-4 me-1"></i>従業員登録
+										</a>
+										<!--begin::店舗を引き継ぐ導線（判断17）-->
+										<div class="d-flex gap-2">
+											<a href="payroll_reports.html?shop=S01" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="shop_payroll_link_btn">
+												<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>給与実績一覧
+											</a>
+											<a href="employee_payroll_histories.html?shop=S01" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="shop_history_link_btn">
+												<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>設定変更履歴一覧
+											</a>
+										</div>
+										<!--end::店舗を引き継ぐ導線-->
+									</div>
 								</div>
 								<!--end::Row1-->
 								<!--begin::Row2 対象データ-->
@@ -165,12 +177,6 @@
 										</div>
 										<a href="settings_data_import.html" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="settings_data_import_btn">
 											<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>設定の取込結果
-										</a>
-<a href="payroll_reports.html?shop=S01" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="shop_payroll_link_settings_data_import_btn">
-											<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>従業員別 給与実績
-										</a>
-<a href="employee_payroll_histories.html?shop=S01" class="btn btn-sm btn-gray nowrap d-inline-flex align-items-center" id="shop_history_link_settings_data_import_btn">
-											<i class="ki-duotone ki-arrow-right fs-4 me-1"><span class="path1"></span><span class="path2"></span></i>設定変更履歴一覧
 										</a>
 									</div>
 								</div>
