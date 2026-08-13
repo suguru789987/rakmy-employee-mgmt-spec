@@ -404,7 +404,7 @@ def c7_help():
 
     FLOW = {1: ['設定インポート'], 2: ['従業員登録'], 3: ['予約'], 4: ['設定変更履歴一覧'],
             5: ['月別実績'], 6: ['締め'], 7: ['締め済み期間の翌日以降'], 8: ['設定・実績エクスポート'],
-            9: ['設定取込データ'], 10: ['実績データ取込'], 11: ['従業員設定']}
+            9: ['設定の取込結果'], 10: ['実績データ取込'], 11: ['従業員設定']}
     miss = [n for n, ks in FLOW.items() if not any(k in hp for k in ks)]
     check('7 ヘルプ', '仕様書の11フローを網羅', not miss, f'不足フロー{miss}')
 
@@ -755,6 +755,27 @@ def c12_derived():
                 if v not in ('—', '-', ''):
                     bad.append(f'{os.path.basename(f)}/{rn}行/{col}={v}')
     check('7 ヘルプ', '時給者の日次に想定給与を出していない（判断27）', not bad, bad[:6])
+
+    # 判断4：リンクのラベルは遷移先の画面名と一字一句そろえる
+    titles = {}
+    for f in glob.glob('mock/*.html'):
+        h = open(f, encoding='utf-8').read()
+        m = re.search(r'<h1[^>]*>([^<]+)</h1>', h)
+        if m:
+            titles[os.path.basename(f)] = m.group(1).strip()
+    bad = []
+    for f in glob.glob('mock/*.html'):
+        h = open(f, encoding='utf-8').read()
+        for m in re.finditer(r'<a [^>]*href="([a-z_]+\.html)"[^>]*>([\s\S]{0,200}?)</a>', h):
+            tgt, label = m.group(1), re.sub(r'<[^>]+>', '', m.group(2)).strip()
+            want = titles.get(tgt)
+            if not want or not label or len(label) > 20:
+                continue
+            if label != want and want in label + 'へ':
+                bad.append(f'{os.path.basename(f)} → {tgt}: 「{label}」（画面名は「{want}」）')
+            elif label.endswith('へ') and label[:-1] == want:
+                bad.append(f'{os.path.basename(f)} → {tgt}: 「{label}」')
+    check('7 ヘルプ', 'リンクのラベルが遷移先の画面名と一致（判断4）', not bad, bad[:6])
 
     # トップページ（index.html）の件数と画面一覧
     idx = open('index.html', encoding='utf-8').read()

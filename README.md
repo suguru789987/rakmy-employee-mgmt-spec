@@ -73,7 +73,7 @@ cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 | 従業員登録 | `mock/employee_register.html` | `/employee_register` |
 | 従業員詳細 | `mock/employee_detail.html` | `/employee_detail` |
 | 給与実績一覧 | `mock/payroll_reports.html` | `/payroll_reports` |
-| 従業員設定インポート | `mock/employee_payroll_import.html` | `/employee_payroll_import` |
+| 設定インポート | `mock/employee_payroll_import.html` | `/employee_payroll_import` |
 | 設定変更履歴一覧 | `mock/employee_payroll_histories.html` | `/employee_payroll_histories` |
 
 ## ガバナンス

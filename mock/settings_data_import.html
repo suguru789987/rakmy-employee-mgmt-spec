@@ -2,7 +2,7 @@
 <html lang="ja">
 	<!--begin::Head-->
 	<head><base href="">
-		<title>ラクミー 経営管理システム - 設定取込データ</title>
+		<title>ラクミー 経営管理システム - 設定の取込結果</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex">
@@ -51,7 +51,7 @@
 									<!--begin::Page title-->
 									<div class="page-title d-flex align-items-center flex-wrap min-w-0">
 										<!--begin::Title-->
-										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center text-truncate">設定取込データ</h1>
+										<h1 class="d-flex text-dark fw-bolder fs-4 align-items-center text-truncate">設定の取込結果</h1>
 										<!--end::Title-->
 										<!--begin::Separator-->
 										<span class="h-20px border-gray-300 border-start ms-5 me-4 d-none d-md-block"></span>
@@ -69,7 +69,7 @@
 											</li>
 											<!--end::Item-->
 											<!--begin::Item-->
-											<li class="breadcrumb-item text-dark">設定取込データ</li>
+											<li class="breadcrumb-item text-dark">設定の取込結果</li>
 											<!--end::Item-->
 										</ul>
 										<!--end::Breadcrumb-->
@@ -81,7 +81,7 @@
 											<span class="path1"></span>
 											<span class="path2"></span>
 										</i>
-										従業員一覧へ
+										従業員一覧
 									</a>
 									<!--end::Actions-->
 								</div>
@@ -298,7 +298,7 @@
 				<div class="modal-content">
 					<div class="modal-header align-items-start p-8">
 						<div class="flex-column">
-							<div class="fs-3 fw-bolder" id="preview_modal_title">設定取込データプレビュー</div>
+							<div class="fs-3 fw-bolder" id="preview_modal_title">設定の取込結果プレビュー</div>
 						</div>
 						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
 							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
@@ -388,7 +388,7 @@
 				<div class="modal-content">
 					<div class="modal-header align-items-start p-8">
 						<div class="flex-column">
-							<div class="fs-3 fw-bolder" id="diff_modal_title">設定取込データ前回差分</div>
+							<div class="fs-3 fw-bolder" id="diff_modal_title">設定の取込結果前回差分</div>
 						</div>
 						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
 							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
@@ -502,13 +502,13 @@
 				// Preview button click - show appropriate table
 				$('.btn-preview').on('click', function() {
 					var dataName = $(this).data('name');
-					$('#preview_modal_title').text('設定取込データプレビュー - ' + dataName);
+					$('#preview_modal_title').text('設定の取込結果プレビュー - ' + dataName);
 				});
 
 				// Diff button click
 				$('.btn-diff').on('click', function() {
 					var dataName = $(this).data('name');
-					$('#diff_modal_title').text('設定取込データ前回差分 - ' + dataName);
+					$('#diff_modal_title').text('設定の取込結果前回差分 - ' + dataName);
 				});
 
 				// Load button click - track which button was clicked
