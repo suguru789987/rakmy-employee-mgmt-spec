@@ -505,8 +505,14 @@
                   <div class="card-header border-0">
                     <!--begin::Card title-->
                     <div class="card-title mt-2 mt-lg-4">
-                      <h3 class="fw-bolder me-2 fs-5">給与実績</h3>
-                      <span class="text-muted fs-8">直近3か月を実績モードで表示しています。期間の絞り込みとCSV出力は「すべての実績」から</span>
+                      <h3 class="fw-bolder me-4 fs-5">給与実績</h3>
+                      <!--begin::給与計算モード-->
+                      <ul class="nav nav-pills nav-pills-sm me-4" id="detail_payroll_mode">
+                        <li class="nav-item"><a class="nav-link py-1 px-3 fs-8" data-mode="estimate" href="#">概算モード</a></li>
+                        <li class="nav-item"><a class="nav-link py-1 px-3 fs-8 active" data-mode="actual" href="#">実績モード</a></li>
+                      </ul>
+                      <!--end::給与計算モード-->
+                      <span class="text-muted fs-8">直近3か月を表示しています。期間の絞り込みとCSV出力は「すべての実績」から</span>
                     </div>
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
@@ -993,7 +999,16 @@
 
 
       // Initialize on page load
-      togglePayrollMode('actual');  // 詳細は実績モード固定（絞り込みは給与実績一覧へ）
+      togglePayrollMode('actual');
+      // 給与実績の概算／実績モード切替（表示の切替。絞り込みは給与実績一覧へ）
+      document.querySelectorAll('#detail_payroll_mode .nav-link').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelectorAll('#detail_payroll_mode .nav-link').forEach(function (x) { x.classList.remove('active'); });
+          el.classList.add('active');
+          togglePayrollMode(el.dataset.mode);
+        });
+      });
 
       // Sync filter tabs with main tabs
       $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
