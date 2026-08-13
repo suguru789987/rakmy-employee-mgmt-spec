@@ -113,6 +113,17 @@
 											<!--begin::Monthly Data Tab-->
 											<div class="tab-pane fade show active" id="monthly_data_tab" role="tabpanel">
 												<!--begin::Table wrapper-->
+										<!--begin::自動追加の設定（判断38）-->
+										<div class="alert alert-light-primary d-flex align-items-start py-3 px-4 mb-5">
+											<i class="ki-duotone ki-information-2 fs-2 text-primary me-3 mt-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+											<div class="fs-8">
+												<div class="fw-bold mb-1">ラクミーに登録の無い従業員コードがあったとき</div>
+												取り込まず、件数と理由をこの画面に表示します。<br>
+												勤怠システム側で新しく登録された方を自動で追加する場合は、<a href="#" class="fw-bold">連携設定</a>の「新しい従業員を自動で追加する」をONにしてください（既定はOFF）。<br>
+												自動で追加された方は<span class="fw-bold">給与設定が空</span>のため人件費が計算できません。給与実績一覧のエラーの絞り込み「給与設定が未入力」で確認し、従業員詳細から設定してください。
+											</div>
+										</div>
+										<!--end::自動追加の設定-->
 												<div class="table-responsive">
 													<table id="monthly_data_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
 														<thead>
