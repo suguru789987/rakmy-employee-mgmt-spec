@@ -256,316 +256,296 @@
 													<table id="monthly_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
 														<thead>
 															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+<thead>
+															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
 																<th class="min-w-100px pt-5 sticky-col sticky-col-1">名前</th>
-																<th class="min-w-50px pt-5 text-center">従業員ページ</th>
-																<th class="min-w-50px pt-5 text-center">従業員設定</th>
-																<th class="min-w-75px pt-5">従業員コード</th>
-																<th class="min-w-75px pt-5">雇用区分</th>
-																<th class="min-w-50px pt-5">給与単位</th>
-																<th class="min-w-75px pt-5 text-end">単位給与額</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定労働日数</th>
-																<th class="min-w-75px pt-5 text-end">勤務日数</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定労働時間</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">総労働時間</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">労働時間差分</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし労働時間</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし労働時間差分</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定給与</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">給与</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">給与実績差分</th>
-																<th class="min-w-100px pt-5">所属店舗</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">所属店舗労働時間</th>
-																<th class="min-w-100px pt-5" data-column-mode="actual">ヘルプ先店舗</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">ヘルプ時間</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">ヘルプ人件費</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業時間</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業代</th>
-																<th class="min-w-75px pt-5 text-end">交通費</th>
-																<th class="min-w-75px pt-5 text-end">総支給額</th>
-															</tr>
+<th class="min-w-50px pt-5 text-center">従業員ページ</th>
+<th class="min-w-50px pt-5 text-center">従業員設定</th>
+<th class="min-w-75px pt-5">従業員コード</th>
+<th class="min-w-75px pt-5">雇用区分</th>
+<th class="min-w-50px pt-5">給与単位</th>
+<th class="min-w-75px pt-5 text-end">単位給与額</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定労働日数</th>
+<th class="min-w-75px pt-5 text-end">勤務日数</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定労働時間</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">総労働時間</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">労働時間差分</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし労働時間</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし労働時間差分</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">想定給与</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">給与</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">給与実績差分</th>
+<th class="min-w-100px pt-5">所属店舗</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">所属店舗労働時間</th>
+<th class="min-w-100px pt-5" data-column-mode="actual">ヘルプ先店舗</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">ヘルプ時間</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">ヘルプ人件費</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業時間</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業代</th>
+</tr>
 														</thead>
 														<tbody class="text-gray-600 fw-bold">
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="田中 太郎" data-employee-code="EMP001" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="350000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP001</td>
-																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">350,000円</td>
-																<td class="text-end" data-column-mode="actual">22日</td>
-																<td class="text-end">22日</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end" data-column-mode="actual">172時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
-																<td class="text-end" data-column-mode="actual">350,000円</td>
-																<td class="text-end" data-column-mode="actual">378,672円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+28,672円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">140時間</td>
-																<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></div></td>
-																<td class="text-end" data-column-mode="actual">32時間</td>
-																<td class="text-end" data-column-mode="actual">70,000円</td>
-																<td class="text-end" data-column-mode="actual">5時間</td>
-																<td class="text-end" data-column-mode="actual">13,672円</td>
-																<td class="text-end">15,000円</td>
-																<td class="text-end fw-bold">378,672円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="佐藤 花子" data-employee-code="EMP002" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="320000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="12000" data-working-hours="160" data-overtime-hours="20"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP002</td>
-																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">320,000円</td>
-																<td class="text-end" data-column-mode="actual">22日</td>
-																<td class="text-end">21日</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end" data-column-mode="actual">158時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">-2時間</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">-2時間</td>
-																<td class="text-end" data-column-mode="actual">320,000円</td>
-																<td class="text-end" data-column-mode="actual">337,000円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+17,000円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">158時間</td>
-																<td data-column-mode="actual"></td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end" data-column-mode="actual">2時間</td>
-																<td class="text-end" data-column-mode="actual">5,000円</td>
-																<td class="text-end">12,000円</td>
-																<td class="text-end fw-bold">337,000円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="鈴木 一郎" data-employee-code="EMP003" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="380000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="18000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP003</td>
-																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">380,000円</td>
-																<td class="text-end" data-column-mode="actual">22日</td>
-																<td class="text-end">22日</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end" data-column-mode="actual">168時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
-																<td class="text-end" data-column-mode="actual">380,000円</td>
-																<td class="text-end" data-column-mode="actual">454,625円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+74,625円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end" data-column-mode="actual">150時間</td>
-																<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></div></td>
-																<td class="text-end" data-column-mode="actual">18時間</td>
-																<td class="text-end" data-column-mode="actual">42,750円</td>
-																<td class="text-end" data-column-mode="actual">4時間</td>
-																<td class="text-end" data-column-mode="actual">11,875円</td>
-																<td class="text-end">20,000円</td>
-																<td class="text-end fw-bold">454,625円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="高橋 美咲" data-employee-code="EMP004" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1250" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="8000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP004</td>
-																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,250円</td>
-																<td class="text-end" data-column-mode="actual">15日</td>
-																<td class="text-end">18日</td>
-																<td class="text-end" data-column-mode="actual">60時間</td>
-																<td class="text-end" data-column-mode="actual">72時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">90,000円</td>
-																<td class="text-end" data-column-mode="actual">104,400円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+14,400円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">72時間</td>
-																<td data-column-mode="actual"></td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end">14,400円</td>
-																<td class="text-end fw-bold">104,400円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="伊藤 健太" data-employee-code="EMP005" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1100" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="10000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP005</td>
-																<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,100円</td>
-																<td class="text-end" data-column-mode="actual">18日</td>
-																<td class="text-end">20日</td>
-																<td class="text-end" data-column-mode="actual">80時間</td>
-																<td class="text-end" data-column-mode="actual">95時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+15時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">104,500円</td>
-																<td class="text-end" data-column-mode="actual">135,125円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+30,625円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end" data-column-mode="actual">80時間</td>
-																<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></div></td>
-																<td class="text-end" data-column-mode="actual">15時間</td>
-																<td class="text-end" data-column-mode="actual">16,500円</td>
-																<td class="text-end" data-column-mode="actual">3時間</td>
-																<td class="text-end" data-column-mode="actual">4,125円</td>
-																<td class="text-end">10,000円</td>
-																<td class="text-end fw-bold">135,125円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">山本 直樹</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="山本 直樹" data-employee-code="EMP006" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="340000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="16000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP006</td>
-																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">340,000円</td>
-																<td class="text-end" data-column-mode="actual">22日</td>
-																<td class="text-end">21日</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end" data-column-mode="actual">165時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+5時間</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+5時間</td>
-																<td class="text-end" data-column-mode="actual">340,000円</td>
-																<td class="text-end" data-column-mode="actual">365,969円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+25,969円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">165時間</td>
-																<td data-column-mode="actual"></td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end" data-column-mode="actual">3時間</td>
-																<td class="text-end" data-column-mode="actual">7,969円</td>
-																<td class="text-end">18,000円</td>
-																<td class="text-end fw-bold">365,969円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="中村 さくら" data-employee-code="EMP007" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1200" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP007</td>
-																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,200円</td>
-																<td class="text-end" data-column-mode="actual">15日</td>
-																<td class="text-end">15日</td>
-																<td class="text-end" data-column-mode="actual">60時間</td>
-																<td class="text-end" data-column-mode="actual">60時間</td>
-																<td class="text-end" data-column-mode="actual">±0時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">72,000円</td>
-																<td class="text-end" data-column-mode="actual">81,000円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+9,000円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end" data-column-mode="actual">60時間</td>
-																<td data-column-mode="actual"></td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end">9,000円</td>
-																<td class="text-end fw-bold">81,000円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="小林 大輔" data-employee-code="EMP008" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1150" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="9000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP008</td>
-																<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,150円</td>
-																<td class="text-end" data-column-mode="actual">15日</td>
-																<td class="text-end">16日</td>
-																<td class="text-end" data-column-mode="actual">60時間</td>
-																<td class="text-end" data-column-mode="actual">64時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+4時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">73,600円</td>
-																<td class="text-end" data-column-mode="actual">100,575円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+26,975円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">50時間</td>
-																<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></div></td>
-																<td class="text-end" data-column-mode="actual">14時間</td>
-																<td class="text-end" data-column-mode="actual">16,100円</td>
-																<td class="text-end" data-column-mode="actual">2時間</td>
-																<td class="text-end" data-column-mode="actual">2,875円</td>
-																<td class="text-end">8,000円</td>
-																<td class="text-end fw-bold">100,575円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">加藤 真理</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="加藤 真理" data-employee-code="EMP009" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="300000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="13000" data-working-hours="160" data-overtime-hours="25"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP009</td>
-																<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">300,000円</td>
-																<td class="text-end" data-column-mode="actual">22日</td>
-																<td class="text-end">20日</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end" data-column-mode="actual">155時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">-5時間</td>
-																<td class="text-end" data-column-mode="actual">160時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">-5時間</td>
-																<td class="text-end" data-column-mode="actual">300,000円</td>
-																<td class="text-end" data-column-mode="actual">344,125円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+44,125円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end" data-column-mode="actual">140時間</td>
-																<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></div></td>
-																<td class="text-end" data-column-mode="actual">15時間</td>
-																<td class="text-end" data-column-mode="actual">28,125円</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end">16,000円</td>
-																<td class="text-end fw-bold">344,125円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
-																<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
-																<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="渡辺 優子" data-employee-code="EMP010" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1300" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="11000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
-																<td>EMP010</td>
-																<td><div class="badge badge-light-primary fw-bold">パート</div></td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,300円</td>
-																<td class="text-end" data-column-mode="actual">10日</td>
-																<td class="text-end">12日</td>
-																<td class="text-end" data-column-mode="actual">40時間</td>
-																<td class="text-end" data-column-mode="actual">48時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">62,400円</td>
-																<td class="text-end" data-column-mode="actual">69,600円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+7,200円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end" data-column-mode="actual">48時間</td>
-																<td data-column-mode="actual"></td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td class="text-end">7,200円</td>
-																<td class="text-end fw-bold">69,600円</td>
-															</tr>
-														</tbody>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="田中 太郎" data-employee-code="EMP001" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="350000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP001</td>
+<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">350,000円</td>
+<td class="text-end" data-column-mode="actual">22日</td>
+<td class="text-end">22日</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end" data-column-mode="actual">172時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
+<td class="text-end" data-column-mode="actual">350,000円</td>
+<td class="text-end" data-column-mode="actual">378,672円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+28,672円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">140時間</td>
+<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></div></td>
+<td class="text-end" data-column-mode="actual">32時間</td>
+<td class="text-end" data-column-mode="actual">70,000円</td>
+<td class="text-end" data-column-mode="actual">5時間</td>
+<td class="text-end" data-column-mode="actual">13,672円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="佐藤 花子" data-employee-code="EMP002" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="320000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="12000" data-working-hours="160" data-overtime-hours="20"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP002</td>
+<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">320,000円</td>
+<td class="text-end" data-column-mode="actual">22日</td>
+<td class="text-end">21日</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end" data-column-mode="actual">158時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">-2時間</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">-2時間</td>
+<td class="text-end" data-column-mode="actual">320,000円</td>
+<td class="text-end" data-column-mode="actual">337,000円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+17,000円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">158時間</td>
+<td data-column-mode="actual"></td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td class="text-end" data-column-mode="actual">2時間</td>
+<td class="text-end" data-column-mode="actual">5,000円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="鈴木 一郎" data-employee-code="EMP003" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="380000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="18000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP003</td>
+<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">380,000円</td>
+<td class="text-end" data-column-mode="actual">22日</td>
+<td class="text-end">22日</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end" data-column-mode="actual">168時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
+<td class="text-end" data-column-mode="actual">380,000円</td>
+<td class="text-end" data-column-mode="actual">454,625円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+74,625円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end" data-column-mode="actual">150時間</td>
+<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></div></td>
+<td class="text-end" data-column-mode="actual">18時間</td>
+<td class="text-end" data-column-mode="actual">42,750円</td>
+<td class="text-end" data-column-mode="actual">4時間</td>
+<td class="text-end" data-column-mode="actual">11,875円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="高橋 美咲" data-employee-code="EMP004" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1250" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="8000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP004</td>
+<td><div class="badge badge-light-primary fw-bold">パート</div></td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,250円</td>
+<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end">18日</td>
+<td class="text-end" data-column-mode="actual">60時間</td>
+<td class="text-end" data-column-mode="actual">72時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+12時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">90,000円</td>
+<td class="text-end" data-column-mode="actual">104,400円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+14,400円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">72時間</td>
+<td data-column-mode="actual"></td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="伊藤 健太" data-employee-code="EMP005" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1100" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="10000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP005</td>
+<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,100円</td>
+<td class="text-end" data-column-mode="actual">18日</td>
+<td class="text-end">20日</td>
+<td class="text-end" data-column-mode="actual">80時間</td>
+<td class="text-end" data-column-mode="actual">95時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+15時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">104,500円</td>
+<td class="text-end" data-column-mode="actual">135,125円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+30,625円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end" data-column-mode="actual">80時間</td>
+<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></div></td>
+<td class="text-end" data-column-mode="actual">15時間</td>
+<td class="text-end" data-column-mode="actual">16,500円</td>
+<td class="text-end" data-column-mode="actual">3時間</td>
+<td class="text-end" data-column-mode="actual">4,125円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">山本 直樹</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="山本 直樹" data-employee-code="EMP006" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="340000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="16000" data-working-hours="160" data-overtime-hours="30"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP006</td>
+<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">340,000円</td>
+<td class="text-end" data-column-mode="actual">22日</td>
+<td class="text-end">21日</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end" data-column-mode="actual">165時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+5時間</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+5時間</td>
+<td class="text-end" data-column-mode="actual">340,000円</td>
+<td class="text-end" data-column-mode="actual">365,969円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+25,969円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">165時間</td>
+<td data-column-mode="actual"></td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td class="text-end" data-column-mode="actual">3時間</td>
+<td class="text-end" data-column-mode="actual">7,969円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="中村 さくら" data-employee-code="EMP007" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1200" data-store="ラクミーフレッシュ渋谷店" data-help-stores="青山店,新宿店" data-transport-type="monthly" data-transport-amount="15000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP007</td>
+<td><div class="badge badge-light-primary fw-bold">パート</div></td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,200円</td>
+<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end">15日</td>
+<td class="text-end" data-column-mode="actual">60時間</td>
+<td class="text-end" data-column-mode="actual">60時間</td>
+<td class="text-end" data-column-mode="actual">±0時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">72,000円</td>
+<td class="text-end" data-column-mode="actual">81,000円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+9,000円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end" data-column-mode="actual">60時間</td>
+<td data-column-mode="actual"></td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="小林 大輔" data-employee-code="EMP008" data-employment-type="temporary" data-salary-type="hourly" data-salary-amount="1150" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="9000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP008</td>
+<td><div class="badge badge-light-primary fw-bold">アルバイト</div></td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,150円</td>
+<td class="text-end" data-column-mode="actual">15日</td>
+<td class="text-end">16日</td>
+<td class="text-end" data-column-mode="actual">60時間</td>
+<td class="text-end" data-column-mode="actual">64時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+4時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">73,600円</td>
+<td class="text-end" data-column-mode="actual">100,575円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+26,975円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">50時間</td>
+<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></div></td>
+<td class="text-end" data-column-mode="actual">14時間</td>
+<td class="text-end" data-column-mode="actual">16,100円</td>
+<td class="text-end" data-column-mode="actual">2時間</td>
+<td class="text-end" data-column-mode="actual">2,875円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">加藤 真理</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="加藤 真理" data-employee-code="EMP009" data-employment-type="regular" data-salary-type="monthly" data-salary-amount="300000" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="13000" data-working-hours="160" data-overtime-hours="25"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP009</td>
+<td><div class="badge badge-light-primary fw-bold">正社員</div></td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">300,000円</td>
+<td class="text-end" data-column-mode="actual">22日</td>
+<td class="text-end">20日</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end" data-column-mode="actual">155時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">-5時間</td>
+<td class="text-end" data-column-mode="actual">160時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">-5時間</td>
+<td class="text-end" data-column-mode="actual">300,000円</td>
+<td class="text-end" data-column-mode="actual">344,125円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+44,125円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end" data-column-mode="actual">140時間</td>
+<td data-column-mode="actual"><div class="d-flex flex-wrap gap-1"><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></div></td>
+<td class="text-end" data-column-mode="actual">15時間</td>
+<td class="text-end" data-column-mode="actual">28,125円</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
+<td class="text-center"><a href="employee_detail.html" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px"><i class="ki-duotone ki-eye fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i></a></td>
+<td class="text-center"><button type="button" class="btn btn-sm btn-icon btn-light-dark w-30px h-30px btn-employee-setting" data-bs-toggle="modal" data-bs-target="#employee_setting_modal" data-employee-name="渡辺 優子" data-employee-code="EMP010" data-employment-type="part_time" data-salary-type="hourly" data-salary-amount="1300" data-store="ラクミーフレッシュ渋谷店" data-help-stores="" data-transport-type="monthly" data-transport-amount="11000"><i class="ki-duotone ki-pencil fs-5"><span class="path1"></span><span class="path2"></span></i></button></td>
+<td>EMP010</td>
+<td><div class="badge badge-light-primary fw-bold">パート</div></td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,300円</td>
+<td class="text-end" data-column-mode="actual">10日</td>
+<td class="text-end">12日</td>
+<td class="text-end" data-column-mode="actual">40時間</td>
+<td class="text-end" data-column-mode="actual">48時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+8時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">62,400円</td>
+<td class="text-end" data-column-mode="actual">69,600円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+7,200円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end" data-column-mode="actual">48時間</td>
+<td data-column-mode="actual"></td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+</tr>
+</tbody>
 													</table>
 												</div>
 												<!--end::Table wrapper-->
@@ -579,291 +559,260 @@
 													<table id="daily_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
 														<thead>
 															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+<thead>
+															<tr class="fw-bold fs-8 text-gray-500 text-nowrap">
 																<th class="min-w-100px pt-5 sticky-col sticky-col-1">名前</th>
-																<th class="min-w-50px pt-5">給与単位</th>
-																<th class="min-w-75px pt-5 text-end">単位給与額</th>
-																<th class="min-w-100px pt-5 text-end">想定勤務時間</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">勤務時間</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">勤務時間実績差分</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし残業時間</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし残業時間差分</th>
-																<th class="min-w-100px pt-5 text-end">想定給与</th>
-																<th class="min-w-75px pt-5 text-end" data-column-mode="actual">給与</th>
-																<th class="min-w-100px pt-5 text-end" data-column-mode="actual">給与実績差分</th>
-																<th class="min-w-100px pt-5">所属店舗</th>
-																<th class="min-w-100px pt-5 text-end">所属店舗労働時間</th>
-																<th class="min-w-100px pt-5">ヘルプ先店舗</th>
-																<th class="min-w-75px pt-5 text-end">ヘルプ時間</th>
-																<th class="min-w-75px pt-5 text-end">ヘルプ人件費</th>
-																<th class="min-w-75px pt-5 text-end">深夜残業時間</th>
-																<th class="min-w-75px pt-5 text-end">深夜残業代</th>
-																<th class="min-w-75px pt-5 text-end">所属店舗交通費</th>
-																<th class="min-w-75px pt-5 text-end">ヘルプ交通費</th>
-																<th class="min-w-75px pt-5 text-end">総支給額</th>
-															</tr>
+<th class="min-w-50px pt-5">給与単位</th>
+<th class="min-w-75px pt-5 text-end">単位給与額</th>
+<th class="min-w-100px pt-5 text-end">想定勤務時間</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">勤務時間</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">勤務時間実績差分</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし残業時間</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし残業時間差分</th>
+<th class="min-w-100px pt-5 text-end">想定給与</th>
+<th class="min-w-75px pt-5 text-end" data-column-mode="actual">給与</th>
+<th class="min-w-100px pt-5 text-end" data-column-mode="actual">給与実績差分</th>
+<th class="min-w-100px pt-5">所属店舗</th>
+<th class="min-w-100px pt-5 text-end">所属店舗労働時間</th>
+<th class="min-w-100px pt-5">ヘルプ先店舗</th>
+<th class="min-w-75px pt-5 text-end">ヘルプ時間</th>
+<th class="min-w-75px pt-5 text-end">ヘルプ人件費</th>
+<th class="min-w-75px pt-5 text-end">深夜残業時間</th>
+<th class="min-w-75px pt-5 text-end">深夜残業代</th>
+</tr>
 														</thead>
 														<tbody class="text-gray-600 fw-bold">
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">350,000円</td>
-																<td class="text-end">8時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end">15,909円</td>
-																<td class="text-end" data-column-mode="actual">22,472円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+6,563円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">5時間</td>
-																<td>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">田中 太郎</td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">350,000円</td>
+<td class="text-end">8時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end">15,909円</td>
+<td class="text-end" data-column-mode="actual">22,472円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+6,563円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">5時間</td>
+<td>
 																	<div class="d-flex flex-column gap-2">
 																		<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div>
 																		<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div>
 																	</div>
 																</td>
-																<td class="text-end">
+<td class="text-end">
 																	<div class="d-flex flex-column gap-2">
 																		<span>2時間</span>
 																		<span>1時間</span>
 																	</div>
 																</td>
-																<td class="text-end">
+<td class="text-end">
 																	<div class="d-flex flex-column gap-2">
 																		<span>4,375円</span>
 																		<span>2,188円</span>
 																	</div>
 																</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">682円</td>
-																<td class="text-end">500円</td>
-																<td class="text-end fw-bold">23,154円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">320,000円</td>
-																<td class="text-end">8時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end">14,545円</td>
-																<td class="text-end" data-column-mode="actual">14,545円</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">8時間</td>
-																<td>-</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">545円</td>
-																<td class="text-end">0円</td>
-																<td class="text-end fw-bold">15,090円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">380,000円</td>
-																<td class="text-end">8時間</td>
-																<td class="text-end" data-column-mode="actual">9時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end text-primary fw-bold" data-column-mode="actual">+1時間</td>
-																<td class="text-end">17,273円</td>
-																<td class="text-end" data-column-mode="actual">27,367円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+10,094円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end">6時間</td>
-																<td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">佐藤 花子</td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">320,000円</td>
+<td class="text-end">8時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end">14,545円</td>
+<td class="text-end" data-column-mode="actual">14,545円</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">8時間</td>
+<td>-</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">鈴木 一郎</td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">380,000円</td>
+<td class="text-end">8時間</td>
+<td class="text-end" data-column-mode="actual">9時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end text-primary fw-bold" data-column-mode="actual">+1時間</td>
+<td class="text-end">17,273円</td>
+<td class="text-end" data-column-mode="actual">27,367円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+10,094円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end">6時間</td>
+<td>
 																	<div class="d-flex flex-column gap-2">
 																		<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div>
 																		<div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div>
 																	</div>
 																</td>
-																<td class="text-end">
+<td class="text-end">
 																	<div class="d-flex flex-column gap-2">
 																		<span>2時間</span>
 																		<span>1時間</span>
 																	</div>
 																</td>
-																<td class="text-end">
+<td class="text-end">
 																	<div class="d-flex flex-column gap-2">
 																		<span>4,750円</span>
 																		<span>2,375円</span>
 																	</div>
 																</td>
-																<td class="text-end">1時間</td>
-																<td class="text-end">2,969円</td>
-																<td class="text-end">909円</td>
-																<td class="text-end">600円</td>
-																<td class="text-end fw-bold">28,276円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,250円</td>
-																<td class="text-end">4時間</td>
-																<td class="text-end" data-column-mode="actual">4時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end">5,000円</td>
-																<td class="text-end" data-column-mode="actual">5,000円</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">4時間</td>
-																<td>-</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">800円</td>
-																<td class="text-end">0円</td>
-																<td class="text-end fw-bold">5,800円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,100円</td>
-																<td class="text-end">4時間</td>
-																<td class="text-end" data-column-mode="actual">5時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end">4,400円</td>
-																<td class="text-end" data-column-mode="actual">7,700円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+3,300円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end">3時間</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></td>
-																<td class="text-end">2時間</td>
-																<td class="text-end">2,200円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">500円</td>
-																<td class="text-end">300円</td>
-																<td class="text-end fw-bold">8,200円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">山本 直樹</td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">340,000円</td>
-																<td class="text-end">8時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end">15,455円</td>
-																<td class="text-end" data-column-mode="actual">15,318円</td>
-																<td class="text-end fw-bold" data-column-mode="actual" style="color: #50cd89;">-137円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">8時間</td>
-																<td>-</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">818円</td>
-																<td class="text-end">0円</td>
-																<td class="text-end fw-bold">16,136円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,200円</td>
-																<td class="text-end">4時間</td>
-																<td class="text-end" data-column-mode="actual">4時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end">4,800円</td>
-																<td class="text-end" data-column-mode="actual">4,800円</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end">4時間</td>
-																<td>-</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">600円</td>
-																<td class="text-end">0円</td>
-																<td class="text-end fw-bold">5,400円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,150円</td>
-																<td class="text-end">5時間</td>
-																<td class="text-end" data-column-mode="actual">6時間</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end">5,750円</td>
-																<td class="text-end" data-column-mode="actual">9,200円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+3,450円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">4時間</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end">2時間</td>
-																<td class="text-end">2,300円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">500円</td>
-																<td class="text-end">250円</td>
-																<td class="text-end fw-bold">9,700円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">加藤 真理</td>
-																<td><div class="badge badge-dark fw-bold">月給</div></td>
-																<td class="text-end fw-bold">300,000円</td>
-																<td class="text-end">8時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">8時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end">13,636円</td>
-																<td class="text-end" data-column-mode="actual">17,659円</td>
-																<td class="text-end text-danger fw-bold" data-column-mode="actual">+4,023円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
-																<td class="text-end">6時間</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">2時間</td>
-																<td class="text-end">3,750円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">727円</td>
-																<td class="text-end">350円</td>
-																<td class="text-end fw-bold">18,386円</td>
-															</tr>
-															<tr>
-																<td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
-																<td><div class="badge badge-light-gray fw-bold">時給</div></td>
-																<td class="text-end fw-bold">1,300円</td>
-																<td class="text-end">4時間</td>
-																<td class="text-end" data-column-mode="actual">4時間</td>
-																<td class="text-end" data-column-mode="actual">0時間</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end" data-column-mode="actual">-</td>
-																<td class="text-end">5,200円</td>
-																<td class="text-end" data-column-mode="actual">5,200円</td>
-																<td class="text-end" data-column-mode="actual">0円</td>
-																<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
-																<td class="text-end">4時間</td>
-																<td>-</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">0時間</td>
-																<td class="text-end">0円</td>
-																<td class="text-end">600円</td>
-																<td class="text-end">0円</td>
-																<td class="text-end fw-bold">5,800円</td>
-															</tr>
-														</tbody>
+<td class="text-end">1時間</td>
+<td class="text-end">2,969円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">高橋 美咲</td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,250円</td>
+<td class="text-end">4時間</td>
+<td class="text-end" data-column-mode="actual">4時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end">5,000円</td>
+<td class="text-end" data-column-mode="actual">5,000円</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">4時間</td>
+<td>-</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">伊藤 健太</td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,100円</td>
+<td class="text-end">4時間</td>
+<td class="text-end" data-column-mode="actual">5時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end">4,400円</td>
+<td class="text-end" data-column-mode="actual">7,700円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+3,300円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end">3時間</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ青山店</div></td>
+<td class="text-end">2時間</td>
+<td class="text-end">2,200円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">山本 直樹</td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">340,000円</td>
+<td class="text-end">8時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end">15,455円</td>
+<td class="text-end" data-column-mode="actual">15,318円</td>
+<td class="text-end fw-bold" data-column-mode="actual" style="color: #50cd89;">-137円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">8時間</td>
+<td>-</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">中村 さくら</td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,200円</td>
+<td class="text-end">4時間</td>
+<td class="text-end" data-column-mode="actual">4時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end">4,800円</td>
+<td class="text-end" data-column-mode="actual">4,800円</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end">4時間</td>
+<td>-</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">小林 大輔</td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,150円</td>
+<td class="text-end">5時間</td>
+<td class="text-end" data-column-mode="actual">6時間</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+1時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end">5,750円</td>
+<td class="text-end" data-column-mode="actual">9,200円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+3,450円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">4時間</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end">2時間</td>
+<td class="text-end">2,300円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">加藤 真理</td>
+<td><div class="badge badge-dark fw-bold">月給</div></td>
+<td class="text-end fw-bold">300,000円</td>
+<td class="text-end">8時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">8時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end">13,636円</td>
+<td class="text-end" data-column-mode="actual">17,659円</td>
+<td class="text-end text-danger fw-bold" data-column-mode="actual">+4,023円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ新宿店</div></td>
+<td class="text-end">6時間</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">2時間</td>
+<td class="text-end">3,750円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+<tr>
+<td class="fw-bold sticky-col sticky-col-1">渡辺 優子</td>
+<td><div class="badge badge-light-gray fw-bold">時給</div></td>
+<td class="text-end fw-bold">1,300円</td>
+<td class="text-end">4時間</td>
+<td class="text-end" data-column-mode="actual">4時間</td>
+<td class="text-end" data-column-mode="actual">0時間</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end" data-column-mode="actual">-</td>
+<td class="text-end">5,200円</td>
+<td class="text-end" data-column-mode="actual">5,200円</td>
+<td class="text-end" data-column-mode="actual">0円</td>
+<td><div class="badge badge-light fw-bold fs-7">ラクミーフレッシュ渋谷店</div></td>
+<td class="text-end">4時間</td>
+<td>-</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+<td class="text-end">0時間</td>
+<td class="text-end">0円</td>
+</tr>
+</tbody>
 													</table>
 												</div>
 												<!--end::Table wrapper-->

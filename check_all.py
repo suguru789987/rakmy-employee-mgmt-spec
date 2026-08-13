@@ -290,29 +290,43 @@ def c6_data():
     bad = [r['従業員コード'] for r in m if g[r['従業員コード']] != int(r['実績給与'])]
     check('6 データ', 'data/06の日次人件費合計＝実績給与', not bad, bad or f'全社{sum(g.values()):,}円')
 
-    # 算式
+    # 算式（判断14：交通費を人件費に含める）
+    helpfare = collections.defaultdict(dict)
+    for r in D('data/03_ヘルプ先交通費.tsv'):
+        helpfare[r['従業員コード']][r['ヘルプ先店舗']] = int(r['交通費'])
+    days = collections.defaultdict(lambda: {'work': 0, 'help': collections.Counter()})
+    for r in D('data/06_日次給与実績.tsv'):
+        a = days[r['従業員コード']]
+        a['work'] += 1
+        if r['ヘルプ先'] != '-':
+            a['help'][r['ヘルプ先']] += 1
     bad = []
     for r in m:
-        e = emp[r['従業員コード']]
+        k = r['従業員コード']; e = emp[k]
         base = int(e['単位給与額']) / float(e['所定労働時間']) if e['給与単位'] == '月給' else float(e['単位給与額'])
-        if int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代']) != int(r['実績給与']):
-            bad.append(f"{r['従業員コード']}:実績給与")
+        shop_fare = int(e['単位交通費']) if e['交通費単位'] == '月額' else int(e['単位交通費']) * days[k]['work']
+        help_fare = sum(helpfare[k].get(s, 0) * n for s, n in days[k]['help'].items())
+        want = int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代']) + shop_fare + help_fare
+        if int(r['実績給与']) != want:
+            bad.append(f"{k}:実績給与({r['実績給与']}≠{want})")
         if float(r['総労働時間']) > 0:
-            hp = round(int(r['実績給与']) * float(r['ヘルプ時間']) / float(r['総労働時間']))
+            pay = int(r['概算給与']) + int(r['深夜残業代']) + int(r['みなし超過残業代'])
+            hp = round(pay * float(r['ヘルプ時間']) / float(r['総労働時間'])) + help_fare
             if abs(int(r['ヘルプ人件費']) - hp) > 2:
-                bad.append(f"{r['従業員コード']}:ヘルプ人件費")
+                bad.append(f"{k}:ヘルプ人件費({r['ヘルプ人件費']}≠{hp})")
         if abs(float(r['深夜残業時間'])) > 0:
             if abs(int(r['深夜残業代']) - int(base * 1.5 * float(r['深夜残業時間']))) > 1:
-                bad.append(f"{r['従業員コード']}:深夜残業代")
-    check('6 データ', '確定した算式で全行を再現できる', not bad, bad[:5])
+                bad.append(f'{k}:深夜残業代')
+    check('6 データ', '確定した算式で全行を再現できる（交通費込み）', not bad, bad[:5])
 
     # 検証プランの金額が data/05 と矛盾しないか
     vals = set()
     for r in m:
-        for c in ['概算給与', '深夜残業代', 'みなし超過残業代', '実績給与', 'ヘルプ人件費', '所属店舗交通費']:
+        for c in ['概算給与', '深夜残業代', 'みなし超過残業代', '実績給与', 'ヘルプ人件費']:
             vals.add(f'{int(r[c]):,}')
     vals.add(f"{sum(int(r['実績給与']) for r in m):,}")
-    KNOWN = {'340,000', '360,000', '410,000', '290,000', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000', '380,000'}
+    KNOWN = {'357,600', '371,886', '334,286', '340,000', '360,000', '410,000', '290,000', '332,727', '352,286', '334,286', '147,000', '350,000', '320,000', '380,000',
+             '280,000', '300,000', '144,000', '312,768', '332,388', '129,000', '1,561,312'}
     bad = []
     for r in T(F_PLAN):
         for num in set(re.findall(r'\d{1,3}(?:,\d{3})+', r['期待値'] + r['操作・前提条件'])):
@@ -471,8 +485,8 @@ def c11_wording():
     FORMULA = [
         ('基礎時給', ['単位給与額 ÷ 所定労働時間', '単位給与額÷所定労働時間']),
         ('実績給与', ['概算給与 ＋ 深夜残業代 ＋ みなし超過残業代', '概算給与＋深夜残業代＋みなし超過残業代']),
-        ('ヘルプ人件費', ['実績給与 × ヘルプ時間 ÷ 総労働時間', '実績給与×ヘルプ時間÷総労働時間']),
-        ('総支給額', ['実績給与 ＋ 交通費', '実績給与＋交通費']),
+        ('ヘルプ人件費', ['給与部分 × ヘルプ時間 ÷ 総労働時間', '給与部分×ヘルプ時間÷総労働時間']),
+        ('実績給与に交通費を含む', ['みなし超過残業代 ＋ 所属店舗の交通費', 'みなし超過残業代 ＋ **所属店舗の交通費']),
     ]
     for name, pats in FORMULA:
         ok_s = any(p in spec for p in pats)
