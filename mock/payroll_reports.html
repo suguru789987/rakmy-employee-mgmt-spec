@@ -908,173 +908,36 @@
 			</div>
 		</div>
 		<!--end::Modal - 実績データ取込進捗-->
-		<!--begin::Modal - 従業員設定-->
+		<!--begin::Modal - 従業員設定（表示のみ・判断33）-->
 		<div class="modal fade" id="employee_setting_modal" tabindex="-1" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered mw-650px">
 				<div class="modal-content">
 					<div class="modal-header align-items-start p-8 border-bottom-1">
 						<div class="flex-column">
 							<div class="fs-3 fw-bolder" id="employee_setting_modal_title">従業員設定</div>
-							<div class="fs-8 text-gray-600 mt-1">表示のみです。直す場合は「従業員詳細」からお進みください（適用日付を指定できます）</div>
+							<div class="fs-8 text-gray-600 mt-1">この月に効いている設定です。変更はできません</div>
 						</div>
 						<div class="btn btn-icon btn-sm ms-2 me-n4 mt-n2" data-bs-dismiss="modal">
 							<i class="ki-outline ki-cross text-gray-500 fs-1"></i>
 						</div>
 					</div>
 					<div class="modal-body p-8">
-						<!--begin::Input group - 変更反映日時範囲-->
-						<div class="row mb-6">
-							<div class="d-flex flex-column col-12">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">変更反映日時範囲</label>
-								<div id="modal_daterange_picker" data-kt-daterangepicker="true" data-kt-daterangepicker-opens="left" class="btn btn-light d-flex align-items-center px-4 form-control-solid">
-									<i class="ki-outline ki-calendar fs-4 ms-0 me-1 text-gray-500"></i>
-									<div class="text-gray-700 fw-bold">日時範囲を読み込み中...</div>
-								</div>
-							</div>
+						<div class="row g-5 fs-7">
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">名前</div><div class="fw-bold" id="v_name">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">従業員コード</div><div class="fw-bold" id="v_code">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">在籍状態</div><div class="fw-bold" id="v_status">在籍</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">雇用区分</div><div class="fw-bold" id="v_emptype">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">給与単位</div><div class="fw-bold" id="v_saltype">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">単位給与額</div><div class="fw-bold" id="v_salamount">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">交通費単位</div><div class="fw-bold" id="v_trtype">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">単位交通費</div><div class="fw-bold" id="v_tramount">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">想定労働日数</div><div class="fw-bold" id="v_days">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">所定労働時間</div><div class="fw-bold" id="v_hours">-</div></div>
+							<div class="col-6"><div class="text-gray-600 fs-8 mb-1">みなし残業時間</div><div class="fw-bold" id="v_overtime">-</div></div>
+							<div class="col-12"><div class="text-gray-600 fs-8 mb-1">所属店舗</div><div class="fw-bold" id="v_store">-</div></div>
+							<div class="col-12"><div class="text-gray-600 fs-8 mb-1">ヘルプ先店舗</div><div class="fw-bold" id="v_helpstores">-</div></div>
+							<div class="col-12"><div class="text-gray-600 fs-8 mb-1">ヘルプ先交通費</div><div class="fw-bold" id="v_helpfare">-</div></div>
 						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - 名前 & 従業員コード-->
-						<div class="row d-flex mb-6">
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">名前</label>
-								<input type="text" class="form-control fs-6 bg-secondary bg-opacity-25 text-gray-500" id="modal_employee_name" value="田中 太郎" disabled style="cursor: not-allowed;" readonly>
-							</div>
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">従業員コード</label>
-								<input type="text" class="form-control fs-6 bg-secondary bg-opacity-25 text-gray-500" id="modal_employee_code" value="EMP001" disabled style="cursor: not-allowed;" readonly>
-							</div>
-						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - 所属店舗 & ヘルプ先店舗-->
-						<div class="row d-flex mb-6">
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所属店舗</label>
-								<select class="form-select form-select-solid fs-6" id="modal_setting_store_select" disabled>
-									<option value="1" selected>ラクミーフレッシュ渋谷店</option>
-									<option value="2">ラクミーフレッシュ青山店</option>
-									<option value="3">ラクミーフレッシュ新宿店</option>
-									<option value="4">ラクミーフレッシュ沖縄店</option>
-									<option value="5">ラクミーフレッシュ赤坂店</option>
-								</select>
-							</div>
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">ヘルプ先店舗</label>
-								<select class="form-select form-select-solid fs-6" id="modal_setting_help_stores_select" disabled multiple="multiple">
-									<option value="1">ラクミーフレッシュ渋谷店</option>
-									<option value="2" selected>ラクミーフレッシュ青山店</option>
-									<option value="3" selected>ラクミーフレッシュ新宿店</option>
-									<option value="4">ラクミーフレッシュ沖縄店</option>
-									<option value="5">ラクミーフレッシュ赤坂店</option>
-								</select>
-							</div>
-						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - 雇用区分 & 給与単位 & 単位給与額-->
-						<div class="row d-flex mb-6">
-							<div class="d-flex flex-column col-4">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">雇用区分</label>
-								<select class="form-select form-select-solid fs-6" id="modal_employment_type" disabled>
-									<option value="regular" selected>正社員</option>
-									<option value="part_time">パート</option>
-									<option value="temporary">アルバイト</option>
-								</select>
-							</div>
-							<div class="d-flex flex-column col-4">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">給与単位</label>
-								<select class="form-select form-select-solid fs-6" id="modal_salary_type" disabled>
-									<option value="monthly" selected>月給</option>
-									<option value="hourly">時給</option>
-								</select>
-							</div>
-							<div class="d-flex flex-column col-4">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">単位給与額</label>
-								<div class="input-group">
-									<span class="input-group-text border-0 bg-gray-100">¥</span>
-									<input type="text" class="form-control form-control-solid fs-6 number-input" id="modal_salary_amount" value="350,000" readonly>
-								</div>
-							</div>
-						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - 交通費単位 & 単位交通費-->
-						<div class="row d-flex mb-6">
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">交通費単位</label>
-								<select class="form-select form-select-solid fs-6" id="modal_transport_type" disabled>
-									<option value="daily">日額</option>
-									<option value="monthly" selected>月額</option>
-								</select>
-							</div>
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">単位交通費</label>
-								<div class="input-group">
-									<span class="input-group-text border-0 bg-gray-100">¥</span>
-									<input type="text" class="form-control form-control-solid fs-6 number-input" id="modal_transport_amount" value="15,000" readonly>
-								</div>
-							</div>
-						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - ヘルプ先交通費-->
-						<div class="row d-flex mb-6" id="modal_help_transport_section" style="display: none;">
-							<div class="d-flex flex-column col-12">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">ヘルプ先交通費</label>
-<div id="modal_help_transport_list">
-									<!-- Dynamically populated by JavaScript -->
-								</div>
-							</div>
-						</div>
-						<!--end::Input group-->
-						<!--begin::Input group - 適用日付（判断32）-->
-						<div class="row mb-6">
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">適用日付</label>
-								<div class="input-group">
-									<span class="input-group-text border-0 bg-gray-100"><i class="ki-outline ki-calendar fs-4"></i></span>
-									<input type="text" class="form-control form-control-solid fs-6" id="modal_apply_date" name="apply_date" value="2026/06/26" autocomplete="off" placeholder="YYYY/MM/DD" readonly>
-								</div>
-								<div class="form-text fs-8">未来日＝予約／当日・過去＝即時反映。締め済み期間の日付は警告が出て反映されません</div>
-							</div>
-						</div>
-						<div class="alert alert-light-warning d-flex align-items-center py-3 px-4 mb-6 d-none" id="modal_shime_warning">
-							<i class="ki-duotone ki-information-2 fs-2 text-warning me-3"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-							<span class="fs-8">締め済み期間の日付です。この日付では反映されません。締め済み期間の翌日以降に直すか、締めを解除してください。</span>
-						</div>
-						<!--end::Input group - 適用日付-->
-						<!--begin::Input group - 所定労働時間 & みなし残業時間-->
-						<div class="row d-none" id="modal_regular_employee_fields">
-							<div class="d-flex flex-column col-6" id="modal_expected_work_days_field">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">想定労働日数</label>
-								<div class="input-group">
-									<input type="number" class="form-control form-control-solid fs-6" id="modal_expected_work_days" name="expected_work_days" placeholder="未入力可" readonly>
-									<span class="input-group-text border-0 bg-gray-100">日/月</span>
-								</div>
-								<div class="form-text fs-8">時給の方は入力をおすすめします。1日の想定勤務時間（所定労働時間 ÷ 想定労働日数）が決まり、日別の想定給与が出ます。未入力だと月別は出ますが日別は「—」になります。月給の方は未入力なら所属店舗の営業日数を使います</div>
-							</div>
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600 required">所定労働時間</label>
-								<div class="input-group">
-									<input type="number" class="form-control form-control-solid fs-6" id="modal_working_hours" value="160" readonly>
-									<span class="input-group-text border-0 bg-gray-100">時間/月</span>
-								</div>
-							</div>
-							<div class="d-flex flex-column col-6">
-								<label class="d-flex align-items-center fs-7 fw-bold mb-2 text-gray-600">
-									<span>みなし残業時間</span>
-									<span class="ms-1 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="right" title="時給制の場合は0を入力してください">
-										<i class="ki-duotone ki-information-2 text-gray-400 fs-4">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span>
-									<span class="text-danger ms-1">*</span>
-								</label>
-								<div class="input-group">
-									<input type="number" class="form-control form-control-solid fs-6" id="modal_overtime_hours" value="30" readonly>
-									<span class="input-group-text border-0 bg-gray-100">時間/月</span>
-								</div>
-							</div>
-						</div>
-						<!--end::Input group-->
 					</div>
 					<div class="modal-footer p-6 border-top-1">
 						<button type="button" class="btn btn-light-dark" data-bs-dismiss="modal">閉じる</button>
@@ -1341,20 +1204,27 @@
 			});
 		
 
-				// 従業員設定モーダル（表示のみ・判断33）。行のdata属性から値を入れる
+				// 従業員設定モーダル（表示のみ・判断33）。行のdata属性を項目に流し込む
 				$(document).on('click', '.btn-employee-setting', function () {
 					var d = this.dataset;
+					var yen = function (v) { return v ? '¥' + Number(v).toLocaleString() : '-'; };
+					var MAP = { regular: '正社員', part_time: 'パート', temporary: 'アルバイト',
+					            monthly: '月給', hourly: '時給', daily: '日額' };
 					$('#employee_setting_modal_title').text('従業員設定　' + (d.employeeName || ''));
-					$('#modal_employee_name').val(d.employeeName || '');
-					$('#modal_employee_code').val(d.employeeCode || '');
-					$('#modal_employment_type').val(d.employmentType || 'regular');
-					$('#modal_salary_type').val(d.salaryType || 'monthly');
-					$('#modal_transport_type').val(d.transportType || 'monthly');
-					$('#modal_salary_amount').val(d.salaryAmount ? Number(d.salaryAmount).toLocaleString() : '');
-					$('#modal_transport_amount').val(d.transportAmount ? Number(d.transportAmount).toLocaleString() : '');
-					$('#modal_working_hours').val(d.workingHours || '');
-					$('#modal_overtime_hours').val(d.overtimeHours || '');
-					$('#modal_regular_employee_fields').toggleClass('d-none', (d.employmentType || 'regular') !== 'regular');
+					$('#v_name').text(d.employeeName || '-');
+					$('#v_code').text(d.employeeCode || '-');
+					$('#v_status').text(d.employmentStatus === 'retired' ? '退職' : '在籍');
+					$('#v_emptype').text(MAP[d.employmentType] || '-');
+					$('#v_saltype').text(MAP[d.salaryType] || '-');
+					$('#v_salamount').text(yen(d.salaryAmount));
+					$('#v_trtype').text(d.transportType === 'daily' ? '日額' : '月額');
+					$('#v_tramount').text(yen(d.transportAmount));
+					$('#v_days').text(d.expectedWorkDays ? d.expectedWorkDays + '日' : '-');
+					$('#v_hours').text(d.workingHours ? d.workingHours + '時間' : '-');
+					$('#v_overtime').text(d.overtimeHours ? d.overtimeHours + '時間' : '-');
+					$('#v_store').text(d.store || '-');
+					$('#v_helpstores').text(d.helpStores || '-');
+					$('#v_helpfare').text(d.helpFare || '-');
 					$('#btn_open_employee_detail').attr('href', 'employee_detail.html?employee=' + (d.employeeCode || ''));
 				});
 </script>
