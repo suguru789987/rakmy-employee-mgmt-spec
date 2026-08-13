@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <!--begin::Head-->
+  <head>
+    <base href="" />
+    <title>従業員給与実績一覧｜ラクミー 経営管理システム - 従業員詳細</title>
+    <meta charset="utf-8" /><meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <!--begin::Fonts-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.4.1/dist/css/yakuhanjp-noto.min.css"
+    />
+    <!--end::Fonts-->
+    <!--begin::Vendor Stylesheets(used by this page)-->
+    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css">
+    <!--end::Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link
+      href="assets/plugins/global/plugins.bundle.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/custom.css" rel="stylesheet" media="all" />
+    <link href="assets/css/headerbg.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <!--begin::jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="assets/js/include.js"></script>
+    <!--end::jQuery CDN -->
+  </head><body
+    id="kt_body"
+    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+    style="
+      --kt-toolbar-height: 55px;
+      --kt-toolbar-height-tablet-and-mobile: 55px;
+    "
+  >
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+      <!--begin::Page-->
+      <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Sidebar-->
+        <script>
+          include_sidebar_company();
+        </script>
+        <!--end::Sidebar-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+          <!--Begin::Header-->
+          <script>
+            include_header_company();
+          </script>
+          <!--End::Header-->
+          
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid pt-0" id="kt_content">
+  <div class="container-xxl" id="kt_content_container">
+
+    <div class="d-flex flex-wrap align-items-center gap-3 mb-5">
+      <a href="employee_detail.html" class="btn btn-sm btn-light"><i class="ki-outline ki-arrow-left fs-5 me-1"></i>従業員詳細へ戻る</a>
+      <h2 class="fw-bolder fs-4 mb-0">給与実績一覧</h2>
+      <span class="badge badge-light-primary">田中 太郎（EMP-001）</span>
+    </div>
+
+    <div class="card mb-5">
+      <div class="card-header border-0">
+        <div class="card-title mt-2 mt-lg-4">
+          <h3 class="fw-bolder me-2 fs-5">給与実績</h3>
+          <span class="text-muted fs-8">期間を指定して通しで確認し、CSVで出力できます</span>
+        </div>
+      </div>
+      <div class="card-body border-top p-0">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center px-9 pt-3 gap-3">
+          <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x fs-7 fw-bold border-0 mb-0">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#monthly_tab">月次実績</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#daily_tab">日次実績</a></li>
+          </ul>
+          <div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
+            <div class="d-flex align-items-center gap-2">
+              <label class="fs-8 text-gray-600 nowrap">年月</label>
+              <select class="form-select form-select-sm w-auto" id="from_month">
+                <option value="2024-01">2024年01月</option>
+                <option value="2024-10" selected>2024年10月</option>
+              </select>
+              <span class="fs-8 text-gray-600">〜</span>
+              <select class="form-select form-select-sm w-auto" id="to_month">
+                <option value="2024-12" selected>2024年12月</option>
+                <option value="2025-03">2025年03月</option>
+              </select>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label class="fs-8 text-gray-600 nowrap">給与計算モード</label>
+              <select class="form-select form-select-sm w-auto" id="payroll_mode">
+                <option value="estimate">概算モード</option>
+                <option value="actual" selected>実績モード</option>
+              </select>
+            </div>
+            <button class="btn btn-sm btn-primary" id="payroll_csv_export">
+              <i class="ki-outline ki-file-down fs-5 me-1"></i>CSVエクスポート
+            </button>
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="monthly_tab" role="tabpanel">
+                        <div class="table-responsive">
+                          <table id="monthly_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+                            <thead>
+                              <tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+                                <th class="min-w-100px pt-5">年月</th>
+                                <th class="min-w-75px pt-5">雇用区分</th>
+                                <th class="min-w-50px pt-5">給与単位</th>
+                                <th class="min-w-100px pt-5 text-end">単位給与額</th>
+                                <th class="min-w-50px pt-5 text-end">勤務日数</th>
+                                <th class="min-w-75px pt-5 text-end" data-column-mode="actual">総労働時間</th>
+                                <th class="min-w-75px pt-5 text-end">みなし労働時間</th>
+                                <th class="min-w-100px pt-5 text-end" data-column-mode="actual">みなし労働時間差分</th>
+                                <th class="min-w-150px pt-5">所属店舗</th>
+                                <th class="min-w-75px pt-5 text-end" data-column-mode="actual">所属店舗労働時間</th>
+                                <th class="min-w-150px pt-5" data-column-mode="actual">ヘルプ先店舗</th>
+                                <th class="min-w-50px pt-5 text-end" data-column-mode="actual">ヘルプ時間</th>
+                                <th class="min-w-75px pt-5 text-end" data-column-mode="actual">ヘルプ人件費</th>
+                                <th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業時間</th>
+                                <th class="min-w-75px pt-5 text-end" data-column-mode="actual">深夜残業代</th>
+                                <th class="min-w-75px pt-5 text-end">交通費</th>
+                                <th class="min-w-100px pt-5 text-end">総支給額</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-gray-600 fw-bold">
+                              <tr>
+                                <td class="fw-bold">2024年12月</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">22日</td>
+                                <td class="text-end" data-column-mode="actual">172時間</td>
+                                <td class="text-end">160時間</td>
+                                <td class="text-end text-primary" data-column-mode="actual">+12時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end" data-column-mode="actual">140時間</td>
+                                <td data-column-mode="actual"><div class="d-flex flex-column gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></div></td>
+                                <td class="text-end" data-column-mode="actual">32時間</td>
+                                <td class="text-end" data-column-mode="actual">70,000円</td>
+                                <td class="text-end" data-column-mode="actual">5時間</td>
+                                <td class="text-end" data-column-mode="actual">13,672円</td>
+                                <td class="text-end">15,000円</td>
+                                <td class="text-end">378,672円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年11月</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">21日</td>
+                                <td class="text-end" data-column-mode="actual">155時間</td>
+                                <td class="text-end">160時間</td>
+                                <td class="text-end text-danger" data-column-mode="actual">-5時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end" data-column-mode="actual">135時間</td>
+                                <td data-column-mode="actual"><div class="d-flex flex-column gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span></div></td>
+                                <td class="text-end" data-column-mode="actual">20時間</td>
+                                <td class="text-end" data-column-mode="actual">43,750円</td>
+                                <td class="text-end" data-column-mode="actual">3時間</td>
+                                <td class="text-end" data-column-mode="actual">8,203円</td>
+                                <td class="text-end">15,000円</td>
+                                <td class="text-end">366,953円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年10月</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">320,000円</td>
+                                <td class="text-end">23日</td>
+                                <td class="text-end" data-column-mode="actual">168時間</td>
+                                <td class="text-end">160時間</td>
+                                <td class="text-end text-primary" data-column-mode="actual">+8時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end" data-column-mode="actual">150時間</td>
+                                <td data-column-mode="actual"><div class="d-flex flex-column gap-1"><span class="badge badge-light">ラクミーフレッシュ青山店</span></div></td>
+                                <td class="text-end" data-column-mode="actual">18時間</td>
+                                <td class="text-end" data-column-mode="actual">36,000円</td>
+                                <td class="text-end" data-column-mode="actual">4時間</td>
+                                <td class="text-end" data-column-mode="actual">10,000円</td>
+                                <td class="text-end">12,000円</td>
+                                <td class="text-end">346,000円</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+          <div class="tab-pane fade" id="daily_tab" role="tabpanel">
+                        <div class="table-responsive">
+                          <table id="daily_payroll_table" class="table align-middle table-row-bordered gy-3 gs-7 fs-7">
+                            <thead>
+                              <tr class="fw-bold fs-8 text-gray-500 text-nowrap">
+                                <th class="min-w-150px pt-5">日時</th>
+                                <th class="min-w-75px pt-5">雇用区分</th>
+                                <th class="min-w-75px pt-5">給与単位</th>
+                                <th class="min-w-75px pt-5 text-end">単位給与額</th>
+                                <th class="min-w-50px pt-5 text-end">勤務時間</th>
+                                <th class="min-w-150px pt-5">所属店舗</th>
+                                <th class="min-w-75px pt-5 text-end">所属店舗労働時間</th>
+                                <th class="min-w-150px pt-5">ヘルプ先店舗</th>
+                                <th class="min-w-50px pt-5 text-end">ヘルプ時間</th>
+                                <th class="min-w-75px pt-5 text-end">ヘルプ人件費</th>
+                                <th class="min-w-50px pt-5 text-end">深夜残業時間</th>
+                                <th class="min-w-75px pt-5 text-end">深夜残業代</th>
+                                <th class="min-w-75px pt-5 text-end">交通費</th>
+                                <th class="min-w-100px pt-5 text-end">総支給額</th>
+                              </tr>
+                            </thead>
+                            <tbody class="text-gray-600 fw-bold">
+                              <tr>
+                                <td class="fw-bold">2024年12月20日 (金)</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">8時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end">6時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ青山店</span></td>
+                                <td class="text-end">2時間</td>
+                                <td class="text-end">4,375円</td>
+                                <td class="text-end">0時間</td>
+                                <td class="text-end">0円</td>
+                                <td class="text-end">682円</td>
+                                <td class="text-end">20,966円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年12月19日 (木)</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">9時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end">9時間</td>
+                                <td>-</td>
+                                <td class="text-end">0時間</td>
+                                <td class="text-end">0円</td>
+                                <td class="text-end">1時間</td>
+                                <td class="text-end">2,734円</td>
+                                <td class="text-end">682円</td>
+                                <td class="text-end">19,325円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年12月18日 (水)</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">8時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end">4時間</td>
+                                <td><span class="badge badge-light me-1">ラクミーフレッシュ青山店</span><span class="badge badge-light">ラクミーフレッシュ新宿店</span></td>
+                                <td class="text-end">4時間</td>
+                                <td class="text-end">8,750円</td>
+                                <td class="text-end">0時間</td>
+                                <td class="text-end">0円</td>
+                                <td class="text-end">682円</td>
+                                <td class="text-end">25,341円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年12月17日 (火)</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">8時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end">8時間</td>
+                                <td>-</td>
+                                <td class="text-end">0時間</td>
+                                <td class="text-end">0円</td>
+                                <td class="text-end">0時間</td>
+                                <td class="text-end">0円</td>
+                                <td class="text-end">682円</td>
+                                <td class="text-end">16,591円</td>
+                              </tr>
+                              <tr>
+                                <td class="fw-bold">2024年12月16日 (月)</td>
+                                <td><span class="badge badge-light-primary">正社員</span></td>
+                                <td><span class="badge badge-dark">月給</span></td>
+                                <td class="text-end">350,000円</td>
+                                <td class="text-end">10時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ渋谷店</span></td>
+                                <td class="text-end">8時間</td>
+                                <td><span class="badge badge-light">ラクミーフレッシュ新宿店</span></td>
+                                <td class="text-end">2時間</td>
+                                <td class="text-end">4,375円</td>
+                                <td class="text-end">2時間</td>
+                                <td class="text-end">5,469円</td>
+                                <td class="text-end">682円</td>
+                                <td class="text-end">26,435円</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--end::Content-->
+<script>
+  // 日次タブでは給与計算モードを隠す（日別に概算モードは無い）
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(function (el) {
+    el.addEventListener('shown.bs.tab', function (e) {
+      var daily = e.target.getAttribute('href') === '#daily_tab';
+      document.getElementById('payroll_mode').closest('div').style.display = daily ? 'none' : '';
+    });
+  });
+  document.getElementById('payroll_csv_export').addEventListener('click', function () {
+    var tab = document.querySelector('.nav-link.active').textContent.trim();
+    var mode = document.getElementById('payroll_mode').value === 'actual' ? '実績' : '概算';
+    alert('CSVを出力します\n対象：' + tab + '／' + mode + 'モード\n期間：'
+      + document.getElementById('from_month').value + ' 〜 ' + document.getElementById('to_month').value);
+  });
+</script>
+</body>
+</html>

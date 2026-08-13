@@ -388,9 +388,7 @@
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
                       <a href="employee_payroll_histories.html?employee=EMP-001" class="btn btn-sm btn-light-primary me-2" id="setting_history_view_all"><i class="ki-outline ki-eye fs-5 me-1"></i>すべての履歴</a>
-<button type="button" class="btn btn-sm btn-primary" id="setting_history_csv_export">
-                        <i class="ki-outline ki-file-down fs-5 me-1"></i>CSVエクスポート
-                      </button>
+
                     </div>
                     <!--end::Card toolbar-->
                   </div>
@@ -508,6 +506,7 @@
                     <!--begin::Card title-->
                     <div class="card-title mt-2 mt-lg-4">
                       <h3 class="fw-bolder me-2 fs-5">給与実績</h3>
+<span class="text-muted fs-8">直近3か月を実績モードで表示しています。期間の絞り込みとCSV出力は「すべての実績」から</span>
                     </div>
                     <!--end::Card title-->
                   </div>
@@ -526,59 +525,11 @@
                         </li>
                       </ul>
                       <!--end::Nav tabs-->
-                      <!--begin::Filters-->
-                      <div class="tab-content mb-0">
-                        <!--begin::Monthly Filters-->
-                        <div class="tab-pane fade show active" id="monthly_filters" role="tabpanel">
-                          <div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
-                            <div class="d-flex align-items-center gap-3">
-                              <label class="fs-8 text-gray-600 nowrap">年</label>
-                              <select class="form-select form-select-sm w-auto" id="year_filter">
-                                <option value="">すべて</option>
-                                <option value="2024" selected>2024年</option>
-                                <option value="2023">2023年</option>
-                              </select>
-                            </div>
-                            <div class="d-flex align-items-center gap-3">
-                              <label class="fs-8 text-gray-600 nowrap">給与計算モード</label>
-                              <select class="form-select form-select-sm w-auto" id="monthly_payroll_mode">
-                                <option value="estimated">概算モード</option>
-                                <option value="actual" selected>実績モード</option>
-                              </select>
-                            </div>
-                            <button class="btn btn-sm btn-primary" id="monthly_csv_export">
-                              <i class="ki-duotone ki-file-down fs-4 me-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                              </i>
-                              CSVエクスポート
-                            </button>
-                          </div>
-                        </div>
-                        <!--end::Monthly Filters-->
-                        <!--begin::Daily Filters-->
-                        <div class="tab-pane fade" id="daily_filters" role="tabpanel">
-                          <div class="d-flex flex-wrap gap-3 gap-sm-5 align-items-center">
-                            <div class="d-flex align-items-center gap-3">
-                              <label class="fs-8 text-gray-600 nowrap">年月</label>
-                              <select class="form-select form-select-sm w-auto" id="month_filter">
-                                <option value="2024-12" selected>2024年12月</option>
-                                <option value="2024-11">2024年11月</option>
-                                <option value="2024-10">2024年10月</option>
-                              </select>
-                            </div>
-                            <button class="btn btn-sm btn-primary" id="daily_csv_export">
-                              <i class="ki-duotone ki-file-down fs-4 me-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                              </i>
-                              CSVエクスポート
-                            </button>
-                          </div>
-                        </div>
-                        <!--end::Daily Filters-->
-                      </div>
-                      <!--end::Filters-->
+                      <!--begin::詳細一覧への導線-->
+                      <a href="employee_payroll_detail.html?employee=EMP-001" class="btn btn-sm btn-light-primary" id="payroll_view_all">
+                        <i class="ki-outline ki-eye fs-5 me-1"></i>すべての実績
+                      </a>
+                      <!--end::詳細一覧への導線-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Tab content-->
@@ -1053,12 +1004,10 @@
       }
 
       // Initialize payroll mode toggle
-      document.getElementById('monthly_payroll_mode').addEventListener('change', function() {
-        togglePayrollMode(this.value);
-      });
+
 
       // Initialize on page load
-      togglePayrollMode(document.getElementById('monthly_payroll_mode').value);
+      togglePayrollMode('actual');  // 詳細は実績モード固定（絞り込みは給与実績一覧へ）
 
       // Sync filter tabs with main tabs
       $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -1175,42 +1124,12 @@
       });
 
       // CSV Export
-      document.getElementById('monthly_csv_export').addEventListener('click', function() {
-        Swal.fire({
-          text: "CSVファイルをエクスポートしました",
-          icon: "success",
-          buttonsStyling: false,
-          confirmButtonText: "OK",
-          customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
-      });
 
-      document.getElementById('daily_csv_export').addEventListener('click', function() {
-        Swal.fire({
-          text: "CSVファイルをエクスポートしました",
-          icon: "success",
-          buttonsStyling: false,
-          confirmButtonText: "OK",
-          customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
-      });
+
+
 
       // Setting history CSV export
-      document.getElementById('setting_history_csv_export').addEventListener('click', function() {
-        Swal.fire({
-          text: "設定変更履歴をCSVエクスポートしました",
-          icon: "success",
-          buttonsStyling: false,
-          confirmButtonText: "OK",
-          customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
-      });
+
 
       // Initialize Select2 for modal edit setting
       $('#modal_edit_setting').on('shown.bs.modal', function() {
