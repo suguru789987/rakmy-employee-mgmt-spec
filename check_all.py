@@ -523,6 +523,16 @@ def c8_counts():
           f'実装レビュー」の{n_rv}条件' in how,
           re.search(r'実装レビュー」の(\d+)条件', how).group(0) if re.search(r'実装レビュー」の\d+条件', how) else '記載なし')
 
+    # 判断番号が重複していないか／仕様書の判断表に全件あるか
+    if os.path.exists('JUDGMENT_LOG.md'):
+        jl2 = open('JUDGMENT_LOG.md', encoding='utf-8').read()
+        nums = [int(x) for x in re.findall(r'\| \*\*J-0?(\d+)\*\* \|', jl2)]
+        dup = sorted({n for n in nums if nums.count(n) > 1})
+        check('8 件数表記', '判断番号が重複していない', not dup,
+              f'重複 J-{dup}' if dup else f'{len(nums)}件')
+        miss = [n for n in sorted(set(nums)) if not re.search(rf'\| \*\*{n}\*\* \|', spec)]
+        check('8 件数表記', '仕様書の判断表に全ての判断がある', not miss, f'欠落 {miss}')
+
     # --- 判断の件数（判断記録を足せば必ず動く数字）---
     if os.path.exists('JUDGMENT_LOG.md'):
         jl = open('JUDGMENT_LOG.md', encoding='utf-8').read()
