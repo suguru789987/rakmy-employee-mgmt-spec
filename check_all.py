@@ -532,6 +532,10 @@ def c8_counts():
               f'重複 J-{dup}' if dup else f'{len(nums)}件')
         miss = [n for n in sorted(set(nums)) if not re.search(rf'\| \*\*{n}\*\* \|', spec)]
         check('8 件数表記', '仕様書の判断表に全ての判断がある', not miss, f'欠落 {miss}')
+        # 2026-08-13 に確定した判断は、仕様書に理由を書いた節があること
+        today = [int(x) for x in re.findall(r'\| \*\*J-0?(\d+)\*\*[^|]*\|[^|]*\|[^|]*\| 2026-08-13 \|', jl2)]
+        nosec = [n for n in sorted(set(today)) if f'判断{n}' not in spec]
+        check('8 件数表記', '2026-08-13の判断に仕様書の節がある', not nosec, f'節が無い {nosec}')
 
     # --- 判断の件数（判断記録を足せば必ず動く数字）---
     if os.path.exists('JUDGMENT_LOG.md'):
