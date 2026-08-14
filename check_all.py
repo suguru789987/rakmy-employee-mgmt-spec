@@ -846,6 +846,31 @@ def c12_derived():
                     bad.append(f'{os.path.basename(f)}/{rn}行/{col}={v}')
     check('7 ヘルプ', '時給者の日次に想定給与を出していない（判断27）', not bad, bad[:6])
 
+    # 判断43：想定労働日数は保存値。勤務日数と同じ値になってはいけない
+    bad = []
+    h = open('mock/payroll_reports.html', encoding='utf-8').read()
+    j = h.find('id="monthly_tab"')
+    if j >= 0:
+        seg = h[j:h.index('</table>', j)]
+        hd = seg.index('</thead>')
+        names = [re.sub(r'<[^>]+>', '', mm.group(1)).strip()
+                 for mm in re.finditer(r'(?s)<th(?![a-z])[^>]*>(.*?)</th>', seg[:hd])]
+        if '想定労働日数' in names and '勤務日数' in names:
+            i1, i2 = names.index('想定労働日数'), names.index('勤務日数')
+            same = 0
+            rows_ = re.findall(r'<tr[^>]*>[\s\S]*?</tr>', seg[hd:])
+            for r in rows_:
+                c = re.findall(r'<td[^>]*>[\s\S]*?</td>', r)
+                if len(c) != len(names):
+                    continue
+                a1 = re.sub(r'<[^>]+>', '', c[i1]).strip()
+                a2 = re.sub(r'<[^>]+>', '', c[i2]).strip()
+                if a1 == a2 and a1 not in ('-', '—', ''):
+                    same += 1
+            if rows_ and same == len([r for r in rows_ if '<td' in r]):
+                bad.append(f'全{same}行で想定労働日数＝勤務日数（判断43に反する）')
+    check('7 ヘルプ', '想定労働日数が勤務日数と別の値（判断43）', not bad, bad)
+
     # 判断4：リンクのラベルは遷移先の画面名と一字一句そろえる
     titles = {}
     for f in glob.glob('mock/*.html'):
